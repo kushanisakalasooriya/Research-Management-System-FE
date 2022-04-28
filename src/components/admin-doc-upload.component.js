@@ -75,6 +75,10 @@ const App = (props) => {
 
   return (
     <React.Fragment>
+      <hr/>
+      <h3>System Admin - Document / Presentation Template Upload Portal</h3>
+      <hr/>
+      <br/>
       <Form className="search-form" onSubmit={handleOnSubmit}>
         {errorMsg && <p className="errorMsg">{errorMsg}</p>}
         <Row>
@@ -84,12 +88,13 @@ const App = (props) => {
                 type="text"
                 name="title"
                 value={state.title || ''}
-                placeholder="Enter title"
+                placeholder="Enter Document title"
                 onChange={handleInputChange}
               />
             </Form.Group>
           </Col>
         </Row>
+        <br/>
         <Row>
           <Col>
             <Form.Group controlId="description">
@@ -97,22 +102,23 @@ const App = (props) => {
                 type="text"
                 name="description"
                 value={state.description || ''}
-                placeholder="Enter description"
+                placeholder="Enter Document description"
                 onChange={handleInputChange}
               />
             </Form.Group>
           </Col>
         </Row>
+        <br/>
         <div className="upload-section">
-          <Dropzone
+          <Dropzone 
             onDrop={onDrop}
             onDragEnter={() => updateBorder('over')}
             onDragLeave={() => updateBorder('leave')}
           >
             {({ getRootProps, getInputProps }) => (
-              <div {...getRootProps({ className: 'drop-zone' })} ref={dropRef}>
+              <div style={{backgroundColor:"skyBlue",width:'40%'}}{...getRootProps({ className: 'drop-zone' })} ref={dropRef}>
                 <input {...getInputProps()} style={{height:"100px", backgroundColor:"skyBlue"}}/>
-                <p>Drag and drop a file OR click here to select a file</p>
+                <p>Drag and drop a file OR<button style={{color:"red",border:"none",backgroundColor:'transparent'}}>click here</button>to select a file</p>
                 {file && (
                   <div>
                     <strong>Selected file:</strong> {file.name}
@@ -128,6 +134,7 @@ const App = (props) => {
               </div>
             ) : (
               <div className="preview-message">
+                <br/>
                 <p>No preview available for this file</p>
               </div>
             )
@@ -137,6 +144,7 @@ const App = (props) => {
             </div>
           )}
         </div>
+        <br/>
         <Button variant="primary" type="submit">
           Submit
         </Button>

@@ -1,122 +1,194 @@
-import React, { useState, useEffect } from 'react';
+import React, { Component, Fragment } from 'react';
+import ReactDatatable from '@ashvin27/react-datatable';
 import download from 'downloadjs';
 import axios from 'axios';
 import { API_URL } from '../utils/constants';
-import EditAdminFile from './admin-doc-edit.component';
-import { Link } from 'react-router-dom';
 
-
-const FilesList = (props) => {
-  const [filesList, setFilesList] = useState([]);
-  const [errorMsg, setErrorMsg] = useState('');
-
-  useEffect(() => {
-    const getFilesList = async () => {
-      try {
-        const { data } = await axios.get(`${API_URL}/admin/getAllFiles`);
-        setErrorMsg('');
-        setFilesList(data);
-      } catch (error) {
-        error.response && setErrorMsg(error.response.data);
+export default class AdminFileList extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      filesList: '',
+      errorMsg: '',
+      data: ''
+    }
+    this.columns = [
+      {
+        key: "title",
+        text: "File Name",
+        className: "name",
+        align: "left",
+        sortable: true,
+      },
+      {
+        key: "description",
+        text: "Content Description",
+        className: "address",
+        align: "left",
+        sortable: true
+      },
+      {
+        key: "action",
+        text: "Download",
+        className: "action",
+        width: 100,
+        align: "left",
+        sortable: false,
+        cell: record => {
+          return (
+            <Fragment>
+              <button
+                className="btn btn-info btn-sm"
+                onClick={() => this.downloadFile(record)}>
+                Download
+              </button>
+            </Fragment>
+          );
+        }
+      },
+      {
+        key: "action",
+        text: "Update",
+        className: "action",
+        width: 100,
+        align: "left",
+        sortable: false,
+        cell: record => {
+          return (
+            <Fragment>
+              <button
+                className="btn btn-primary btn-sm"
+                onClick={() => this.editRecord(record)}
+                style={{ marginRight: '5px' }}>
+                Update
+              </button>
+            </Fragment>
+          );
+        }
+      },
+      {
+        key: "action",
+        text: "Delete",
+        className: "action",
+        width: 100,
+        align: "left",
+        sortable: false,
+        cell: record => {
+          return (
+            <Fragment>
+              <button
+                name="Delete"
+                className="btn btn-danger btn-sm"
+                onClick={() => this.deleteRecord(record)}>
+                Delete
+              </button>
+            </Fragment>
+          );
+        }
       }
-    };
+    ];
+    this.config = {
+      page_size: 5,
+      length_menu: [10, 20, 50],
+      button: {
+        excel: false,
+        print: false,
+        extra: false,
+      },
+    }
+    this.extraButtons = [
+      {
+        className: "btn btn-primary buttons-pdf",
+        title: "Export TEst",
+        children: [
+          <span>
+            <i className="glyphicon glyphicon-print fa fa-print" aria-hidden="true"></i>
+          </span>
+        ],
+        onClick: (event) => {
+          console.log(event);
+        },
+      },
+      {
+        className: "btn btn-primary buttons-pdf",
+        title: "Export TEst",
+        children: [
+          <span>
+            <i className="glyphicon glyphicon-print fa fa-print" aria-hidden="true"></i>
+          </span>
+        ],
+        onClick: (event) => {
+          console.log(event);
+        },
+        onDoubleClick: (event) => {
+          console.log("doubleClick")
+        }
+      },
+    ]
+  }
+  editRecord(record) {
+    this.props.history.push("/admin-file-edit/" + record._id);
+  }
 
-    getFilesList();
-  }, []);
-
-  const downloadFile = async (id, path, mimetype) => {
+  deleteRecord(record) {
     try {
-      const result = await axios.get(`${API_URL}/admin/download/${id}`, {
-        responseType: 'blob'
-      });
-      const split = path.split('/');
-      const filename = split[split.length - 1];
-      setErrorMsg('');
-      return download(result.data, filename, mimetype);
+      axios.delete(`${API_URL}/file-delete/${record._id}`)
+        .then(response => { console.log(response.data) });
+      window.location.reload(true);
     } catch (error) {
       if (error.response && error.response.status === 400) {
-        setErrorMsg('Error while downloading file. Try again later');
+        this.setState = {
+          errorMsg: 'Error while deleting file. Try again later'
+        }
       }
     }
-  };
+  }
 
-  const deleteFile = async (id) => {
-    try{
-    axios.delete(`${API_URL}/file-delete/${id}`)
-    .then(response => { console.log(response.data)});
-    window.location.reload(true);
-  }catch (error) {
+  async downloadFile(record) {
+    try {
+      const result = await axios.get(`${API_URL}/admin/download/${record._id}`, {
+        responseType: 'blob'
+      });
+      const split = record.file_path.split('/');
+      const filename = split[split.length - 1];
+      this.state.errorMsg = '';
+      return download(result.data, filename, record.mimetype);
+    } catch (error) {
       if (error.response && error.response.status === 400) {
-        setErrorMsg('Error while deleting file. Try again later');
+        this.state.errorMsg = 'Error while downloading file. Try again later';
       }
     }
-  };
+  }
 
+  componentWillMount(props) {
+    axios.get(`${API_URL}/admin/getAllFiles`)
+      .then(res => {
+        this.setState({ records: res.data });
+        console.log(this.state.records)
+      }
+      )
+  }
 
-  return (
-    <div className="files-container">
-      {errorMsg && <p className="errorMsg">{errorMsg}</p>}
-      <table className="files-table" id="admin-files-table">
-        <thead>
-        {filesList.length>0?(
-          <tr>
-            <th style={{width:"300px"}}>Title</th>
-            <th style={{width:"300px"}}>Description</th>
-            <th style={{width:"300px"}}>Download File</th>
-            <th style={{width:"300px"}}>Delete File</th>
-            <th style={{width:"300px"}}>Update File</th>
-          </tr>
-        ):(<tr></tr>)}
-        </thead>
-        <tbody>
-          {filesList.length > 0 ? (
-            filesList.map(
-              ({ _id, title, description, file_path, file_mimetype }) => (
-                <tr key={_id}>
-                  <td className="file-title">{title}</td>
-                  <td className="file-description">{description}</td>
-                  <td>
-                    <a
-                      href="#/"
-                      onClick={() =>
-                        downloadFile(_id, file_path, file_mimetype)
-                      }
-                    >
-                      Download
-                    </a>
-                  </td>
-                  <td>
-                  <a style={{color:"red"}}
-                      href="#/"
-                      onClick={() =>
-                        deleteFile(_id)
-                      }
-                    >
-                      Delete
-                    </a>
-                  </td>
-                  <td>
-                  <a style={{color:"red"}}
-                      href="#/"
-                    >
-                      <Link to={"/admin-file-edit/"+_id} component={EditAdminFile}>Update</Link>
-                    </a>
-                  </td>
-                </tr>
-              )
-            )
-          ) : (
-            <tr>
-              <td colSpan={3} style={{ fontWeight: '300' }}>
-                No files found. Please add some.
-              </td>
-            </tr>
-            
-          )}
-        </tbody>
-      </table>
-    </div>
-  );
-};
+  setErrorMsg(err) {
+    this.setState = {
+      errorMsg: err
+    }
+  }
+  render() {
+    return (
+      <div>
+        <hr />
+        <h4>System Admin - Uploaded Documents / Presentation Templates </h4>
+        <hr />
+        <br />
+        <ReactDatatable
+          config={this.config}
+          records={this.state.records}
+          columns={this.columns}
+          extraButtons={this.extraButtons}
+        />
+      </div>
+    )
+  }
+}
 
-export default FilesList;
