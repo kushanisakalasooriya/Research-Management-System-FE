@@ -11,6 +11,10 @@ import AdminDocUpload from './components/admin-doc-upload.component';
 import AdminHome from './components/admin-home.component';
 import EditAdminFile from './components/admin-doc-edit.component';
 import AdminFileList from './components/uploaded-files-admin.component';
+import AddNewSubmissionType from './components/create-new-submission.component';
+import SubmissionTypesList from './components/submission-types-admin.component';
+import EditSubmissionType from './components/admin-submission-type-edit.component';
+
 
 function App() {
   return (
@@ -25,6 +29,9 @@ function App() {
       <Route path="/admin-file-upload" component={AdminDocUpload} />
       <Route path="/admin-file-download" component={AdminFileList} />
       <Route path="/admin-file-edit/:id" component={EditAdminFile} />
+      <Route path="/admin-add-new-submission-type" component={AddNewSubmissionType} />
+      <Route path="/admin-submission-type-list" component={SubmissionTypesList} />
+      <Route path="/admin-submission-type-edit/:id" component={EditSubmissionType} />
       <Route path="/admin-home" component={AdminHome} />
       
       </div>

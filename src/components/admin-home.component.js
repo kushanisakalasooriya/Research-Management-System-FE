@@ -5,9 +5,13 @@ export default class AdminHome extends Component {
 
   render() {
     return (
-      <div>
+      <div style={{marginTop:'60px'}}>
+        <center>
         <Link to="/admin-file-upload"><button type="button" style={{marginRight: "50px"}} class="btn btn-primary btn-lg">File Upload</button></Link>
-        <Link to="/admin-file-download"><button type="button" class="btn btn-primary btn-lg">Download Files</button></Link>
+        <Link to="/admin-file-download"><button type="button" style={{marginRight: "50px"}} class="btn btn-primary btn-lg">Download Files</button></Link>
+        <Link to="/admin-add-new-submission-type"><button type="button" style={{marginRight: "50px"}} class="btn btn-primary btn-lg">Add Submission Type</button></Link>
+        <Link to="/admin-submission-type-list"><button type="button" class="btn btn-primary btn-lg">View Submission Types</button></Link>
+        </center>
       </div>
     );
   }
