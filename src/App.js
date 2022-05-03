@@ -7,13 +7,17 @@ import ExercisesList from "./components/exercises-list.component";
 import EditExercise from "./components/edit-exercise.component";
 import CreateExercise from "./components/create-exercise.component";
 import CreateUser from "./components/create-user.component";
-import AdminDocUpload from './components/admin-doc-upload.component';
-import AdminHome from './components/admin-home.component';
-import EditAdminFile from './components/admin-doc-edit.component';
-import AdminFileList from './components/uploaded-files-admin.component';
-import AddNewSubmissionType from './components/create-new-submission.component';
-import SubmissionTypesList from './components/submission-types-admin.component';
-import EditSubmissionType from './components/admin-submission-type-edit.component';
+
+import AdminDocUpload from './components/admin-components/admin-file-upload.component';
+import AdminHome from './components/admin-components/admin-home.component';
+import EditAdminFile from './components/admin-components/admin-file-edit.component';
+import AdminFileList from './components/admin-components/uploaded-files-admin.component';
+import AddNewSubmissionType from './components/admin-components/create-new-submission-type.component';
+import SubmissionTypesList from './components/admin-components/submission-types-admin.component';
+import EditSubmissionType from './components/admin-components/admin-submission-type-edit.component';
+
+import AddSubmission from './components/admin-components/add-submission.component';
+
 
 import SupervisorHome from './components/supervisor-components/supervisor-home.component';
 
@@ -34,6 +38,7 @@ function App() {
           <Route path="/admin-add-new-submission-type" component={AddNewSubmissionType} />
           <Route path="/admin-submission-type-list" component={SubmissionTypesList} />
           <Route path="/admin-submission-type-edit/:id" component={EditSubmissionType} />
+          <Route path="/add-submission" component={AddSubmission} />
           <Route path="/admin-home" component={AdminHome} />
         
           <Route path="/supervisor-home" component={SupervisorHome} />
