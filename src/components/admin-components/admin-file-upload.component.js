@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import Dropzone from 'react-dropzone';
 import axios from 'axios';
 import { Form, Row, Col, Button } from 'react-bootstrap';
-import { API_URL } from '../utils/constants';
+import { API_URL } from '../../utils/constants';
 
 const App = (props) => {
   const [file, setFile] = useState(null); // state for storing actual image
