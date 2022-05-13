@@ -7,14 +7,14 @@ export default class SupervisorHome extends Component {
     render() {
         return (
             <div>
-                <header class="section " style={{ marginBottom: '20px' }}>
-                    <section class="full-width ">
+                <header className="section " style={{ marginBottom: '20px' }}>
+                    <section className="full-width ">
 
                         <div className="headingModsLand" style={{ marginBottom: "30px", marginTop: "20px" }}> <h1>  Supervisor Home  </h1> </div>
 
                         <center>
                             <div className="laddBtn">
-                                <Link to="#"><button >Accept Topics</button></Link>
+                                <Link to="/supervisor-topics"><button >Accept Topics</button></Link>
                             </div>
                             <div className="lModBtn">
                                 <Link to="#"><button>Chat with Students</button></Link>
