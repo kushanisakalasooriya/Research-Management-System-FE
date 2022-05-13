@@ -20,6 +20,7 @@ import AddSubmission from './components/admin-components/add-submission.componen
 
 
 import SupervisorHome from './components/supervisor-components/supervisor-home.component';
+import CreateGroup from './components/student-components/create-group.component';
 
 function App() {
   return (
@@ -42,6 +43,8 @@ function App() {
           <Route path="/admin-home" component={AdminHome} />
         
           <Route path="/supervisor-home" component={SupervisorHome} />
+
+          <Route path="/add-group" component={CreateGroup} />
             
       </div>
     </Router>
