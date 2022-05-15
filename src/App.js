@@ -23,6 +23,17 @@ import SupervisorHome from './components/supervisor-components/supervisor-home.c
 import SupervisorTopicList from './components/supervisor-components/supervisor-topic-list.component';
 import SupervisorEditTopics from './components/supervisor-components/supervisor-edit.component';
 
+import userManagementHome from './components/userManagement-components/userManagement-home.component';
+import StudentDetailsList from './components/userManagement-components/student-list.component';
+import AddStudentDetails from './components/userManagement-components/create-student.component';
+import UpdateStudentDetails from './components/userManagement-components/edit-student.component';
+import AddEmployeeDetails from './components/userManagement-components/create-staff.component';
+import UpdateEmployeeDetails from './components/userManagement-components/edit-employee.component';
+import EmployeeDetailsList from './components/userManagement-components/employee-list.component';
+import StudentRegistration from './components/userManagement-components/student-registration.component';
+import StudentProfile from './components/userManagement-components/studentProfile.component';
+
+
 function App() {
   return (
     <Router>
@@ -30,6 +41,7 @@ function App() {
 
         <Navbar />
         <br />
+
         <Route path="/" exact component={ExercisesList} />
         <Route path="/edit/:id" component={EditExercise} />
         <Route path="/create" component={CreateExercise} />
@@ -46,6 +58,16 @@ function App() {
         <Route path="/supervisor-home" component={SupervisorHome} />
         <Route path="/supervisor-topics" component={SupervisorTopicList} />
         <Route path="/supervisor-topics/edit/:id" component={SupervisorEditTopics} />
+
+        <Route path="/user-management-home" component={userManagementHome} />
+        <Route path="/student-details" exact component={StudentDetailsList} />
+        <Route path="/add-student-details" component={AddStudentDetails} />
+        <Route path="/update-student-details/:id" component={UpdateStudentDetails} />
+        <Route path="/employee-details" exact component={EmployeeDetailsList} />
+        <Route path="/add-employee-details" component={AddEmployeeDetails} />
+        <Route path="/update-employee-details/:id" component={UpdateEmployeeDetails} />
+        <Route path="/student-registration" component={StudentRegistration} />
+        <Route path="/student-profile/:id" component={StudentProfile} />
 
       </div>
     </Router>
