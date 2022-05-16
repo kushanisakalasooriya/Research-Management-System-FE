@@ -18,7 +18,6 @@ import EditSubmissionType from './components/admin-components/admin-submission-t
 
 import AddSubmission from './components/admin-components/add-submission.component';
 
-
 import SupervisorHome from './components/supervisor-components/supervisor-home.component';
 import SupervisorTopicList from './components/supervisor-components/supervisor-topic-list.component';
 import SupervisorEditTopics from './components/supervisor-components/supervisor-edit.component';
@@ -32,7 +31,6 @@ import UpdateEmployeeDetails from './components/userManagement-components/edit-e
 import EmployeeDetailsList from './components/userManagement-components/employee-list.component';
 import StudentRegistration from './components/userManagement-components/student-registration.component';
 import StudentProfile from './components/userManagement-components/studentProfile.component';
-
 
 function App() {
   return (
@@ -68,6 +66,8 @@ function App() {
         <Route path="/update-employee-details/:id" component={UpdateEmployeeDetails} />
         <Route path="/student-registration" component={StudentRegistration} />
         <Route path="/student-profile/:id" component={StudentProfile} />
+          
+        <Route path="/add-group" component={CreateGroup} />
 
       </div>
     </Router>
