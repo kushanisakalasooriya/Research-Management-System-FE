@@ -1,5 +1,16 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
+
+const Student = props => (
+    <tr>
+        <td>{props.student.stdID}</td>
+        <td>{props.student.studentfirstName} {props.student.studentlastName}</td>
+        <td>
+            <Link to={""}> Add </Link>
+        </td>
+    </tr>
+)
 
 export default class CreateGroup extends Component {
     constructor(props) {
@@ -16,14 +27,37 @@ export default class CreateGroup extends Component {
             groupleader: '',
             supervisor: '',
             cosupervisor: '',
+            students:[],
+            nogroupstudents:[],
         }
     }
 
-    // componentDidMount() {
-    //     this.setState({
+    componentDidMount() {
+        axios.get('http://localhost:5000/studentDetails')
+        .then(response => {
+            this.setState({ students: response.data})
+        })
+        .catch((error) => {
+            console.log(error);
+        })
 
-    //     });
-    // }
+        // console.log(this.state.students);
+    }
+
+    studentDetailsList() {
+        // console.log(this.state.students);
+        var i = 0;
+        for (i=0 ; i < this.state.students.length ; i++){
+            if(this.state.students[i].studentGrpID == null){
+                this.state.nogroupstudents.push(this.state.students[i]);
+            }
+        }
+        // console.log(this.state.nogroupstudents);
+
+        return this.state.nogroupstudents.map(currentstudentdetails => {
+            return <Student student = {currentstudentdetails} key={currentstudentdetails._id}/>;
+        })
+    }
 
     onChangeGroupName(e) {
         this.setState({
@@ -78,6 +112,23 @@ export default class CreateGroup extends Component {
     render() {
         return (
             <div>
+
+                <h3>All Student Details</h3>
+
+                <table className='table'>
+                    <thead className='thead-light'>
+                        <tr>
+                            <th>Student ID</th>
+                            <th>Student Name</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {this.studentDetailsList()}
+                    </tbody>
+                </table>
+
                 <h3>Create New Group Log</h3>
                 <form onSubmit={this.onSubmit}>
                     <div className="form-group">
