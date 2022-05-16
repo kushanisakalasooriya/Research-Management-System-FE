@@ -32,6 +32,8 @@ import EmployeeDetailsList from './components/userManagement-components/employee
 import StudentRegistration from './components/userManagement-components/student-registration.component';
 import StudentProfile from './components/userManagement-components/studentProfile.component';
 
+import CreateGroup from './components/student-components/create-group.component';
+
 function App() {
   return (
     <Router>
