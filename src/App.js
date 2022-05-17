@@ -2,12 +2,14 @@ import React from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
+//common routes
 import Navbar from "./components/navbar.component"
 import ExercisesList from "./components/exercises-list.component";
 import EditExercise from "./components/edit-exercise.component";
 import CreateExercise from "./components/create-exercise.component";
 import CreateUser from "./components/create-user.component";
 
+//admin routes
 import AdminDocUpload from './components/admin-components/admin-file-upload.component';
 import AdminHome from './components/admin-components/admin-home.component';
 import EditAdminFile from './components/admin-components/admin-file-edit.component';
@@ -18,10 +20,14 @@ import EditSubmissionType from './components/admin-components/admin-submission-t
 
 import AddSubmission from './components/admin-components/add-submission.component';
 
+//supervisour routes
 import SupervisorHome from './components/supervisor-components/supervisor-home.component';
 import SupervisorTopicList from './components/supervisor-components/supervisor-topic-list.component';
 import SupervisorEditTopics from './components/supervisor-components/supervisor-edit.component';
+import SuperrvisorStdGroupList from './components/supervisor-components/supervisor-stdGroup-list.component';
+import SupervisorEditStdGroups from './components/supervisor-components/supervisor-stdGroup-edit.component';
 
+//usermanagement routes
 import userManagementHome from './components/userManagement-components/userManagement-home.component';
 import StudentDetailsList from './components/userManagement-components/student-list.component';
 import AddStudentDetails from './components/userManagement-components/create-student.component';
@@ -32,6 +38,7 @@ import EmployeeDetailsList from './components/userManagement-components/employee
 import StudentRegistration from './components/userManagement-components/student-registration.component';
 import StudentProfile from './components/userManagement-components/studentProfile.component';
 
+//studenet routes
 import CreateGroup from './components/student-components/create-group.component';
 
 function App() {
@@ -42,6 +49,7 @@ function App() {
         <Navbar />
         <br />
 
+        {/* admin paths */}
         <Route path="/" exact component={ExercisesList} />
         <Route path="/edit/:id" component={EditExercise} />
         <Route path="/create" component={CreateExercise} />
@@ -55,10 +63,14 @@ function App() {
         <Route path="/add-submission" component={AddSubmission} />
         <Route path="/admin-home" component={AdminHome} />
 
+        {/* supervisor paths */}
         <Route path="/supervisor-home" component={SupervisorHome} />
         <Route path="/supervisor-topics" component={SupervisorTopicList} />
         <Route path="/supervisor-topics/edit/:id" component={SupervisorEditTopics} />
+        <Route path="/supervisor-std-groups" component={SuperrvisorStdGroupList} />
+        <Route path="/supervisor-std-groups/edit/:id" component={SupervisorEditStdGroups} />
 
+        {/* usermanagement paths */}
         <Route path="/user-management-home" component={userManagementHome} />
         <Route path="/student-details" exact component={StudentDetailsList} />
         <Route path="/add-student-details" component={AddStudentDetails} />
@@ -68,7 +80,8 @@ function App() {
         <Route path="/update-employee-details/:id" component={UpdateEmployeeDetails} />
         <Route path="/student-registration" component={StudentRegistration} />
         <Route path="/student-profile/:id" component={StudentProfile} />
-          
+
+        {/* students paths */}
         <Route path="/add-group" component={CreateGroup} />
 
       </div>
