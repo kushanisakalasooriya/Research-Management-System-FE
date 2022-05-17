@@ -33,6 +33,9 @@ import StudentRegistration from './components/userManagement-components/student-
 import StudentProfile from './components/userManagement-components/studentProfile.component';
 
 import CreateGroup from './components/student-components/create-group.component';
+import studentHome from './components/student-components/student-home.component';
+import regResearchTopic from './components/student-components/reg-researchtopic.component';
+import reqCoSupervisor from './components/student-components/req-cosupervisor.component';
 
 function App() {
   return (
@@ -70,6 +73,9 @@ function App() {
         <Route path="/student-profile/:id" component={StudentProfile} />
           
         <Route path="/add-group" component={CreateGroup} />
+        <Route path="/student-home" component={studentHome} />
+        <Route path="/reg-topic" component={regResearchTopic} />
+        <Route path="/req-cosupervisor" component={reqCoSupervisor} />
 
       </div>
     </Router>
