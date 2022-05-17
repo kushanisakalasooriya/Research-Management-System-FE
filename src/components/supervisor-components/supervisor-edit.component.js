@@ -45,7 +45,7 @@ export default class SupervisorEditTopics extends Component {
             topic: '',
             groupName: '',
             state: '',
-            showPopup: false
+            // showPopup: false
         }
     }
     togglePopup() {
