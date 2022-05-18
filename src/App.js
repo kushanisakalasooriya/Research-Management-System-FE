@@ -40,6 +40,9 @@ import StudentProfile from './components/userManagement-components/studentProfil
 
 //studenet routes
 import CreateGroup from './components/student-components/create-group.component';
+import studentHome from './components/student-components/student-home.component';
+import regResearchTopic from './components/student-components/reg-researchtopic.component';
+import reqCoSupervisor from './components/student-components/req-cosupervisor.component';
 
 function App() {
   return (
@@ -83,6 +86,9 @@ function App() {
 
         {/* students paths */}
         <Route path="/add-group" component={CreateGroup} />
+        <Route path="/student-home" component={studentHome} />
+        <Route path="/reg-topic" component={regResearchTopic} />
+        <Route path="/req-cosupervisor" component={reqCoSupervisor} />
 
       </div>
     </Router>
