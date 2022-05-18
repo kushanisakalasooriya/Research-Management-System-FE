@@ -20,13 +20,27 @@ export default class SuperrvisorTopicList extends Component {
 
         this.deleteTopic = this.deleteTopic.bind(this)
 
-        this.state = { researchTopics: [] };
+        this.state = {
+            researchTopics: [],
+            pendingTopics: [],
+        };
     }
 
     componentDidMount() {
         axios.get('http://localhost:5000/supervisor/topic')
             .then(response => {
                 this.setState({ researchTopics: response.data })
+
+                var i = 0;
+                for (i = 0; i < this.state.researchTopics.length; i++) {
+                    if (this.state.researchTopics[i].state == "Pending") {
+                        this.state.pendingTopics.push(this.state.researchTopics[i]);
+                    }
+                }
+
+                this.setState({ topic: response.data })
+
+
             })
             .catch((error) => {
                 console.log(error);
@@ -43,7 +57,7 @@ export default class SuperrvisorTopicList extends Component {
     }
 
     topicList() {
-        return this.state.researchTopics.map(currenttopic => {
+        return this.state.pendingTopics.map(currenttopic => {
             return <ResearchTopic researchTopic={currenttopic} deleteTopic={this.deleteTopic} key={currenttopic._id} />;
         })
     }

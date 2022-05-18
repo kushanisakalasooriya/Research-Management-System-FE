@@ -27,6 +27,12 @@ import SupervisorEditTopics from './components/supervisor-components/supervisor-
 import SuperrvisorStdGroupList from './components/supervisor-components/supervisor-stdGroup-list.component';
 import SupervisorEditStdGroups from './components/supervisor-components/supervisor-stdGroup-edit.component';
 
+//co-supervisor routes
+import CoSupervisorHome from './components/co-supervisor-components/co-supervisor-home.component';
+
+//panel member routes
+import PanelHome from './components/panel-member-component/panel-home.component';
+
 //usermanagement routes
 import userManagementHome from './components/userManagement-components/userManagement-home.component';
 import StudentDetailsList from './components/userManagement-components/student-list.component';
@@ -72,6 +78,12 @@ function App() {
         <Route path="/supervisor-topics/edit/:id" component={SupervisorEditTopics} />
         <Route path="/supervisor-std-groups" component={SuperrvisorStdGroupList} />
         <Route path="/supervisor-std-groups/edit/:id" component={SupervisorEditStdGroups} />
+
+        {/* co-supervisor paths */}
+        <Route path="/co-supervisor-home" component={CoSupervisorHome} />
+
+        {/* panel member paths */}
+        <Route path="/panel-home" component={PanelHome} />
 
         {/* usermanagement paths */}
         <Route path="/user-management-home" component={userManagementHome} />
