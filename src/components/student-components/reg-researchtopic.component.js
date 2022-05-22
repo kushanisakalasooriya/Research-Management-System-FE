@@ -1,5 +1,14 @@
 import React, { Component } from 'react'
 import axios from 'axios';
+// import { response } from 'express';
+
+class Message extends React.Component {
+    render() {
+        return <p style={{color:'red'}}> 
+            Seems you are currently not belongs to any group.First, Submit a group according to register the research topic. 
+            </p>;
+    }
+}
 
 export default class regResearchTopic extends Component {
     constructor(props) {
@@ -8,18 +17,53 @@ export default class regResearchTopic extends Component {
         this.onChangeResearchTopic = this.onChangeResearchTopic.bind(this);
         this.onChangeSupervisor = this.onChangeSupervisor.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
-        
+
         this.state = {
             groupname: '',
-            researchTopic: '',
+            topic: '',
             supervisor: '',
-            status:'' 
+            status: '',
+            groups: [],
+            mygroup: [],
+            stdid: 'IT20245092',
+            flag: '0',
+        }
+    }
+
+    componentDidMount() {
+        axios.get('http://localhost:5000/groups/')
+            .then(response => {
+                this.setState({ groups: response.data })
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+
+
+        // console.log('groups1', this.state.groups)
+        if (this.state.flag === '1') {
+            console.log("mount")
+        }
+    }
+
+    componentDidUpdate() {
+        // console.log('groups', this.state.groups)
+
+        // console.log('group', this.state.groups[0].status);
+        // console.log('mygroup', this.state.mygroup);
+
+        // let message;
+        // if (this.state.mygroup[0].status == 'pending') {   
+        //      message = <Message/>;    
+        //     }
+        if (this.state.flag === '1') {
+            console.log("update")
         }
     }
 
     onChangeResearchTopic(e) {
         this.setState({
-            researchTopic: e.target.value
+            topic: e.target.value
         });
     }
 
@@ -29,67 +73,93 @@ export default class regResearchTopic extends Component {
         });
     }
 
+
     onSubmit(e) {
         e.preventDefault();
 
-        const topic = {
-            groupname: 'm',
-            researchTopic: this.state.researchTopic,
-            status:'pending' 
+        const updateTopic = {
+            groupname: 'Warriors',
+            topic: this.state.topic,
         }
-        console.log(topic);
+        console.log('Update Topic = > ', updateTopic);
 
-        axios.post('http://localhost:5000/supervisor/topic/add', topic)
+        axios.post('http://localhost:5000/groups/update/topic', updateTopic)
             .then(res => console.log(res.data));
 
         const updateSupervisor = {
-            groupname: 'm',
+            groupname: 'Warriors',
             supervisor: this.state.supervisor,
         }
-        console.log(updateSupervisor);
+        console.log('Update Supervisor = > ',updateSupervisor);
 
         axios.post('http://localhost:5000/groups/update/supervisor', updateSupervisor)
             .then(res => console.log(res.data));
 
         this.setState({
-            researchTopic: '',
+            topic: '',
             supervisor: '',
-            groupname: '',
-            status:''    
-        }) 
+        })
     }
 
-  render() {
-    return (
-      <div>
-        <h3> Register the research Topic</h3>
-                <form onSubmit={this.onSubmit}>
-                    <div className="form-group">
-                        <label> Research Topic : </label>
-                        <input type="text"
-                            required
-                            className="form-control"
-                            value={this.state.researchTopic}
-                            onChange={this.onChangeResearchTopic}
-                        />
-                    </div>
+    render() {
 
-                    <div>
-                            <select name="supervisor" id="supervisor"
-                                onChange={this.onChangeSupervisor}>
-                                <option value="" selected>Choose</option>
-                                <option value="Janith">Janith - IOT</option>
-                                <option value="Sahan">Sahan - AI </option>
-                                <option value="Poorna">Poorna - AI</option>
-                                <option value="Eranda">Eranda - WEB</option>
-                            </select>
-                        </div>
+        for (var i = 0; i < this.state.groups.length; i++) {
+            // console.log('i ', this.state.groups[i].status)
+            if (this.state.groups[i].groupleader === this.state.stdid) {
+                if (this.state.groups[i].status === 'pending' || this.state.groups[i].status === 'reject') {
+                    // this.state.mygroup.push(this.state.groups[i]);
+                    this.state.flag = '1'
+                }
+            }
+        }
+
+        console.log('flag =>', this.state.flag)
+        // console.log(this.state.stdid)
+        // console.log('hi', this.state.groups[0]._id)
+        // console.log('hi1', this.state.mygroup[0])
+
+        let component,isDisabled;
+        if (this.state.flag === '1') {
+            console.log("Done")
+            component = <Message/>
+            isDisabled = true
+        }
+        
+
+        return (
+            <div>
+                <h3> Register the research Topic</h3>
+                { component }
+
+                <form onSubmit={this.onSubmit}>
+        <div className="form-group">
+            <label> Research Topic : </label>
+            <input type="text"
+                disabled={isDisabled}
+                required
+                className="form-control"
+                value={this.state.topic}
+                onChange={this.onChangeResearchTopic}
+            />
+        </div>
+
+        <div>
+            <select name="supervisor" id="supervisor"
+                onChange={this.onChangeSupervisor}>
+                <option value="" selected>Choose</option>
+                <option value="Janith">Janith - IOT</option>
+                <option value="Sahan">Sahan - AI </option>
+                <option value="Poorna">Poorna - AI</option>
+                <option value="Eranda">Eranda - WEB</option>
+            </select>
+        </div>
+
+        <div className="form-group">
+            <input type="submit" value="Submit topic" className="btn btn-primary" />
+        </div>
+    </form>
                 
-                    <div className="form-group">
-                        <input type="submit" value="Submit topic" className="btn btn-primary" />
-                    </div>
-                </form>
-      </div>
-    )
-  }
+            </div>
+        )
+    }
 }

@@ -120,11 +120,9 @@ export default class CreateGroup extends Component {
             member04: this.state.member04,
             supervisor: null,
             cosupervisor: null,
-            researchTopic: null,
+            topic: null,
             status: 'pending'
         }
-
-        // console.log(group);
 
         axios.post('http://localhost:5000/groups/add', group)
             .then(res => console.log(res.data), alert("Successfully submitted the group"));
@@ -135,11 +133,18 @@ export default class CreateGroup extends Component {
             member02: '',
             member03: '',
             member04: '',
-            // supervisor: '',
-            // cosupervisor: '',
         })
 
-        // window.location = '/';
+        const topic = {
+            groupname: this.state.groupname,
+            topic: null,
+            status: 'pending'
+        }
+        console.log(topic);
+
+        axios.post('http://localhost:5000/supervisor/topic/add', topic)
+            .then(res => console.log(res.data));
+
     }
 
 
@@ -163,7 +168,7 @@ export default class CreateGroup extends Component {
                     </tbody>
                 </table> */}
 
-                <h3>Create New Group Log</h3>
+                <h3>Submit Project Group </h3>
                 <form onSubmit={this.onSubmit}>
                     <div className="form-group">
                         <label>Group Name: </label>

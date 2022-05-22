@@ -87,10 +87,10 @@ function App() {
 
         {/* usermanagement paths */}
         <Route path="/user-management-home" component={userManagementHome} />
-        <Route path="/student-details" exact component={StudentDetailsList} />
+        <Route path="/student-details"  component={StudentDetailsList} />
         <Route path="/add-student-details" component={AddStudentDetails} />
         <Route path="/update-student-details/:id" component={UpdateStudentDetails} />
-        <Route path="/employee-details" exact component={EmployeeDetailsList} />
+        <Route path="/employee-details"  component={EmployeeDetailsList} />
         <Route path="/add-employee-details" component={AddEmployeeDetails} />
         <Route path="/update-employee-details/:id" component={UpdateEmployeeDetails} />
         <Route path="/student-registration" component={StudentRegistration} />
