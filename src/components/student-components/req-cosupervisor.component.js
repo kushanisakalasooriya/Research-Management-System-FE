@@ -10,8 +10,20 @@ export default class reqCoSupervisor extends Component {
 
         this.state = {
             groupname: '',
-            cosupervisor: ''
+            cosupervisor: '',
+            groups: []
         }
+    }
+
+    componentDidMount() {
+        axios.get('http://localhost:5000/groups/')
+            .then(response => {
+                this.setState({ groups: response.data })
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+
     }
 
     onChangeCoSupervisor(e) {
