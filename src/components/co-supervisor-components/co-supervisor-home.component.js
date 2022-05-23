@@ -14,7 +14,7 @@ export default class CoSupervisorHome extends Component {
 
                         <center>
                             <div className="lReportBtn">
-                                <Link to="/supervisor-std-groups"><button >Accept Groups</button></Link>
+                                <Link to="/co-supervisor-topics"><button >Accept Topic</button></Link>
                             </div>
                         </center>
 

@@ -45,14 +45,15 @@ export default class SupervisorEditTopics extends Component {
             topic: '',
             groupName: '',
             state: '',
+            csState: '',
             // showPopup: false
         }
     }
-    togglePopup() {
-        this.setState({
-            showPopup: !this.state.showPopup
-        });
-    }
+    // togglePopup() {
+    //     this.setState({
+    //         showPopup: !this.state.showPopup
+    //     });
+    // }
 
     componentDidMount() {
         axios.get('http://localhost:5000/supervisor/topic/' + this.props.match.params.id)
@@ -93,7 +94,8 @@ export default class SupervisorEditTopics extends Component {
         const researchTopics = {
             topic: this.state.topic,
             groupName: this.state.groupName,
-            state: this.state.state
+            state: this.state.state,
+            csState: 'Pending',
         }
 
         console.log(researchTopics);

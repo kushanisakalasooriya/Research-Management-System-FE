@@ -6,11 +6,11 @@ export default class SupervisorEditStdGroups extends Component {
     constructor(props) {
         super(props);
 
-        this.onChangeGroupName = this.onChangeGroupName.bind(this);
-        this.onChangeGroupLeader = this.onChangeGroupLeader.bind(this);
-        this.onChangeMember02 = this.onChangeMember02.bind(this);
-        this.onChangeMember03 = this.onChangeMember03.bind(this);
-        this.onChangeMember04 = this.onChangeMember04.bind(this);
+        // this.onChangeGroupName = this.onChangeGroupName.bind(this);
+        // this.onChangeGroupLeader = this.onChangeGroupLeader.bind(this);
+        // this.onChangeMember02 = this.onChangeMember02.bind(this);
+        // this.onChangeMember03 = this.onChangeMember03.bind(this);
+        // this.onChangeMember04 = this.onChangeMember04.bind(this);
         this.onChangeStatus = this.onChangeStatus.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
 
@@ -41,35 +41,35 @@ export default class SupervisorEditStdGroups extends Component {
             })
     }
 
-    onChangeGroupName(e) {
-        this.setState({
-            topic: e.target.value
-        })
-    }
+    // onChangeGroupName(e) {
+    //     this.setState({
+    //         topic: e.target.value
+    //     })
+    // }
 
-    onChangeGroupLeader(e) {
-        this.setState({
-            groupName: e.target.value
-        })
-    }
+    // onChangeGroupLeader(e) {
+    //     this.setState({
+    //         groupName: e.target.value
+    //     })
+    // }
 
-    onChangeMember02(e) {
-        this.setState({
-            member02: e.target.value
-        })
-    }
+    // onChangeMember02(e) {
+    //     this.setState({
+    //         member02: e.target.value
+    //     })
+    // }
 
-    onChangeMember03(e) {
-        this.setState({
-            member03: e.target.value
-        })
-    }
+    // onChangeMember03(e) {
+    //     this.setState({
+    //         member03: e.target.value
+    //     })
+    // }
 
-    onChangeMember04(e) {
-        this.setState({
-            member04: e.target.value
-        })
-    }
+    // onChangeMember04(e) {
+    //     this.setState({
+    //         member04: e.target.value
+    //     })
+    // }
 
     onChangeStatus(e) {
         this.setState({
