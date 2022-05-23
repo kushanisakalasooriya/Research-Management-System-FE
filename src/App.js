@@ -23,12 +23,14 @@ import AddSubmission from './components/admin-components/add-submission.componen
 //supervisour routes
 import SupervisorHome from './components/supervisor-components/supervisor-home.component';
 import SupervisorTopicList from './components/supervisor-components/supervisor-topic-list.component';
-import SupervisorEditTopics from './components/supervisor-components/supervisor-edit.component';
+import SupervisorEditTopics from './components/supervisor-components/supervisor-topic-edit.component';
 import SuperrvisorStdGroupList from './components/supervisor-components/supervisor-stdGroup-list.component';
 import SupervisorEditStdGroups from './components/supervisor-components/supervisor-stdGroup-edit.component';
 
 //co-supervisor routes
 import CoSupervisorHome from './components/co-supervisor-components/co-supervisor-home.component';
+import CoSupervisorGroupList from './components/co-supervisor-components/co-supervisor-topic-list.components';
+import CoSupervisorEditGroups from './components/co-supervisor-components/co-supervisor-topic-list-edit.component';
 
 //panel member routes
 import PanelHome from './components/panel-member-component/panel-home.component';
@@ -81,16 +83,18 @@ function App() {
 
         {/* co-supervisor paths */}
         <Route path="/co-supervisor-home" component={CoSupervisorHome} />
+        <Route path="/co-supervisor-topics" component={CoSupervisorGroupList} />
+        <Route path="/co-supervisor-topics/edit/:id" component={CoSupervisorEditGroups} />
 
         {/* panel member paths */}
         <Route path="/panel-home" component={PanelHome} />
 
         {/* usermanagement paths */}
         <Route path="/user-management-home" component={userManagementHome} />
-        <Route path="/student-details"  component={StudentDetailsList} />
+        <Route path="/student-details" component={StudentDetailsList} />
         <Route path="/add-student-details" component={AddStudentDetails} />
         <Route path="/update-student-details/:id" component={UpdateStudentDetails} />
-        <Route path="/employee-details"  component={EmployeeDetailsList} />
+        <Route path="/employee-details" component={EmployeeDetailsList} />
         <Route path="/add-employee-details" component={AddEmployeeDetails} />
         <Route path="/update-employee-details/:id" component={UpdateEmployeeDetails} />
         <Route path="/student-registration" component={StudentRegistration} />

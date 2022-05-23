@@ -6,19 +6,15 @@ const ResearchTopic = props => (
     <tr>
         <td>{props.researchTopic.topic}</td>
         <td>{props.researchTopic.groupName}</td>
-        <td>{props.researchTopic.state} <Link to={"/supervisor-topics/edit/" + props.researchTopic._id}>Change</Link>
+        <td>{props.researchTopic.state}</td>
+        <td>{props.researchTopic.csState} <Link to={"/co-supervisor-topics/edit/" + props.researchTopic._id}>Change</Link>
         </td>
-        {/* <td>
-            <a href="#" onClick={() => { props.deleteTopic(props.researchTopic._id) }}>delete</a>
-        </td> */}
     </tr>
 )
 
-export default class SuperrvisorTopicList extends Component {
+export default class CoSupervisorGroupList extends Component {
     constructor(props) {
         super(props);
-
-        this.deleteTopic = this.deleteTopic.bind(this)
 
         this.state = {
             researchTopics: [],
@@ -33,7 +29,7 @@ export default class SuperrvisorTopicList extends Component {
 
                 var i = 0;
                 for (i = 0; i < this.state.researchTopics.length; i++) {
-                    if (this.state.researchTopics[i].state === "Pending" || this.state.researchTopics[i].state === "Accepted") {
+                    if (this.state.researchTopics[i].state == "Accepted") {
                         this.state.pendingTopics.push(this.state.researchTopics[i]);
                     }
                 }
@@ -45,15 +41,6 @@ export default class SuperrvisorTopicList extends Component {
             .catch((error) => {
                 console.log(error);
             })
-    }
-
-    deleteTopic(id) {
-        axios.delete('http://localhost:5000/supervisor/topic/' + id)
-            .then(response => { console.log(response.data) });
-
-        this.setState({
-            researchTopics: this.state.researchTopics.filter(el => el._id !== id)
-        })
     }
 
     topicList() {
@@ -71,8 +58,8 @@ export default class SuperrvisorTopicList extends Component {
                         <tr>
                             <th>Topic</th>
                             <th>Group Name</th>
-                            <th>State</th>
-                            {/* <th>Actions</th> */}
+                            <th>Supervisor State</th>
+                            <th>Co-supervisor State</th>
                         </tr>
                     </thead>
                     <tbody>
