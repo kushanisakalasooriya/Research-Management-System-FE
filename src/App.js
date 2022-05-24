@@ -43,8 +43,12 @@ import UpdateStudentDetails from './components/userManagement-components/edit-st
 import AddEmployeeDetails from './components/userManagement-components/create-staff.component';
 import UpdateEmployeeDetails from './components/userManagement-components/edit-employee.component';
 import EmployeeDetailsList from './components/userManagement-components/employee-list.component';
-import StudentRegistration from './components/userManagement-components/student-registration.component';
 import StudentProfile from './components/userManagement-components/studentProfile.component';
+import StudentRegistration from './components/userManagement-components/registration/studentRegistration.component';
+import StudentLogin from './components/userManagement-components/login/studentLogin.component';
+import EmployeeRegistration from './components/userManagement-components/registration/employeeRegistration.component';
+import EmployeeLogin from './components/userManagement-components/login/employeeLogin.component';
+
 
 //studenet routes
 import CreateGroup from './components/student-components/create-group.component';
@@ -53,6 +57,8 @@ import regResearchTopic from './components/student-components/reg-researchtopic.
 import reqCoSupervisor from './components/student-components/req-cosupervisor.component';
 
 function App() {
+
+
   return (
     <Router>
       <div className="container">
@@ -97,8 +103,14 @@ function App() {
         <Route path="/employee-details" component={EmployeeDetailsList} />
         <Route path="/add-employee-details" component={AddEmployeeDetails} />
         <Route path="/update-employee-details/:id" component={UpdateEmployeeDetails} />
-        <Route path="/student-registration" component={StudentRegistration} />
         <Route path="/student-profile/:id" component={StudentProfile} />
+        <Route path="/student-registration" component={StudentRegistration} />
+        <Route path="/student-login" component={StudentLogin} />
+        <Route path="/employee-registration" component={EmployeeRegistration} />
+        <Route path="/employee-login" component={EmployeeLogin} />
+
+
+
 
         {/* students paths */}
         <Route path="/add-group" component={CreateGroup} />

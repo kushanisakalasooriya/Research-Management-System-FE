@@ -8,32 +8,26 @@ export default class UpdateStudentDetails extends Component {
         this.onChangeStudentID = this.onChangeStudentID.bind(this);
         this.onChangeStudentfirstName= this.onChangeStudentfirstName.bind(this);
         this.onChangeStudentlastName= this.onChangeStudentlastName.bind(this);
-        this.onChangeStudentEmail = this.onChangeStudentEmail.bind(this);
         this.onChangeStudentPassword= this.onChangeStudentPassword.bind(this);
-        this.onChangeStudentGrpID= this.onChangeStudentGrpID.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
 
         this.state = {
             students:[],
             stdID: '',
-            studentfirstName: '',
-            studentlastName: '',
-            studentEmail: '',
-            studentPassword: '',
-            studentGrpID: ''
+            firstName: '',
+            lastName: '',
+            password: ''
         }
     }
 
     componentDidMount(){
-        axios.get('http://localhost:5000/studentDetails/' + this.props.match.params.id)
+        axios.get('http://localhost:5000/api/users/' + this.props.match.params.id)
         .then(response => {
             this.setState({
                 stdID: response.data.stdID,
-                studentfirstName: response.data.studentfirstName,
-                studentlastName: response.data.studentlastName,
-                studentEmail: response.data.studentEmail,
-                studentPassword: response.data.studentPassword,
-                studentGrpID: response.data.studentGrpID
+                firstName: response.data.firstName,
+                lastName: response.data.lastName,
+                password: response.data.password
             })
         })
         .catch(function (error) {
@@ -49,31 +43,19 @@ export default class UpdateStudentDetails extends Component {
 
     onChangeStudentfirstName(e) {
         this.setState({
-            studentfirstName: e.target.value
+            firstName: e.target.value
         })
     }
 
     onChangeStudentlastName(e) {
         this.setState({
-            studentlastName: e.target.value
-        })
-    }
-
-    onChangeStudentEmail(e) {
-        this.setState({
-            studentEmail: e.target.value
+            lastName: e.target.value
         })
     }
 
     onChangeStudentPassword(e) {
         this.setState({
-            studentPassword: e.target.value
-        })
-    }
-
-    onChangeStudentGrpID(e) {
-        this.setState({
-            studentGrpID: e.target.value
+            password: e.target.value
         })
     }
 
@@ -82,27 +64,23 @@ export default class UpdateStudentDetails extends Component {
     
         const studentDetails = {
             stdID: this.state.stdID,
-            studentfirstName:this.state.studentfirstName,
-            studentlastName:this.state.studentlastName,
-            studentEmail:this.state.studentEmail,
-            studentPassword:this.state.studentPassword,
-            studentGrpID:this.state.studentGrpID
+            firstName:this.state.firstName,
+            lastName:this.state.lastName,
+            password:this.state.password
         }
 
         console.log(studentDetails);
     
-        axios.post('http://localhost:5000/studentDetails/update-student/' + this.props.match.params.id, studentDetails)
+        axios.post('http://localhost:5000/api/users/update-student/' + this.props.match.params.id, studentDetails)
           .then(res => alert(res.data));
     
         this.setState({
             stdID:'',
-            studentfirstName: '',
-            studentlastName:'',
-            studentEmail: '',
-            studentPassword:'',
-            studentGrpID: ''
+            firstName: '',
+            lastName:'',
+            password:''
         })
-        this.props.history.push('/student-details');
+       // this.props.history.push('/student-details');
       }
 
   render() {
@@ -127,7 +105,7 @@ export default class UpdateStudentDetails extends Component {
             <input  type="text"
                 required
                 className="form-control"
-                value={this.state.studentfirstName}
+                value={this.state.firstName}
                 onChange={this.onChangeStudentfirstName}
                 />
           </div>
@@ -137,28 +115,8 @@ export default class UpdateStudentDetails extends Component {
             <input  type="text"
                 required
                 className="form-control"
-                value={this.state.studentlastName}
+                value={this.state.lastName}
                 onChange={this.onChangeStudentlastName}
-                />
-          </div>
-
-          <div className="form-group"> 
-            <label>Student Email: </label>
-            <input  type="text"
-                required
-                className="form-control"
-                value={this.state.studentEmail}
-                onChange={this.onChangeStudentEmail}
-                />
-          </div>
-
-          <div className="form-group"> 
-            <label>Student Group No: </label>
-            <input  type="text"
-                required
-                className="form-control"
-                value={this.state.studentGrpID}
-                onChange={this.onChangeStudentGrpID}
                 />
           </div>
 
@@ -167,22 +125,10 @@ export default class UpdateStudentDetails extends Component {
             <input  type="password"
                 required
                 className="form-control"
-                value={this.state.studentPassword}
+                value={this.state.password}
                 onChange={this.onChangeStudentPassword}
                 />
           </div>
-
-          {/* <div className="form-group"> 
-            <label>Re-enter Password: </label>
-            <input  type="text"
-                required
-                className="form-control"
-                value={this.state.description}
-                onChange={this.onChangeDescription}
-                />
-          </div> */}
-
-          
 
           <div className="form-group">
             <input type="submit" value="Update Details" className="btn btn-primary" />
