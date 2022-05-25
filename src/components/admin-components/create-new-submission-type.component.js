@@ -90,7 +90,7 @@ export default class AddNewSubmissionType extends Component {
           </div>
           </div>
           <div className="form-group">
-            <input type="submit" value="Create User" className="btn btn-primary" />
+            <input type="submit" value="Create Submission Type" className="btn btn-primary" />
           </div>
         </form>
       </div>

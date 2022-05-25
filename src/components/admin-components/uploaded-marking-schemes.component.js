@@ -4,7 +4,7 @@ import download from 'downloadjs';
 import axios from 'axios';
 import { API_URL } from '../../utils/constants';
 
-export default class AdminFileList extends Component {
+export default class MarkingSchemeList extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -127,12 +127,12 @@ export default class AdminFileList extends Component {
     ]
   }
   editRecord(record) {
-    this.props.history.push("/admin-file-edit/" + record._id);
+    this.props.history.push("/admin-marking-edit/" + record._id);
   }
 
   deleteRecord(record) {
     try {
-      axios.delete(`${API_URL}/admin/file-delete/${record._id}`)
+      axios.delete(`${API_URL}/admin/marking/file-delete/${record._id}`)
         .then(response => { console.log(response.data) });
       window.location.reload(true);
     } catch (error) {
@@ -146,7 +146,7 @@ export default class AdminFileList extends Component {
 
   async downloadFile(record) {
     try {
-      const result = await axios.get(`${API_URL}/admin/download/${record._id}`, {
+      const result = await axios.get(`${API_URL}/admin/marking/download/${record._id}`, {
         responseType: 'blob'
       });
       const split = record.file_path.split('/');
@@ -155,13 +155,15 @@ export default class AdminFileList extends Component {
       return download(result.data, filename, record.mimetype);
     } catch (error) {
       if (error.response && error.response.status === 400) {
-        this.state.errorMsg = 'Error while downloading file. Try again later';
+        alert('Error while downloading file. Try again later');
+      }else if(error.response && error.response.status === 404){
+        alert('File does not exists. Sorry for the inconvenience.');
       }
     }
   }
 
   componentWillMount(props) {
-    axios.get(`${API_URL}/admin/getAllFiles`)
+    axios.get(`${API_URL}/admin/marking/getAllFiles`)
       .then(res => {
         this.setState({ records: res.data });
         console.log(this.state.records)
@@ -178,7 +180,7 @@ export default class AdminFileList extends Component {
     return (
       <div>
         <hr />
-        <h4>System Admin - Uploaded Documents / Presentation Templates </h4>
+        <h4>System Admin - Uploaded Marking Schemes Portal </h4>
         <hr />
         <br />
         <ReactDatatable

@@ -17,6 +17,9 @@ import AdminFileList from './components/admin-components/uploaded-files-admin.co
 import AddNewSubmissionType from './components/admin-components/create-new-submission-type.component';
 import SubmissionTypesList from './components/admin-components/submission-types-admin.component';
 import EditSubmissionType from './components/admin-components/admin-submission-type-edit.component';
+import MarkingSchemeUpload from './components/admin-components/marking-scheme-upload.component';
+import MarkingSchemeList from './components/admin-components/uploaded-marking-schemes.component';
+import EditMarkingScheme from './components/admin-components/marking-scheme-edit.component';
 
 import AddSubmission from './components/admin-components/add-submission.component';
 
@@ -71,6 +74,9 @@ function App() {
         <Route path="/admin-submission-type-edit/:id" component={EditSubmissionType} />
         <Route path="/add-submission" component={AddSubmission} />
         <Route path="/admin-home" component={AdminHome} />
+        <Route path="/admin-marking-upload" component={MarkingSchemeUpload} />
+        <Route path="/admin-marking-download" component={MarkingSchemeList} />
+        <Route path="/admin-marking-edit/:id" component={EditMarkingScheme} />
 
         {/* supervisor paths */}
         <Route path="/supervisor-home" component={SupervisorHome} />
