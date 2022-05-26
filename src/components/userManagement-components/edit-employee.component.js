@@ -2,209 +2,167 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 export default class UpdateEmployeeDetails extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
 
         this.onChangeEmployeeID = this.onChangeEmployeeID.bind(this);
-        this.onChangeEmployeefirstName= this.onChangeEmployeefirstName.bind(this);
-        this.onChangeEmployeelastName= this.onChangeEmployeelastName.bind(this);
-        this.onChangeEmployeeEmail = this.onChangeEmployeeEmail.bind(this);
-        this.onChangeEmployeePassword= this.onChangeEmployeePassword.bind(this);
-        this.onChangeEmployeeType= this.onChangeEmployeeType.bind(this);
+        this.onChangeEmployeefirstName = this.onChangeEmployeefirstName.bind(this);
+        this.onChangeEmployeelastName = this.onChangeEmployeelastName.bind(this);
+        this.onChangeEmployeeImage = this.onChangeEmployeeImage.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
 
         this.state = {
             emp: [],
-            employees:[],
-            staffID: '',
-            employeefirstName: '',
-            employeelastName: '',
-            employeeEmail: '',
-            employeePassword: '',
-            employeeType: ''
+            employees: [],
+            empID: '',
+            firstName: '',
+            lastName: '',
+            email: '',
+            password: '',
+            empType: '',
+            image: ''
         }
     }
 
-    componentDidMount(){
-        axios.get('http://localhost:5000/employeeDetails/' + this.props.match.params.id)
-        .then(response => {
-            this.setState({
-                staffID: response.data.staffID,
-                employeefirstName: response.data.employeefirstName,
-                employeelastName: response.data.employeelastName,
-                employeeEmail: response.data.employeeEmail,
-                employeePassword: response.data.employeePassword,
-                employeeType: response.data.employeeType
+    componentDidMount() {
+        axios.get('http://localhost:5000/employee/registration/' + this.props.match.params.id)
+            .then(response => {
+                this.setState({
+                    empID: response.data.empID,
+                    firstName: response.data.firstName,
+                    lastName: response.data.lastName,
+                    email: response.data.email,
+                    password: response.data.password,
+                    empType: response.data.empType,
+                    image: response.data.image
+                })
             })
-        })
-        .catch(function (error) {
-            console.log(error);
-        })
+            .catch(function (error) {
+                console.log(error);
+            })
 
         this.setState({
-            emp: ['Supervisor','co-Supervisor','staff'],
+            emp: ['Supervisor', 'co-Supervisor', 'staff'],
             employeeType: 'Supervisor'
         });
     }
 
     onChangeEmployeeID(e) {
         this.setState({
-            staffID: e.target.value
+            empID: e.target.value
         })
     }
 
     onChangeEmployeefirstName(e) {
         this.setState({
-            employeefirstName: e.target.value
+            firstName: e.target.value
         })
     }
 
     onChangeEmployeelastName(e) {
         this.setState({
-            employeelastName: e.target.value
+            lastName: e.target.value
         })
     }
 
-    onChangeEmployeeEmail(e) {
+    onChangeEmployeeImage(e) {
         this.setState({
-            employeeEmail: e.target.value
-        })
-    }
-
-    onChangeEmployeePassword(e) {
-        this.setState({
-            employeePassword: e.target.value
-        })
-    }
-
-    onChangeEmployeeType(e) {
-        this.setState({
-            employeeType: e.target.value
+            image: e.target.value
         })
     }
 
     onSubmit(e) {
         e.preventDefault();
-    
+
         const employeeDetails = {
-            staffID: this.state.staffID,
-            employeefirstName:this.state.employeefirstName,
-            employeelastName:this.state.employeelastName,
-            employeeEmail:this.state.employeeEmail,
-            employeePassword:this.state.employeePassword,
-            employeeType:this.state.employeeType
+            empID: this.state.empID,
+            firstName: this.state.firstName,
+            lastName: this.state.lastName,
+            empType: this.state.empType,
+            image: this.state.image,
+            password: this.state.password,
+            email: this.state.email
         }
 
         console.log(employeeDetails);
-    
-        axios.post('http://localhost:5000/employeeDetails/update-employee/' + this.props.match.params.id, employeeDetails)
-          .then(res => alert(res.data));
-    
+
+        axios.post('http://localhost:5000/employee/registration/update-employee/' + this.props.match.params.id, employeeDetails)
+            .then(res => alert(res.data));
+
         this.setState({
-            staffID:'',
-            employeefirstName: '',
-            employeelastName:'',
-            employeeEmail: '',
-            employeePassword:'',
-            employeeType: ''
+            empID: '',
+            firstName: '',
+            lastName: '',
+            empType: '',
+            image: '',
+            password: '',
+            email: ''
         })
-        this.props.history.push('/employee-details');
-      }
+        // this.props.history.push('/employee-details');
+        this.props.history.push('/home');     
+    }
 
 
-  render() {
-    return (
-        <div>
-        <h3>Update Employee Details</h3>
-        <br/>
-        <form onSubmit={this.onSubmit}>
+    render() {
+        return (
+            <div>
+                <h3>Update Employee Details</h3>
+                <br />
+                <form onSubmit={this.onSubmit}>
 
-        <div className="form-group"> 
-            <label>Employee Type: </label>
-            <select ref="userInput"
-                required
-                className="form-control"
-                value={this.state.employeeType}
-                onChange={this.onChangeEmployeeType}>
-                    {
-                        this.state.emp.map(function(user){
-                            return <option
-                            key={user}
-                            value={user}>
-                                {user}
-                            </option>;
-                        })
-                    }
-            </select>
-          </div>
+                    <div className="form-group">
+                        <label>Employee Type: </label>
+                        <input type="text"
+                            className="form-control"
+                            value={this.state.empType}
+                        />
+                    </div>
 
-          <div className="form-group"> 
-            <label>Staff ID: </label>
-            <input  type="text"
-                required
-                className="form-control"
-                value={this.state.staffID}
-                onChange={this.onChangeEmployeeID}
-                />
-          </div>
+                    <div className="form-group">
+                        <label>Employee ID: </label>
+                        <input type="text"
+                            required
+                            className="form-control"
+                            value={this.state.empID}
+                            onChange={this.onChangeEmployeeID}
+                        />
+                    </div>
 
-          <div className="form-group"> 
-            <label>Employee first Name: </label>
-            <input  type="text"
-                required
-                className="form-control"
-                value={this.state.employeefirstName}
-                onChange={this.onChangeEmployeefirstName}
-                />
-          </div>
+                    <div className="form-group">
+                        <label>Employee first Name: </label>
+                        <input type="text"
+                            required
+                            className="form-control"
+                            value={this.state.firstName}
+                            onChange={this.onChangeEmployeefirstName}
+                        />
+                    </div>
 
-          <div className="form-group"> 
-            <label>Employee last Name: </label>
-            <input  type="text"
-                required
-                className="form-control"
-                value={this.state.employeelastName}
-                onChange={this.onChangeEmployeelastName}
-                />
-          </div>
+                    <div className="form-group">
+                        <label>Employee last Name: </label>
+                        <input type="text"
+                            required
+                            className="form-control"
+                            value={this.state.lastName}
+                            onChange={this.onChangeEmployeelastName}
+                        />
+                    </div>
 
-          <div className="form-group"> 
-            <label>Employee Email: </label>
-            <input  type="text"
-                required
-                className="form-control"
-                value={this.state.employeeEmail}
-                onChange={this.onChangeEmployeeEmail}
-                />
-          </div>
+                    <div className="form-group">
+                        <label>Profile photo: </label>
+                        <input type="text"
+                            required
+                            className="form-control"
+                            value={this.state.image}
+                            onChange={this.onChangeEmployeeImage}
+                        />
+                    </div>
 
-          <div className="form-group"> 
-            <label>Password: </label>
-            <input  type="password"
-                required
-                className="form-control"
-                value={this.state.employeePassword}
-                onChange={this.onChangeEmployeePassword}
-                />
-          </div>
-
-          {/* <div className="form-group"> 
-            <label>Re-enter Password: </label>
-            <input  type="text"
-                required
-                className="form-control"
-                value={this.state.description}
-                onChange={this.onChangeDescription}
-                />
-          </div> */}
-
-          
-
-          <div className="form-group">
-            <input type="submit" value="Update Details" className="btn btn-primary" />
-          </div>
-        </form>
-      </div>
-    )
-  }
+                    <div className="form-group">
+                        <input type="submit" value="Update Details" className="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        )
+    }
 }

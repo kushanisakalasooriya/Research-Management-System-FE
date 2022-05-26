@@ -43,11 +43,12 @@ import UpdateStudentDetails from './components/userManagement-components/edit-st
 import AddEmployeeDetails from './components/userManagement-components/create-staff.component';
 import UpdateEmployeeDetails from './components/userManagement-components/edit-employee.component';
 import EmployeeDetailsList from './components/userManagement-components/employee-list.component';
-import StudentProfile from './components/userManagement-components/studentProfile.component';
 import StudentRegistration from './components/userManagement-components/registration/studentRegistration.component';
 import StudentLogin from './components/userManagement-components/login/studentLogin.component';
 import EmployeeRegistration from './components/userManagement-components/registration/employeeRegistration.component';
 import EmployeeLogin from './components/userManagement-components/login/employeeLogin.component';
+import EmployeeProfile from './components/userManagement-components/profile/employee-profile.component';
+import StudentProfile from './components/userManagement-components/profile/student-profile.component';
 
 
 //studenet routes
@@ -55,6 +56,9 @@ import CreateGroup from './components/student-components/create-group.component'
 import studentHome from './components/student-components/student-home.component';
 import regResearchTopic from './components/student-components/reg-researchtopic.component';
 import reqCoSupervisor from './components/student-components/req-cosupervisor.component';
+
+
+import HomePage from './components/homePage.component';
 
 function App() {
 
@@ -65,6 +69,9 @@ function App() {
 
         <Navbar />
         <br />
+
+        {/* home page */}
+        <Route path="/home" exact component={HomePage} />
 
         {/* admin paths */}
         <Route path="/" exact component={ExercisesList} />
@@ -107,6 +114,7 @@ function App() {
         <Route path="/student-registration" component={StudentRegistration} />
         <Route path="/student-login" component={StudentLogin} />
         <Route path="/employee-registration" component={EmployeeRegistration} />
+        <Route path="/employee-profile/:id" component={EmployeeProfile} />
         <Route path="/employee-login" component={EmployeeLogin} />
 
 

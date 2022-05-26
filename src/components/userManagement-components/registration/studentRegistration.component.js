@@ -14,6 +14,7 @@ export default class StudentRegistration extends Component {
         this.onChangeStudentEmail = this.onChangeStudentEmail.bind(this);
         this.onChangeStudentPassword = this.onChangeStudentPassword.bind(this);
         this.onChangeToLogin = this.onChangeToLogin.bind(this);
+        this.onChangeImage = this.onChangeImage.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
 
         this.state = {
@@ -22,7 +23,8 @@ export default class StudentRegistration extends Component {
             firstName: '',
             lastName: '',
             email: '',
-            password: ''
+            password: '',
+            image:''
         }
 
     }
@@ -57,9 +59,17 @@ export default class StudentRegistration extends Component {
         })
     }
 
+    onChangeImage(e) {
+        this.setState({
+            image: e.target.value
+        })
+    }
+
     onChangeToLogin() {
         this.props.history.push('/student-login');
     }
+
+
 
     onSubmit(e) {
         e.preventDefault();
@@ -70,7 +80,8 @@ export default class StudentRegistration extends Component {
             firstName: this.state.firstName,
             lastName: this.state.lastName,
             email: this.state.email,
-            password: this.state.password
+            password: this.state.password,
+            image: this.state.image
         }
 
         console.log(studentDetails);
@@ -83,37 +94,12 @@ export default class StudentRegistration extends Component {
             firstName: '',
             lastName: '',
             email: '',
-            password: ''
+            password: '',
+            image:''
         })
 
         //after registration success navigate to the login
-        this.props.history.push('/student-login');
-
-        // axios.post('http://localhost:5000/student/registration/', studentDetails)
-        //     .then((res) => {
-        //         window.sessionStorage.setItem(
-        //             "loggeduser",
-        //             JSON.stringify(res.data.user)
-        //         );
-
-        //         this.setState({
-        //             stdID: '',
-        //             firstName: '',
-        //             lastName: '',
-        //             email: '',
-        //             password: ''
-        //         })
-
-        //         if (res.data.status === 400) {
-        //             // navigate to the login page
-        //             alert("'Invalid password! (Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters)'");
-        //             this.props.history.push("/student-login");
-        //         }else if(res.data.status === 401){
-        //             alert("User with given email already Exist!");
-        //         } else {
-        //             alert("Ragistration success");
-        //         }
-        //     });
+        this.props.history.push('/student-login')
 
     }
 
@@ -184,6 +170,16 @@ export default class StudentRegistration extends Component {
                                     className="form-control"
                                     value={this.state.password}
                                     onChange={this.onChangeStudentPassword}
+                                />
+                            </div>
+
+                            <div className="form-group">
+                                <label>Image: </label>
+                                <input type="text"
+                                    required
+                                    className="form-control"
+                                    value={this.state.image}
+                                    onChange={this.onChangeImage}
                                 />
                             </div>
 

@@ -61,7 +61,8 @@ export default class EmployeeLogin extends Component {
         if (res.data.status === 200) {
           // navigate to the home page
           alert("Login Success");
-          this.props.history.push("/home");
+          // this.props.history.push("/home");
+          this.props.history.push(`/employee-profile/${res.data.user._id}`);
         } else {
           alert("Login Failed. Please re-check your credentials.");
         }
