@@ -63,7 +63,8 @@ export default class StudentLogin extends Component {
         if (res.data.status === 200) {
           // navigate to the home page
           alert("Login Success");
-          this.props.history.push("/home");
+          // this.props.history.push("/home");
+          this.props.history.push(`/student-profile/${res.data.user._id}`);
         } else {
           alert("Login Failed. Please re-check your credentials.");
         }
@@ -73,36 +74,6 @@ export default class StudentLogin extends Component {
 
   render() {
     return (
-      //   <div>
-      //   <h3>Student Login form</h3>
-      //   <br/>
-      //   <form onSubmit={this.onSubmit}>
-
-      //     <div className="form-group"> 
-      //       <label>Student Email: </label>
-      //       <input  type="email"
-      //           required
-      //           className="form-control"
-      //           value={this.state.email}
-      //           onChange={this.onChangeStudentEmail}
-      //           />
-      //     </div>
-
-      //     <div className="form-group"> 
-      //       <label>Password: </label>
-      //       <input  type="password"
-      //           required
-      //           className="form-control"
-      //           value={this.state.password}
-      //           onChange={this.onChangeStudentPassword}
-      //           />
-      //     </div>
-
-      //     <div className="form-group">
-      //       <input type="submit" value="Login" className="btn btn-primary" />
-      //     </div> 
-      //   </form>
-      // </div>
 
       <div className={styles.login_container}>
         <div className={styles.login_form_container}>

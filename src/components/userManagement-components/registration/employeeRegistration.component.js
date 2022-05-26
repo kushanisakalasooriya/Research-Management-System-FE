@@ -14,6 +14,7 @@ export default class EmployeeRegistration extends Component {
         this.onChangeEmployeePassword = this.onChangeEmployeePassword.bind(this);
         this.onChangeEmployeeType = this.onChangeEmployeeType.bind(this);
         this.onChangeToLogin = this.onChangeToLogin.bind(this);
+        this.onChangeImage = this.onChangeImage.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
 
         this.state = {
@@ -23,7 +24,8 @@ export default class EmployeeRegistration extends Component {
             lastName: '',
             email: '',
             empType: '',
-            password: ''
+            password: '',
+            image:''
         }
 
     }
@@ -71,6 +73,12 @@ export default class EmployeeRegistration extends Component {
         })
     }
 
+    onChangeImage(e) {
+        this.setState({
+            image: e.target.value
+        })
+    }
+
     onChangeToLogin() {
         this.props.history.push('/employee-login');
     }
@@ -86,7 +94,8 @@ export default class EmployeeRegistration extends Component {
             lastName: this.state.lastName,
             email: this.state.email,
             empType: this.state.empType,
-            password: this.state.password
+            password: this.state.password,
+            image: this.state.image
         }
 
         console.log(empDetails);
@@ -100,7 +109,8 @@ export default class EmployeeRegistration extends Component {
             lastName: '',
             email: '',
             empType: '',
-            password: ''
+            password: '',
+            image:''
         })
 
         //after registration success navigate to the login
@@ -113,87 +123,6 @@ export default class EmployeeRegistration extends Component {
 
     render() {
         return (
-            // <div>
-            //     <h3>Employee Registration form</h3>
-            //     <br />
-            //     <form onSubmit={this.onSubmit}>
-
-            //         <div className="form-group">
-            //             <label>Employee Type: </label>
-            //             <select ref="userInput"
-            //                 required
-            //                 className="form-control"
-            //                 value={this.state.empType}
-            //                 onChange={this.onChangeEmployeeType}>
-            //                 {
-            //                     this.state.employees.map(function (user) {
-            //                         return <option
-            //                             key={user}
-            //                             value={user}>
-            //                             {user}
-            //                         </option>;
-            //                     })
-            //                 }
-            //             </select>
-            //         </div>
-
-            //         <div className="form-group">
-            //             <label>Employee ID: </label>
-            //             <input type="text"
-            //                 required
-            //                 className="form-control"
-            //                 value={this.state.empID}
-            //                 onChange={this.onChangeStaffID}
-            //             />
-            //         </div>
-
-            //         <div className="form-group">
-            //             <label>Employee first Name: </label>
-            //             <input type="text"
-            //                 required
-            //                 className="form-control"
-            //                 value={this.state.firstName}
-            //                 onChange={this.onChangeEmployeefirstName}
-            //             />
-            //         </div>
-
-            //         <div className="form-group">
-            //             <label>Employee last Name: </label>
-            //             <input type="text"
-            //                 required
-            //                 className="form-control"
-            //                 value={this.state.lastName}
-            //                 onChange={this.onChangeEmployeelastName}
-            //             />
-            //         </div>
-
-            //         <div className="form-group">
-            //             <label>Employee Email: </label>
-            //             <input type="email"
-            //                 required
-            //                 className="form-control"
-            //                 value={this.state.email}
-            //                 onChange={this.onChangeEmployeeEmail}
-            //             />
-            //         </div>
-
-            //         <div className="form-group">
-            //             <label>Password: </label>
-            //             <input type="password"
-            //                 required
-            //                 className="form-control"
-            //                 value={this.state.password}
-            //                 onChange={this.onChangeEmployeePassword}
-            //             />
-            //         </div>
-
-            //         <div className="form-group">
-            //             <input type="submit" value="SignUP" className="btn btn-primary" />
-            //         </div>
-            //     </form>
-            // </div>
-
-
 
             <div className={styles.signup_container}>
                 <div className={styles.signup_form_container}>
@@ -276,6 +205,16 @@ export default class EmployeeRegistration extends Component {
                                     className="form-control"
                                     value={this.state.password}
                                     onChange={this.onChangeEmployeePassword}
+                                />
+                            </div>
+
+                            <div className="form-group">
+                                <label>Image: </label>
+                                <input type="text"
+                                    required
+                                    className="form-control"
+                                    value={this.state.image}
+                                    onChange={this.onChangeImage}
                                 />
                             </div>
 

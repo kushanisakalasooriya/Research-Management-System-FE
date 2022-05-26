@@ -8,7 +8,7 @@ export default class UpdateStudentDetails extends Component {
         this.onChangeStudentID = this.onChangeStudentID.bind(this);
         this.onChangeStudentfirstName= this.onChangeStudentfirstName.bind(this);
         this.onChangeStudentlastName= this.onChangeStudentlastName.bind(this);
-        this.onChangeStudentPassword= this.onChangeStudentPassword.bind(this);
+        this.onChangeImage= this.onChangeImage.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
 
         this.state = {
@@ -16,18 +16,22 @@ export default class UpdateStudentDetails extends Component {
             stdID: '',
             firstName: '',
             lastName: '',
-            password: ''
+            password: '',
+            image:'',
+            email:''
         }
     }
 
     componentDidMount(){
-        axios.get('http://localhost:5000/api/users/' + this.props.match.params.id)
+        axios.get('http://localhost:5000/student/registration/' + this.props.match.params.id)
         .then(response => {
             this.setState({
                 stdID: response.data.stdID,
                 firstName: response.data.firstName,
                 lastName: response.data.lastName,
-                password: response.data.password
+                password: response.data.password,
+                image: response.data.image,
+                email: response.data.email
             })
         })
         .catch(function (error) {
@@ -53,9 +57,9 @@ export default class UpdateStudentDetails extends Component {
         })
     }
 
-    onChangeStudentPassword(e) {
+    onChangeImage(e) {
         this.setState({
-            password: e.target.value
+            image: e.target.value
         })
     }
 
@@ -66,21 +70,26 @@ export default class UpdateStudentDetails extends Component {
             stdID: this.state.stdID,
             firstName:this.state.firstName,
             lastName:this.state.lastName,
-            password:this.state.password
+            password:this.state.password,
+            image:this.state.image,
+            email:this.state.email
         }
 
         console.log(studentDetails);
     
-        axios.post('http://localhost:5000/api/users/update-student/' + this.props.match.params.id, studentDetails)
+        axios.post('http://localhost:5000/student/registration/update-student/' + this.props.match.params.id, studentDetails)
           .then(res => alert(res.data));
     
         this.setState({
             stdID:'',
             firstName: '',
             lastName:'',
-            password:''
+            password:'',
+            image:'',
+            email:''
         })
        // this.props.history.push('/student-details');
+       this.props.history.push('/home'); 
       }
 
   render() {
@@ -121,12 +130,11 @@ export default class UpdateStudentDetails extends Component {
           </div>
 
           <div className="form-group"> 
-            <label>Password: </label>
-            <input  type="password"
-                required
+            <label>Image: </label>
+            <input  type="text"
                 className="form-control"
-                value={this.state.password}
-                onChange={this.onChangeStudentPassword}
+                value={this.state.image}
+                onChange={this.onChangeImage}
                 />
           </div>
 
