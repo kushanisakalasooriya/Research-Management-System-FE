@@ -4,7 +4,7 @@ import download from 'downloadjs';
 import axios from 'axios';
 import { API_URL } from '../../utils/constants';
 
-export default class AdminFileList extends Component {
+export default class AdminStudentList extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -14,37 +14,39 @@ export default class AdminFileList extends Component {
     }
     this.columns = [
       {
-        key: "title",
-        text: "File Name",
+        key: "stdID",
+        text: "Student ID",
         className: "name",
         align: "left",
         sortable: true,
       },
       {
-        key: "description",
-        text: "Content Description",
-        className: "address",
+        key: "studentfirstName",
+        text: "First Name",
+        className: "name",
         align: "left",
         sortable: true
       },
       {
-        key: "action",
-        text: "Download",
-        className: "action",
-        width: 100,
+        key: "studentlastName",
+        text: "Last Name",
+        className: "name",
         align: "left",
-        sortable: false,
-        cell: record => {
-          return (
-            <Fragment>
-              <button
-                className="btn btn-info btn-sm"
-                onClick={() => this.downloadFile(record)}>
-                Download
-              </button>
-            </Fragment>
-          );
-        }
+        sortable: true
+      },
+      {
+        key: "studentEmail",
+        text: "Email",
+        className: "name",
+        align: "left",
+        sortable: true
+      },
+      {
+        key: "studentGrpID",
+        text: "Group ID",
+        className: "name",
+        align: "left",
+        sortable: true
       },
       {
         key: "action",
@@ -99,7 +101,7 @@ export default class AdminFileList extends Component {
     this.extraButtons = [
       {
         className: "btn btn-primary buttons-pdf",
-        title: "Export Test",
+        title: "Export TEst",
         children: [
           <span>
             <i className="glyphicon glyphicon-print fa fa-print" aria-hidden="true"></i>
@@ -127,12 +129,12 @@ export default class AdminFileList extends Component {
     ]
   }
   editRecord(record) {
-    this.props.history.push("/admin-file-edit/" + record._id);
+    this.props.history.push("/admin-update-student/" + record._id);
   }
 
   deleteRecord(record) {
     try {
-      axios.delete(`${API_URL}/admin/file-delete/${record._id}`)
+      axios.delete(`http://localhost:5000/studentDetails/${record._id}`)
         .then(response => { console.log(response.data) });
       window.location.reload(true);
     } catch (error) {
@@ -144,24 +146,8 @@ export default class AdminFileList extends Component {
     }
   }
 
-  async downloadFile(record) {
-    try {
-      const result = await axios.get(`${API_URL}/admin/download/${record._id}`, {
-        responseType: 'blob'
-      });
-      const split = record.file_path.split('/');
-      const filename = split[split.length - 1];
-      this.state.errorMsg = '';
-      return download(result.data, filename, record.mimetype);
-    } catch (error) {
-      if (error.response && error.response.status === 400) {
-        this.state.errorMsg = 'Error while downloading file. Try again later';
-      }
-    }
-  }
-
   componentWillMount(props) {
-    axios.get(`${API_URL}/admin/getAllFiles`)
+    axios.get(`${API_URL}/studentDetails`)
       .then(res => {
         this.setState({ records: res.data });
         console.log(this.state.records)
@@ -178,7 +164,7 @@ export default class AdminFileList extends Component {
     return (
       <div>
         <hr />
-        <h4>System Admin - Uploaded Documents / Presentation Templates </h4>
+        <h4>REGISTERED STUDENTS - ADMIN VIEW</h4>
         <hr />
         <br />
         <ReactDatatable
