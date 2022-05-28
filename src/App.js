@@ -20,6 +20,10 @@ import EditSubmissionType from './components/admin-components/admin-submission-t
 import MarkingSchemeUpload from './components/admin-components/marking-scheme-upload.component';
 import MarkingSchemeList from './components/admin-components/uploaded-marking-schemes.component';
 import EditMarkingScheme from './components/admin-components/marking-scheme-edit.component';
+import AdminStudentList from './components/admin-components/registered-students.component';
+import AdminUpdateStudentDetails from './components/admin-components/admin-edit-student.component';
+import AdminEmployeeList from './components/admin-components/registered-employees.component';
+import AdminUpdateEmployeeDetails from './components/admin-components/admin-edit-employee.component';
 
 import AddSubmission from './components/admin-components/add-submission.component';
 
@@ -92,6 +96,10 @@ function App() {
         <Route path="/admin-marking-upload" component={MarkingSchemeUpload} />
         <Route path="/admin-marking-download" component={MarkingSchemeList} />
         <Route path="/admin-marking-edit/:id" component={EditMarkingScheme} />
+        <Route path="/admin-all-students" component={AdminStudentList} />
+        <Route path="/admin-update-student/:id" component={AdminUpdateStudentDetails} />
+        <Route path="/admin-all-employees" component={AdminEmployeeList} />
+        <Route path="/admin-update-employee/:id" component={AdminUpdateEmployeeDetails} />
 
         {/* supervisor paths */}
         <Route path="/supervisor-home" component={SupervisorHome} />
