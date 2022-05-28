@@ -29,9 +29,11 @@ export default class CoSupervisorGroupList extends Component {
 
                 var i = 0;
                 for (i = 0; i < this.state.researchTopics.length; i++) {
-                    if (this.state.researchTopics[i].state == "Accepted") {
-                        this.state.pendingTopics.push(this.state.researchTopics[i]);
-                    }
+                    if (this.state.researchTopics[i].state == "Accepted")
+                        if (this.state.researchTopics[i].csState == "Accepted" ||
+                            this.state.researchTopics[i].csState == "Pending") {
+                            this.state.pendingTopics.push(this.state.researchTopics[i]);
+                        }
                 }
 
                 this.setState({ topic: response.data })

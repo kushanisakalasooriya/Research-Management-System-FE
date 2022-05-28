@@ -27,9 +27,9 @@ export default class Navbar extends Component {
             <li className="navbar-item">
               <Link to="/co-supervisor-home" className="nav-link">Co-Supervisor</Link>
             </li>
-            <li className="navbar-item">
+            {/* <li className="navbar-item">
               <Link to="/panel-home" className="nav-link">Panel Member</Link>
-            </li>
+            </li> */}
             <li className="navbar-item">
               <Link to="/student-home" className="nav-link"> Student</Link>
             </li>
