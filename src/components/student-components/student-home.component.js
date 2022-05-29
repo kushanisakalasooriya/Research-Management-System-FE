@@ -13,7 +13,7 @@ class Message extends React.Component {
 class Message2 extends React.Component {
   render() {
     return <p style={{ color: 'red' }}>
-      Research topi is not accepted yet.
+      Research topic is not accepted yet.
     </p>;
   }
 }
@@ -27,8 +27,8 @@ export default class studentHome extends Component {
     this.state = {
       groups: [],
       topics: [],
-      stdid: 'IT20245092',
-      grp: 'Warriors',
+      stdid: 'Thar',
+      grp: 'Thar',
       flag: '0',
       flagcosup: '0',
       component: '',
@@ -80,7 +80,7 @@ export default class studentHome extends Component {
     for (var i = 0; i < this.state.groups.length; i++) {
       // console.log('i ', this.state.groups[i].status)
       if (this.state.groups[i].groupleader === this.state.stdid) {
-        if (this.state.groups[i].status === 'pending' || this.state.groups[i].status === 'reject') {
+        if (this.state.groups[i].status === 'Pending' || this.state.groups[i].status === 'Rejected') {
           // this.state.mygroup.push(this.state.groups[i]);
           this.state.flag = '1'
         }
@@ -91,9 +91,8 @@ export default class studentHome extends Component {
     for (var i = 0; i < this.state.topics.length; i++) {
       // console.log('i ', this.state.groups[i].status)
       if (this.state.topics[i].groupName === this.state.grp) {
-        if (this.state.groups[i].state === 'Accepted') {
+        if (this.state.topics[i].state === 'Accepted') {
           this.state.flagcosup = '1'
-
         }
       }
     }
@@ -113,6 +112,7 @@ export default class studentHome extends Component {
         {this.state.component2}
         <button type="button" class="btn btn-warning"> Submit documents </button><br></br>
         <button type="button" class="btn btn-info"> Download templates </button><br></br>
+
       </div>
     )
   }
