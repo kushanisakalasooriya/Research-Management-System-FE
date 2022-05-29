@@ -121,7 +121,7 @@ export default class CreateGroup extends Component {
             supervisor: null,
             cosupervisor: null,
             topic: null,
-            status: 'pending'
+            status: 'Pending'
         }
 
         axios.post('http://localhost:5000/groups/add', group)

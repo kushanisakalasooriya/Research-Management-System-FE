@@ -49,6 +49,8 @@ import CreateGroup from './components/student-components/create-group.component'
 import studentHome from './components/student-components/student-home.component';
 import regResearchTopic from './components/student-components/reg-researchtopic.component';
 import reqCoSupervisor from './components/student-components/req-cosupervisor.component';
+import addSubmission from './components/student-components/add-submission.component';
+import StuFileUpload from './components/student-components/stu-file-upload.component';
 
 function App() {
   return (
@@ -101,6 +103,8 @@ function App() {
         <Route path="/student-home" component={studentHome} />
         <Route path="/reg-topic" component={regResearchTopic} />
         <Route path="/req-cosupervisor" component={reqCoSupervisor} />
+        <Route path="/stu-submission" component={addSubmission} />
+        <Route path="/stu-submission1" component={StuFileUpload} />
 
       </div>
     </Router>
