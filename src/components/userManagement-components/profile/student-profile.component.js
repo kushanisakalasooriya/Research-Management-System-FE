@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import styles from "./styles.module.css";
 
 export default class StudentProfile extends Component {
     constructor(props) {
@@ -65,48 +66,50 @@ export default class StudentProfile extends Component {
     render() {
         return (
             <div>
-                <h3>Profile</h3>
-                <br />
-                <form onSubmit={this.editStudentDetails}>
+                <div style={{ marginLeft:"-200px"}}  className={styles.container}>
+                    <div>                      
+                        <br />
+                        <form className={styles.form_container} onSubmit={this.editStudentDetails}>
+                        <h3>Profile</h3>
+                            <div className="form-group">
+                                <label>Profile photo:</label>
+                                <div><img style={{ width: "200px", height: "200px" }} src={this.state.image}></img></div>
+                            </div>
 
-                    <div className="form-group">
-                        <label>Profile photo:</label>
-                        <div><img style={{ width: "100%", height: "300px" }} src={this.state.image}></img></div>
+                            <div className="form-group">
+                                <label>Student ID: </label>
+                                <input type="text"
+                                    className="form-control"
+                                    value={this.state.stdID}
+                                />
+                            </div>
+
+                            <div className="form-group">
+                                <label>Student first Name: </label>
+                                <input type="text"
+                                    className="form-control"
+                                    value={this.state.firstName}
+                                />
+                            </div>
+
+                            <div className="form-group">
+                                <label>Student last Name: </label>
+                                <input type="text"
+                                    className="form-control"
+                                    value={this.state.lastName}
+                                />
+                            </div>
+
+                            <div className="form-group">
+                                <input type="submit" value="Update" className="btn btn-primary" />
+                                <button style={{ marginLeft: "10px" }} className="btn btn-danger" type='button' onClick={this.deleteStudentDetails}> Delete</button>
+                                <button style={{ marginLeft: "10px" }} className="btn btn-danger" type='button' onClick={this.stuentLogout}> LogOut</button>
+
+                            </div>
+                        </form>
+
                     </div>
-
-                    <div className="form-group">
-                        <label>Student ID: </label>
-                        <input type="text"
-                            className="form-control"
-                            value={this.state.stdID}
-                        />
-                    </div>
-
-                    <div className="form-group">
-                        <label>Student first Name: </label>
-                        <input type="text"
-                            className="form-control"
-                            value={this.state.firstName}
-                        />
-                    </div>
-
-                    <div className="form-group">
-                        <label>Student last Name: </label>
-                        <input type="text"
-                            className="form-control"
-                            value={this.state.lastName}
-                        />
-                    </div>
-
-                    <div className="form-group">
-                        <input type="submit" value="Update" className="btn btn-primary" />
-                        <button style={{ marginLeft: "10px" }} className="btn btn-danger" type='button' onClick={this.deleteStudentDetails}> Delete</button>
-                        <button style={{ marginLeft: "10px" }} className="btn btn-danger" type='button' onClick={this.stuentLogout}> LogOut</button>
-
-                    </div>
-                </form>
-
-
+                </div>
             </div>
         )
     }

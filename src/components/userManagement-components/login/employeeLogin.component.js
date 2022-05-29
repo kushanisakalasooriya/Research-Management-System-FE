@@ -59,10 +59,25 @@ export default class EmployeeLogin extends Component {
         });
 
         if (res.data.status === 200) {
-          // navigate to the home page
+
           alert("Login Success");
-          // this.props.history.push("/home");
-          this.props.history.push(`/employee-profile/${res.data.user._id}`);
+
+          //Navigate to the employee related page
+          if (res.data.user.empType === 'Supervisor'){
+            this.props.history.push('/supervisor-home');
+          }
+          else if(res.data.user.empType === 'co-Supervisor'){
+            this.props.history.push('/co-supervisor-home');
+          }
+          else if(res.data.user.empType === 'panel member'){
+            this.props.history.push('/panel-home');
+          }
+          else if(res.data.user.empType === 'admin'){
+            this.props.history.push('/admin-home');
+          }
+
+  
+          // this.props.history.push(`/employee-profile/${res.data.user._id}`);
         } else {
           alert("Login Failed. Please re-check your credentials.");
         }
