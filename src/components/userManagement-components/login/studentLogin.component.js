@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import styles from "./styles.module.css";
+import { Link } from 'react-router-dom';
 
 export default class StudentLogin extends Component {
 
@@ -100,6 +101,10 @@ export default class StudentLogin extends Component {
                   onChange={this.onChangeStudentPassword}
                 />
               </div>
+
+              <Link to="/student-forgot-password" style={{ alignSelf: "flex-start" }}>
+                <p style={{padding: "0 15px"}}>Forgot Password ?</p>
+              </Link>
 
               <button type="submit" className={styles.g_btn}>
                 Sign in

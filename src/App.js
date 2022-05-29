@@ -46,9 +46,7 @@ import PanelHome from './components/panel-member-component/panel-home.component'
 import userManagementHome from './components/userManagement-components/userManagement-home.component';
 import StudentDetailsList from './components/userManagement-components/student-list.component';
 import AddStudentDetails from './components/userManagement-components/create-student.component';
-import UpdateStudentDetails from './components/userManagement-components/edit-student.component';
 import AddEmployeeDetails from './components/userManagement-components/create-staff.component';
-import UpdateEmployeeDetails from './components/userManagement-components/edit-employee.component';
 import EmployeeDetailsList from './components/userManagement-components/employee-list.component';
 import StudentRegistration from './components/userManagement-components/registration/studentRegistration.component';
 import StudentLogin from './components/userManagement-components/login/studentLogin.component';
@@ -56,6 +54,10 @@ import EmployeeRegistration from './components/userManagement-components/registr
 import EmployeeLogin from './components/userManagement-components/login/employeeLogin.component';
 import EmployeeProfile from './components/userManagement-components/profile/employee-profile.component';
 import StudentProfile from './components/userManagement-components/profile/student-profile.component';
+import StudentForgotPassword from './components/userManagement-components/forgotPassword/student-forgotpassword.component';
+import StudentPasswordReser from './components/userManagement-components/passwordReset/studentPasswordReser';
+import UpdateStudentDetails from './components/userManagement-components/editProfile/edit-student.component';
+import UpdateEmployeeDetails from './components/userManagement-components/editProfile/edit-employee.component';
 
 
 //studenet routes
@@ -68,6 +70,9 @@ import StuFileUpload from './components/student-components/stu-file-upload.compo
 
 
 import HomePage from './components/homePage.component';
+
+
+
 
 function App() {
 
@@ -132,6 +137,9 @@ function App() {
         <Route path="/employee-registration" component={EmployeeRegistration} />
         <Route path="/employee-profile/:id" component={EmployeeProfile} />
         <Route path="/employee-login" component={EmployeeLogin} />
+        <Route path="/student-forgot-password" component={StudentForgotPassword} />
+        {/* <Route path="/student-password-reset" component={StudentPasswordReset} /> */}
+        <Route path="/student-password-reset/:id/:token" component={StudentPasswordReser} />
 
 
 

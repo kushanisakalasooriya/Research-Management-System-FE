@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import styles from "./styles.module.css";
 
 const empdetails = window.sessionStorage.getItem("loggeduser")
 
@@ -68,14 +69,15 @@ export default class EmployeeProfile extends Component {
 
     render() {
         return (
-            <div>
-                <h3>Profile</h3>
+            <div style={{ marginLeft:"-200px"}}  className={styles.container}>
+                
                 <br />
-                <form onSubmit={this.editEmployeeDetails}>
+                <form className={styles.form_container} onSubmit={this.editEmployeeDetails}>
 
                     <div className="form-group">
+                    <h3>Profile</h3>
                         <label>Profile photo:</label>
-                        <div><img style={{ width: "100%", height: "300px" }} src={this.state.image}></img></div>
+                        <div><img style={{ width: "200px", height: "200px" }} src={this.state.image}></img></div>
                     </div>
 
                     <div className="form-group">

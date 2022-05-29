@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import styles from "./styles.module.css";
 
 export default class UpdateEmployeeDetails extends Component {
     constructor(props) {
@@ -99,17 +100,17 @@ export default class UpdateEmployeeDetails extends Component {
             email: ''
         })
         // this.props.history.push('/employee-details');
-        this.props.history.push('/home');     
+        this.props.history.push('/home');
     }
 
 
     render() {
         return (
-            <div>
-                <h3>Update Employee Details</h3>
-                <br />
-                <form onSubmit={this.onSubmit}>
+            <div style={{ marginLeft: "-200px" }} className={styles.container}>
 
+                <br />
+                <form className={styles.form_container} onSubmit={this.onSubmit}>
+                    <h3>Update Employee Details</h3>
                     <div className="form-group">
                         <label>Employee Type: </label>
                         <input type="text"
