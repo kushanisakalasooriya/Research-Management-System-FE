@@ -62,10 +62,10 @@ export default class StudentLogin extends Component {
         });
 
         if (res.data.status === 200) {
-          // navigate to the home page
+          // navigate to the student home page
           alert("Login Success");
-          // this.props.history.push("/home");
-          this.props.history.push(`/student-profile/${res.data.user._id}`);
+
+          this.props.history.push('/student-home');
         } else {
           alert("Login Failed. Please re-check your credentials.");
         }
@@ -102,8 +102,8 @@ export default class StudentLogin extends Component {
                 />
               </div>
 
-              <Link to="/student-forgot-password" style={{ alignSelf: "flex-start" }}>
-                <p style={{padding: "0 15px"}}>Forgot Password ?</p>
+              <Link to="/student-forgot-password" style={{marginLeft:'85px', alignSelf: "flex-start" }}>
+                <p style={{ padding: "0 15px"}}>Forgot Password ?</p>
               </Link>
 
               <button type="submit" className={styles.g_btn}>

@@ -54,10 +54,10 @@ import EmployeeRegistration from './components/userManagement-components/registr
 import EmployeeLogin from './components/userManagement-components/login/employeeLogin.component';
 import EmployeeProfile from './components/userManagement-components/profile/employee-profile.component';
 import StudentProfile from './components/userManagement-components/profile/student-profile.component';
-import StudentForgotPassword from './components/userManagement-components/forgotPassword/student-forgotpassword.component';
-import StudentPasswordReser from './components/userManagement-components/passwordReset/studentPasswordReser';
+import StudentPasswordReser from './components/userManagement-components/passwordReset/StudentPasswordReser';
 import UpdateStudentDetails from './components/userManagement-components/editProfile/edit-student.component';
 import UpdateEmployeeDetails from './components/userManagement-components/editProfile/edit-employee.component';
+import StudentForgotPassword from './components/userManagement-components/forgotPassword/StudentForgotPassword';
 
 
 //studenet routes
@@ -70,6 +70,7 @@ import StuFileUpload from './components/student-components/stu-file-upload.compo
 
 
 import HomePage from './components/homePage.component';
+
 
 
 

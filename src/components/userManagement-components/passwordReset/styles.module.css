@@ -29,11 +29,11 @@
 	font-size: 14px;
 }
 
-.green_btn {
+.g_btn {
 	border: none;
 	outline: none;
 	padding: 12px 0;
-	background-color: #3bb19b;
+	background-color: #484848be;
 	color: white;
 	border-radius: 20px;
 	width: 180px;
