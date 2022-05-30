@@ -38,7 +38,7 @@ export default class StudentForgotPassword extends Component {
 
         this.setState({
             email: ''
-        })
+        });
 
         //navigate to ............
 
@@ -47,7 +47,7 @@ export default class StudentForgotPassword extends Component {
 
     render() {
         return (
-            <div style={{ marginLeft: "-200px" }} className={styles.container}>
+            <div style={{ marginTop:"-100px", marginLeft: "-200px" }} className={styles.container}>
                 <form className={styles.form_container} onSubmit={this.onSubmit}>
 
                     <h1>Forgot Password</h1>

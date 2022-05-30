@@ -90,7 +90,7 @@ export default class UpdateStudentDetails extends Component {
             email: ''
         })
         // this.props.history.push('/student-details');
-        this.props.history.push('/home');
+        // this.props.history.push('/student-profile');
     }
 
     render() {

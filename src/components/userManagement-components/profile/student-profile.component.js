@@ -103,7 +103,7 @@ export default class StudentProfile extends Component {
                             <div className="form-group">
                                 <input type="submit" value="Update" className="btn btn-primary" />
                                 <button style={{ marginLeft: "10px" }} className="btn btn-danger" type='button' onClick={this.deleteStudentDetails}> Delete</button>
-                                <button style={{ marginLeft: "10px" }} className="btn btn-danger" type='button' onClick={this.stuentLogout}> LogOut</button>
+                                <button style={{ marginLeft: "10px" }} className="btn btn-success" type='button' onClick={this.stuentLogout}> LogOut</button>
 
                             </div>
                         </form>

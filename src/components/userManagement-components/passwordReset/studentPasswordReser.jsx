@@ -46,7 +46,7 @@ export default function StudentPasswordReser() {
   return (
     <Fragment>
 			{validUrl ? (
-				<div className={styles.container}>
+				<div style={{ marginTop:"-100px", marginLeft: "-200px" }} className={styles.container}>
 					<form className={styles.form_container} onSubmit={handleSubmit}>
 						<h1>Add New Password</h1>
 						<input
@@ -60,7 +60,7 @@ export default function StudentPasswordReser() {
 						/>
 						{error && <div className={styles.error_msg}>{error}</div>}
 						{msg && <div className={styles.success_msg}>{msg}</div>}
-						<button type="submit" className={styles.green_btn}>
+						<button type="submit" className={styles.g_btn}>
 							Submit
 						</button>
 					</form>
