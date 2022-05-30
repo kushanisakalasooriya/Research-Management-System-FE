@@ -24,6 +24,8 @@ import AdminStudentList from './components/admin-components/registered-students.
 import AdminUpdateStudentDetails from './components/admin-components/admin-edit-student.component';
 import AdminEmployeeList from './components/admin-components/registered-employees.component';
 import AdminUpdateEmployeeDetails from './components/admin-components/admin-edit-employee.component';
+import AdminGroupList from './components/admin-components/admin-registered-groups.component';
+import AllocatePanelMember from './components/admin-components/allocate-panel-member.component';
 
 import AddSubmission from './components/admin-components/add-submission.component';
 
@@ -54,7 +56,7 @@ import EmployeeRegistration from './components/userManagement-components/registr
 import EmployeeLogin from './components/userManagement-components/login/employeeLogin.component';
 import EmployeeProfile from './components/userManagement-components/profile/employee-profile.component';
 import StudentProfile from './components/userManagement-components/profile/student-profile.component';
-import StudentPasswordReser from './components/userManagement-components/passwordReset/StudentPasswordReser';
+//import StudentPasswordReser from './components/userManagement-components/passwordReset/StudentPasswordReser';
 import UpdateStudentDetails from './components/userManagement-components/editProfile/edit-student.component';
 import UpdateEmployeeDetails from './components/userManagement-components/editProfile/edit-employee.component';
 import StudentForgotPassword from './components/userManagement-components/forgotPassword/StudentForgotPassword';
@@ -108,6 +110,12 @@ function App() {
         <Route path="/admin-update-student/:id" component={AdminUpdateStudentDetails} />
         <Route path="/admin-all-employees" component={AdminEmployeeList} />
         <Route path="/admin-update-employee/:id" component={AdminUpdateEmployeeDetails} />
+        <Route path="/admin-group-list" component={AdminGroupList} />
+        <Route path="/admin-allocate-panel-member/:id" component={AllocatePanelMember} />
+
+
+
+
 
         {/* supervisor paths */}
         <Route path="/supervisor-home" component={SupervisorHome} />
@@ -140,10 +148,7 @@ function App() {
         <Route path="/employee-login" component={EmployeeLogin} />
         <Route path="/student-forgot-password" component={StudentForgotPassword} />
         {/* <Route path="/student-password-reset" component={StudentPasswordReset} /> */}
-        <Route path="/student-password-reset/:id/:token" component={StudentPasswordReser} />
-
-
-
+        {/* <Route path="/student-password-reset/:id/:token" component={StudentPasswordReser} /> */}
 
         {/* students paths */}
         <Route path="/add-group" component={CreateGroup} />
