@@ -1,8 +1,8 @@
-import React, {  useEffect, useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import styles from "./styles.module.css";
 
-export default function StudentForgotPassword() {
+export default function EmployeeForgotPassword() {
 
     const [email, setEmail] = useState("");
 	const [msg, setMsg] = useState("");
@@ -13,7 +13,7 @@ export default function StudentForgotPassword() {
     const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
-			const url = `http://localhost:5000/student/password-reset`;
+			const url = `http://localhost:5000/employee/password-reset`;
 			const { data } = await axios.post(url, { email });
 			setMsg(data.message);
 			setError("");

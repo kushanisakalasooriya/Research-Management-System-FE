@@ -202,6 +202,8 @@ export default class EmployeeRegistration extends Component {
                                 <label>Password: </label>
                                 <input type="password"
                                     required
+                                    pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$"
+                                    title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
                                     className="form-control"
                                     value={this.state.password}
                                     onChange={this.onChangeEmployeePassword}

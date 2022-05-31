@@ -1,18 +1,18 @@
-import React, {  useEffect, useState, Fragment } from "react";
+import React, { useEffect, useState, Fragment } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import styles from "./styles.module.css";
 
 export default function StudentPasswordReser() {
 
-    const [validUrl, setValidUrl] = useState(false);
+	const [validUrl, setValidUrl] = useState(false);
 	const [password, setPassword] = useState("");
 	const [msg, setMsg] = useState("");
 	const [error, setError] = useState("");
 	const param = useParams();
 	const url = `http://localhost:5000/student/password-reset/${param.id}/${param.token}`;
 
-    useEffect(() => {
+	useEffect(() => {
 		const verifyUrl = async () => {
 			try {
 				await axios.get(url);
@@ -24,7 +24,7 @@ export default function StudentPasswordReser() {
 		verifyUrl();
 	}, [param, url]);
 
-    const handleSubmit = async (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
 			const { data } = await axios.post(url, { password });
@@ -43,16 +43,18 @@ export default function StudentPasswordReser() {
 		}
 	};
 
-  return (
-    <Fragment>
+	return (
+		<Fragment>
 			{validUrl ? (
-				<div style={{ marginTop:"-100px", marginLeft: "-200px" }} className={styles.container}>
+				<div style={{ marginTop: "-100px", marginLeft: "-200px" }} className={styles.container}>
 					<form className={styles.form_container} onSubmit={handleSubmit}>
 						<h1>Add New Password</h1>
 						<input
 							type="password"
 							placeholder="Password"
 							name="password"
+							pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$"
+							title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
 							onChange={(e) => setPassword(e.target.value)}
 							value={password}
 							required
@@ -69,5 +71,5 @@ export default function StudentPasswordReser() {
 				<h1>404 Not Found</h1>
 			)}
 		</Fragment>
-  )
+	)
 }
