@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import styles from "./styles.module.css";
+import { Link } from 'react-router-dom';
 
 export default class StudentLogin extends Component {
 
@@ -61,10 +62,10 @@ export default class StudentLogin extends Component {
         });
 
         if (res.data.status === 200) {
-          // navigate to the home page
+          // navigate to the student home page
           alert("Login Success");
-          // this.props.history.push("/home");
-          this.props.history.push(`/student-profile/${res.data.user._id}`);
+
+          this.props.history.push('/student-home');
         } else {
           alert("Login Failed. Please re-check your credentials.");
         }
@@ -100,6 +101,10 @@ export default class StudentLogin extends Component {
                   onChange={this.onChangeStudentPassword}
                 />
               </div>
+
+              <Link to="/student-forgot-password" style={{marginLeft:'85px', alignSelf: "flex-start" }}>
+                <p style={{ padding: "0 15px"}}>Forgot Password ?</p>
+              </Link>
 
               <button type="submit" className={styles.g_btn}>
                 Sign in

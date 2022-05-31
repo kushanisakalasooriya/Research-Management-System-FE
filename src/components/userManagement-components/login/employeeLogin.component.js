@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import styles from "./styles.module.css";
+import { Link } from 'react-router-dom';
 
 export default class EmployeeLogin extends Component {
 
@@ -34,7 +35,7 @@ export default class EmployeeLogin extends Component {
   }
 
   onChangeLoginToRegistration() {
-   this.props.history.push("/employee-registration");
+    this.props.history.push("/employee-registration");
   }
 
   onSubmit(e) {
@@ -59,10 +60,25 @@ export default class EmployeeLogin extends Component {
         });
 
         if (res.data.status === 200) {
-          // navigate to the home page
+
           alert("Login Success");
-          // this.props.history.push("/home");
-          this.props.history.push(`/employee-profile/${res.data.user._id}`);
+
+          //Navigate to the employee related page
+          if (res.data.user.empType === 'Supervisor') {
+            this.props.history.push('/supervisor-home');
+          }
+          else if (res.data.user.empType === 'co-Supervisor') {
+            this.props.history.push('/co-supervisor-home');
+          }
+          else if (res.data.user.empType === 'panel member') {
+            this.props.history.push('/panel-home');
+          }
+          else if (res.data.user.empType === 'admin') {
+            this.props.history.push('/admin-home');
+          }
+
+
+          // this.props.history.push(`/employee-profile/${res.data.user._id}`);
         } else {
           alert("Login Failed. Please re-check your credentials.");
         }
@@ -99,6 +115,10 @@ export default class EmployeeLogin extends Component {
                   onChange={this.onChangeEmployeePassword}
                 />
               </div>
+
+              <Link to="/employee-forgot-password" style={{ marginLeft: '85px', alignSelf: "flex-start" }}>
+                <p style={{ padding: "0 15px" }}>Forgot Password ?</p>
+              </Link>
 
               <button type="submit" className={styles.g_btn}>
                 Sign in

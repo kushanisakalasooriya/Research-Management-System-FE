@@ -79,7 +79,7 @@ export default class AddStudentDetails extends Component {
 
         console.log(studentDetails);
     
-        axios.post('http://localhost:5000/studentDetails/add-student', studentDetails)
+        axios.post('http://localhost:5000/student/registration/', studentDetails)
           .then(res => alert(res.data));
     
         this.setState({
