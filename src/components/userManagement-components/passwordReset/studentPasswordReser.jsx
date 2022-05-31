@@ -10,7 +10,7 @@ export default function StudentPasswordReser() {
 	const [msg, setMsg] = useState("");
 	const [error, setError] = useState("");
 	const param = useParams();
-	const url = `http://localhost:5000/student/password-reset/${param.id}/${param.token}`;
+	const url = `https://mndexmgdhd.execute-api.us-east-2.amazonaws.com/student/password-reset/${param.id}/${param.token}`;
 
 	useEffect(() => {
 		const verifyUrl = async () => {

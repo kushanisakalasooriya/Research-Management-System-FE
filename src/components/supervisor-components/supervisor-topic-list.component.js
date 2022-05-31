@@ -27,7 +27,7 @@ export default class SuperrvisorTopicList extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:5000/supervisor/topic')
+        axios.get('https://mndexmgdhd.execute-api.us-east-2.amazonaws.com/supervisor/topic')
             .then(response => {
                 this.setState({ researchTopics: response.data })
 
@@ -48,7 +48,7 @@ export default class SuperrvisorTopicList extends Component {
     }
 
     deleteTopic(id) {
-        axios.delete('http://localhost:5000/supervisor/topic/' + id)
+        axios.delete('https://mndexmgdhd.execute-api.us-east-2.amazonaws.com/supervisor/topic/' + id)
             .then(response => { console.log(response.data) });
 
         this.setState({

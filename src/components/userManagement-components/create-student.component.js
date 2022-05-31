@@ -79,7 +79,7 @@ export default class AddStudentDetails extends Component {
 
         console.log(studentDetails);
     
-        axios.post('http://localhost:5000/student/registration/', studentDetails)
+        axios.post('https://mndexmgdhd.execute-api.us-east-2.amazonaws.com/student/registration/', studentDetails)
           .then(res => alert(res.data));
     
         this.setState({

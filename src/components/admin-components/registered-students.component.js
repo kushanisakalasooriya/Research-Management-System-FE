@@ -134,7 +134,7 @@ export default class AdminStudentList extends Component {
 
   deleteRecord(record) {
     try {
-      axios.delete(`http://localhost:5000/studentDetails/${record._id}`)
+      axios.delete(`https://mndexmgdhd.execute-api.us-east-2.amazonaws.com/studentDetails/${record._id}`)
         .then(response => { console.log(response.data) });
       window.location.reload(true);
     } catch (error) {

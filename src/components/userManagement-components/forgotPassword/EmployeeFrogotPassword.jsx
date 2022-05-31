@@ -13,7 +13,7 @@ export default function EmployeeForgotPassword() {
     const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
-			const url = `http://localhost:5000/employee/password-reset`;
+			const url = `https://mndexmgdhd.execute-api.us-east-2.amazonaws.com/employee/password-reset`;
 			const { data } = await axios.post(url, { email });
 			setMsg(data.message);
 			setError("");

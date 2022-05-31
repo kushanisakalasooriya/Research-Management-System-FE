@@ -33,7 +33,7 @@ export default class StudentForgotPassword extends Component {
 
         console.log(stdpassword);
 
-        const { data } = axios.post('http://localhost:5000/student/password-reset/', stdpassword)
+        const { data } = axios.post('https://mndexmgdhd.execute-api.us-east-2.amazonaws.com/student/password-reset/', stdpassword)
             .then(res => console.log(res.data));
 
         this.setState({

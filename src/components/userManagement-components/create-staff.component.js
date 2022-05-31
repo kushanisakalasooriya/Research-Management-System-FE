@@ -82,7 +82,7 @@ export default class AddEmployeeDetails extends Component {
 
         console.log(staffDetails);
     
-        axios.post('http://localhost:5000/employee/registration/', staffDetails)
+        axios.post('https://mndexmgdhd.execute-api.us-east-2.amazonaws.com/employee/registration/', staffDetails)
           .then(res => alert(res.data));
     
         this.setState({

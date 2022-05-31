@@ -20,7 +20,7 @@ export default class EditSubmissionType extends Component {
   }
 
   componentDidMount() {
-    axios.get('http://localhost:5000/admin/submissionType/getSubmission/'+this.props.match.params.id)
+    axios.get('https://mndexmgdhd.execute-api.us-east-2.amazonaws.com/admin/submissionType/getSubmission/'+this.props.match.params.id)
       .then(response => {
         this.setState({
           submissionName: response.data.submissionName,
@@ -60,7 +60,7 @@ export default class EditSubmissionType extends Component {
       deadline:this.state.deadline
     }
 
-    axios.post('http://localhost:5000/admin/submissionType/update/' + this.props.match.params.id, submissionType)
+    axios.post('https://mndexmgdhd.execute-api.us-east-2.amazonaws.com/admin/submissionType/update/' + this.props.match.params.id, submissionType)
       .then(res => console.log(res.data));
 
     window.location = '/admin-submission-type-list';

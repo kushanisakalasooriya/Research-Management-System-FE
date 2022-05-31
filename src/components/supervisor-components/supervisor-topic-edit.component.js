@@ -56,7 +56,7 @@ export default class SupervisorEditTopics extends Component {
     // }
 
     componentDidMount() {
-        axios.get('http://localhost:5000/supervisor/topic/' + this.props.match.params.id)
+        axios.get('https://mndexmgdhd.execute-api.us-east-2.amazonaws.com/supervisor/topic/' + this.props.match.params.id)
             .then(response => {
                 this.setState({
                     topic: response.data.topic,
@@ -100,7 +100,7 @@ export default class SupervisorEditTopics extends Component {
 
         console.log(researchTopics);
 
-        axios.post('http://localhost:5000/supervisor/topic/update/' + this.props.match.params.id, researchTopics)
+        axios.post('https://mndexmgdhd.execute-api.us-east-2.amazonaws.com/supervisor/topic/update/' + this.props.match.params.id, researchTopics)
             .then(res => console.log(res.data));
 
         alert("Successfully Edited !")

@@ -26,7 +26,7 @@ export default class AdminUpdateStudentDetails extends Component {
 
   componentDidMount() {
     axios
-      .get("http://localhost:5000/studentDetails/" + this.props.match.params.id)
+      .get("https://mndexmgdhd.execute-api.us-east-2.amazonaws.com/studentDetails/" + this.props.match.params.id)
       .then((response) => {
         this.setState({
           stdID: response.data.stdID,
@@ -94,7 +94,7 @@ export default class AdminUpdateStudentDetails extends Component {
 
     axios
       .post(
-        "http://localhost:5000/studentDetails/update-student/" +
+        "https://mndexmgdhd.execute-api.us-east-2.amazonaws.com/studentDetails/update-student/" +
           this.props.match.params.id,
         studentDetails
       )

@@ -28,7 +28,7 @@ export default class CreateUser extends Component {
 
     console.log(user);
 
-    axios.post('http://localhost:5000/users/add', user)
+    axios.post('https://mndexmgdhd.execute-api.us-east-2.amazonaws.com/users/add', user)
       .then(res => console.log(res.data));
 
     this.setState({

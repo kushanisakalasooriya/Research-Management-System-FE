@@ -29,7 +29,7 @@ export default class EmployeeDetailsList extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:5000/employee/registration')
+        axios.get('https://mndexmgdhd.execute-api.us-east-2.amazonaws.com/employee/registration')
             .then(response => {
                 this.setState({ employees: response.data })
             })
@@ -39,7 +39,7 @@ export default class EmployeeDetailsList extends Component {
     }
 
     deleteEmployeeDetails(id) {
-        axios.delete('http://localhost:5000/employee/registration/' + id)
+        axios.delete('https://mndexmgdhd.execute-api.us-east-2.amazonaws.com/employee/registration/' + id)
             .then(res => console.log(res.data));
 
         this.setState({

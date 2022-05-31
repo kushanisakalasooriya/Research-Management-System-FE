@@ -38,7 +38,7 @@ export default class StudentPasswordReset extends Component {
     componentDidMount() {
         const verifyUrl = async () => {
             try {
-                await axios.get(`http://localhost:5000/student/password-reset/${this.props.match.param.id}/${this.props.match.param.token}`);
+                await axios.get(`https://mndexmgdhd.execute-api.us-east-2.amazonaws.com/student/password-reset/${this.props.match.param.id}/${this.props.match.param.token}`);
                 this.setState({
                     validUrl: true
                 })
@@ -57,7 +57,7 @@ export default class StudentPasswordReset extends Component {
 
 
     // componentDidMount(){
-    //     axios.get(`http://localhost:5000/student/password-reset//${this.props.match.param.id}/${this.props.match.param.token}`)
+    //     axios.get(`https://mndexmgdhd.execute-api.us-east-2.amazonaws.com/student/password-reset//${this.props.match.param.id}/${this.props.match.param.token}`)
     //     .then(response => {
     //         this.setState({ students: response.data})
     //     })
@@ -74,7 +74,7 @@ export default class StudentPasswordReset extends Component {
         console.log(stdnewpassword);
 
         try {
-            const { data } = axios.post(`http://localhost:5000/student/password-reset/${this.props.match.params.id}/${this.props.match.params.token}/`, stdnewpassword)
+            const { data } = axios.post(`https://mndexmgdhd.execute-api.us-east-2.amazonaws.com/student/password-reset/${this.props.match.params.id}/${this.props.match.params.token}/`, stdnewpassword)
                 .then(res => console.log(res.data));
             this.setState({
                 password: '',

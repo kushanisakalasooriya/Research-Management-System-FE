@@ -38,7 +38,7 @@ export default class CreateGroup extends Component {
     }
 
     componentDidMount() {
-        // axios.get('http://localhost:5000/studentDetails')
+        // axios.get('https://mndexmgdhd.execute-api.us-east-2.amazonaws.com/studentDetails')
         // .then(response => {
         //     this.setState({ students: response.data})
         // })
@@ -124,7 +124,7 @@ export default class CreateGroup extends Component {
             status: 'Pending'
         }
 
-        axios.post('http://localhost:5000/groups/add', group)
+        axios.post('https://mndexmgdhd.execute-api.us-east-2.amazonaws.com/groups/add', group)
             .then(res => console.log(res.data), alert("Successfully submitted the group"));
 
         this.setState({
@@ -142,7 +142,7 @@ export default class CreateGroup extends Component {
         }
         console.log(topic);
 
-        axios.post('http://localhost:5000/supervisor/topic/add', topic)
+        axios.post('https://mndexmgdhd.execute-api.us-east-2.amazonaws.com/supervisor/topic/add', topic)
             .then(res => console.log(res.data));
 
     }

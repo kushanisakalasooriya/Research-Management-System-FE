@@ -16,7 +16,7 @@ export default class reqCoSupervisor extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:5000/groups/')
+        axios.get('https://mndexmgdhd.execute-api.us-east-2.amazonaws.com/groups/')
             .then(response => {
                 this.setState({ groups: response.data })
             })
@@ -41,7 +41,7 @@ export default class reqCoSupervisor extends Component {
         }
         console.log(cosupervisor);
 
-        axios.post('http://localhost:5000/groups/update/cosupervisor', cosupervisor)
+        axios.post('https://mndexmgdhd.execute-api.us-east-2.amazonaws.com/groups/update/cosupervisor', cosupervisor)
             .then(res => console.log(res.data));
 
         this.setState({

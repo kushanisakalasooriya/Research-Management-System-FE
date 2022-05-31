@@ -26,7 +26,7 @@ export default class AdminUpdateEmployeeDetails extends Component {
     }
 
     componentDidMount(){
-        axios.get('http://localhost:5000/employeeDetails/' + this.props.match.params.id)
+        axios.get('https://mndexmgdhd.execute-api.us-east-2.amazonaws.com/employeeDetails/' + this.props.match.params.id)
         .then(response => {
             this.setState({
                 staffID: response.data.staffID,
@@ -97,7 +97,7 @@ export default class AdminUpdateEmployeeDetails extends Component {
 
         console.log(employeeDetails);
     
-        axios.post('http://localhost:5000/employeeDetails/update-employee/' + this.props.match.params.id, employeeDetails)
+        axios.post('https://mndexmgdhd.execute-api.us-east-2.amazonaws.com/employeeDetails/update-employee/' + this.props.match.params.id, employeeDetails)
           .then(res => alert(res.data));
     
         this.setState({
