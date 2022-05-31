@@ -76,15 +76,7 @@ import StuFileUpload from './components/student-components/stu-file-upload.compo
 
 import HomePage from './components/homePage.component';
 
-
-
-
-
-
-
-
 function App() {
-
 
   return (
     <Router>
@@ -118,10 +110,6 @@ function App() {
         <Route path="/admin-update-employee/:id" component={AdminUpdateEmployeeDetails} />
         <Route path="/admin-group-list" component={AdminGroupList} />
         <Route path="/admin-allocate-panel-member/:id" component={AllocatePanelMember} />
-
-
-
-
 
         {/* supervisor paths */}
         <Route path="/supervisor-home" component={SupervisorHome} />
