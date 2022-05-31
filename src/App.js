@@ -133,9 +133,6 @@ function App() {
         <Route path="/employee-profile/:id" component={EmployeeProfile} />
         <Route path="/employee-login" component={EmployeeLogin} />
 
-
-
-
         {/* students paths */}
         <Route path="/add-group" component={CreateGroup} />
         <Route path="/student-home" component={studentHome} />
