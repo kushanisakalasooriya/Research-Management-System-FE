@@ -54,10 +54,12 @@ import EmployeeRegistration from './components/userManagement-components/registr
 import EmployeeLogin from './components/userManagement-components/login/employeeLogin.component';
 import EmployeeProfile from './components/userManagement-components/profile/employee-profile.component';
 import StudentProfile from './components/userManagement-components/profile/student-profile.component';
-import StudentPasswordReser from './components/userManagement-components/passwordReset/StudentPasswordReser';
 import UpdateStudentDetails from './components/userManagement-components/editProfile/edit-student.component';
 import UpdateEmployeeDetails from './components/userManagement-components/editProfile/edit-employee.component';
 import StudentForgotPassword from './components/userManagement-components/forgotPassword/StudentForgotPassword';
+import StudentPasswordReser from './components/userManagement-components/passwordReset/studentPasswordReser';
+import EmployeeForgotPassword from './components/userManagement-components/forgotPassword/EmployeeFrogotPassword';
+import EmployeePasswordReset from './components/userManagement-components/passwordReset/EmployeePasswordReset';
 
 
 //studenet routes
@@ -70,6 +72,9 @@ import StuFileUpload from './components/student-components/stu-file-upload.compo
 
 
 import HomePage from './components/homePage.component';
+
+
+
 
 
 
@@ -141,6 +146,8 @@ function App() {
         <Route path="/student-forgot-password" component={StudentForgotPassword} />
         {/* <Route path="/student-password-reset" component={StudentPasswordReset} /> */}
         <Route path="/student-password-reset/:id/:token" component={StudentPasswordReser} />
+        <Route path="/employee-forgot-password" component={EmployeeForgotPassword} />
+        <Route path="/employee-password-reset/:id/:token" component={EmployeePasswordReset} />
 
 
 
