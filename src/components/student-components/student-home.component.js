@@ -28,15 +28,18 @@ export default class studentHome extends Component {
       // groups: [],
       topics: [],
       stdid: 'Thar',
-      grp: 'Warriors',
+      grp: '',
+      status:'',
       flag: '0',
       flagcosup: '0',
       component: '',
       component2: '',
+      loggedUser:[],
+      groupDetails: [],
     }
   }
 
-  componentDidMount() {
+async  componentDidMount() {
     // axios.get('http://localhost:5000/groups/')
     //   .then(response => {
     //     this.setState({ groups: response.data })
@@ -45,19 +48,55 @@ export default class studentHome extends Component {
     //     console.log(error);
     //   })
 
-    axios.get('http://localhost:5000/supervisor/topic')
+    //get the user details from the session
+    this.state.loggedUser = JSON.parse(sessionStorage.getItem("loggeduser"));
+
+    const student = {
+      stdID: this.state.loggedUser.stdID
+  }
+
+    //get the group details according to the user
+    await axios.post('http://localhost:5000/groups/loggedUser', student)
+      .then(response => {
+        this.setState({ grp: response.data.user.groupname })
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      console.log('groupMount => ', this.state.grp);
+
+    //   const group1 = {
+    //     groupname: this.state.grp,
+    //     a: 'a'
+    // }
+
+    // console.log('A => ', this.state.group1.groupname);
+
+      // get the topic details according to the group
+    // await axios.post('http://localhost:5000/groups/loggedUserGroup', group1)
+    // .then(response => {
+    //   this.setState({ status: response.data.topic.state }) 
+    // })
+    // .catch((error) => {
+    //   console.log(error);
+    // })
+    // console.log('topic => ', this.state.status);
+
+    //get all the topics
+     axios.get('http://localhost:5000/supervisor/topic')
       .then(response => {
         this.setState({ topics: response.data })
       })
       .catch((error) => {
         console.log(error);
       })
-    // console.log('mount',this.state.topics)
-    console.log('mount =>', this.state.flagcosup)
 
   }
 
   componentDidUpdate() {
+
+    // const group = this.state.grp
+    // console.log('groupname => ', this.state.grp);
 
     //checking the group is accepted or not
     // for (var i = 0; i < this.state.groups.length; i++) {
@@ -109,7 +148,7 @@ export default class studentHome extends Component {
   }
 
   RegGroup() {
-    window.location = '//add-group'
+    window.location = '/add-group'
   }
 
   render() {
