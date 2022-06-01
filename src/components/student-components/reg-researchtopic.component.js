@@ -25,7 +25,7 @@ export default class regResearchTopic extends Component {
             status: '',
             groups: [],
             mygroup: [],
-            stdid: 'IT20245092',
+            stdid: 'Thar',
             flag: '0',
         }
     }
@@ -78,7 +78,7 @@ export default class regResearchTopic extends Component {
         e.preventDefault();
 
         const updateTopic = {
-            groupname: 'Warriors',
+            groupname: 'Thar',
             topic: this.state.topic,
         }
         console.log('Update Topic = > ', updateTopic);
@@ -87,7 +87,7 @@ export default class regResearchTopic extends Component {
             .then(res => console.log(res.data));
 
         const updateSupervisor = {
-            groupname: 'Warriors',
+            groupname: 'Thar',
             supervisor: this.state.supervisor,
         }
         console.log('Update Supervisor = > ',updateSupervisor);

@@ -36,7 +36,7 @@ export default class reqCoSupervisor extends Component {
         e.preventDefault();
 
         const cosupervisor = {
-            groupname: 'm',
+            groupname: 'Thar',
             cosupervisor: this.state.cosupervisor,
         }
         console.log(cosupervisor);

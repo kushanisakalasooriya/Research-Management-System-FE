@@ -1,11 +1,11 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import axios from 'axios';
 
-export default class AddEmployeeDetails extends Component {
+export default class AdminUpdateEmployeeDetails extends Component {
     constructor(props){
         super(props);
 
-        this.onChangeStaffID = this.onChangeStaffID.bind(this);
+        this.onChangeEmployeeID = this.onChangeEmployeeID.bind(this);
         this.onChangeEmployeefirstName= this.onChangeEmployeefirstName.bind(this);
         this.onChangeEmployeelastName= this.onChangeEmployeelastName.bind(this);
         this.onChangeEmployeeEmail = this.onChangeEmployeeEmail.bind(this);
@@ -14,6 +14,7 @@ export default class AddEmployeeDetails extends Component {
         this.onSubmit = this.onSubmit.bind(this);
 
         this.state = {
+            emp: [],
             employees:[],
             staffID: '',
             employeefirstName: '',
@@ -25,14 +26,28 @@ export default class AddEmployeeDetails extends Component {
     }
 
     componentDidMount(){
+        axios.get('http://localhost:5000/employeeDetails/' + this.props.match.params.id)
+        .then(response => {
+            this.setState({
+                staffID: response.data.staffID,
+                employeefirstName: response.data.employeefirstName,
+                employeelastName: response.data.employeelastName,
+                employeeEmail: response.data.employeeEmail,
+                employeePassword: response.data.employeePassword,
+                employeeType: response.data.employeeType
+            })
+        })
+        .catch(function (error) {
+            console.log(error);
+        })
+
         this.setState({
-            employees: ['Supervisor','co-Supervisor','staff'],
+            emp: ['Supervisor','co-Supervisor','staff'],
             employeeType: 'Supervisor'
         });
     }
 
-
-    onChangeStaffID(e) {
+    onChangeEmployeeID(e) {
         this.setState({
             staffID: e.target.value
         })
@@ -71,7 +86,7 @@ export default class AddEmployeeDetails extends Component {
     onSubmit(e) {
         e.preventDefault();
     
-        const staffDetails = {
+        const employeeDetails = {
             staffID: this.state.staffID,
             employeefirstName:this.state.employeefirstName,
             employeelastName:this.state.employeelastName,
@@ -80,33 +95,31 @@ export default class AddEmployeeDetails extends Component {
             employeeType:this.state.employeeType
         }
 
-        console.log(staffDetails);
+        console.log(employeeDetails);
     
-        axios.post('http://localhost:5000/employee/registration/', staffDetails)
+        axios.post('http://localhost:5000/employeeDetails/update-employee/' + this.props.match.params.id, employeeDetails)
           .then(res => alert(res.data));
     
         this.setState({
-          staffID:'',
-          employeefirstName: '',
-          employeelastName:'',
-          employeeEmail: '',
-          employeePassword:'',
-          employeeType: ''
+            staffID:'',
+            employeefirstName: '',
+            employeelastName:'',
+            employeeEmail: '',
+            employeePassword:'',
+            employeeType: ''
         })
-       // this.props.history.push('/admin-submission-type-list');
+        this.props.history.push('/admin-all-employees');
       }
-    
-
 
 
   render() {
     return (
         <div>
-        <h3>Add Employee Details</h3>
+        <h3>Update Employee Details</h3>
         <br/>
         <form onSubmit={this.onSubmit}>
-          
-          <div className="form-group"> 
+
+        <div className="form-group"> 
             <label>Employee Type: </label>
             <select ref="userInput"
                 required
@@ -114,7 +127,7 @@ export default class AddEmployeeDetails extends Component {
                 value={this.state.employeeType}
                 onChange={this.onChangeEmployeeType}>
                     {
-                        this.state.employees.map(function(user){
+                        this.state.emp.map(function(user){
                             return <option
                             key={user}
                             value={user}>
@@ -131,7 +144,7 @@ export default class AddEmployeeDetails extends Component {
                 required
                 className="form-control"
                 value={this.state.staffID}
-                onChange={this.onChangeStaffID}
+                onChange={this.onChangeEmployeeID}
                 />
           </div>
 
@@ -159,36 +172,14 @@ export default class AddEmployeeDetails extends Component {
             <label>Employee Email: </label>
             <input  type="text"
                 required
+                readOnly
                 className="form-control"
                 value={this.state.employeeEmail}
                 onChange={this.onChangeEmployeeEmail}
                 />
           </div>
-
-          <div className="form-group"> 
-            <label>Password: </label>
-            <input  type="password"
-                required
-                className="form-control"
-                value={this.state.employeePassword}
-                onChange={this.onChangeEmployeePassword}
-                />
-          </div>
-
-          {/* <div className="form-group"> 
-            <label>Re-enter Password: </label>
-            <input  type="text"
-                required
-                className="form-control"
-                value={this.state.description}
-                onChange={this.onChangeDescription}
-                />
-          </div> */}
-
-          
-
           <div className="form-group">
-            <input type="submit" value="Submit Details" className="btn btn-primary" />
+            <input type="submit" value="Update Details" className="btn btn-primary" />
           </div>
         </form>
       </div>
