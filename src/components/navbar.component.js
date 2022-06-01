@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
+
 export default class Navbar extends Component {
 
   render() {
@@ -32,6 +33,12 @@ export default class Navbar extends Component {
             </li> */}
             <li className="navbar-item">
               <Link to="/student-home" className="nav-link"> Student</Link>
+            </li>
+            {/* <li className="navbar-student-profile-item">
+              <Link to="/student-profile" className="nav-link"> <img style={{ width: "40px", height: "40px" }} src={profileIcon}></img></Link>
+            </li> */}
+            <li className="navbar-item">
+              <Link to="/student-login" className="nav-link"> logout</Link>
             </li>
           </ul>
         </div>

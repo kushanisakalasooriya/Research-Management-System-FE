@@ -103,6 +103,9 @@ export default class UpdateEmployeeDetails extends Component {
         this.props.history.push('/home');
     }
 
+    cancel() {
+        this.props.history.push(`/employee-profile/${this.props.match.params.id}`);
+    }
 
     render() {
         return (
@@ -161,6 +164,7 @@ export default class UpdateEmployeeDetails extends Component {
 
                     <div className="form-group">
                         <input type="submit" value="Update Details" className="btn btn-primary" />
+                        <button className="btn btn-danger" onClick={this.cancel.bind(this)} style={{marginLeft: "10px"}}> Cancel </button>
                     </div>
                 </form>
             </div>

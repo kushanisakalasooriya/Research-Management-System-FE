@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios';
 
+import profileIcon from '../userManagement-components/images/profileicon.png'
+
 class Message extends React.Component {
   render() {
     return <p style={{ color: 'red' }}>
@@ -29,17 +31,17 @@ export default class studentHome extends Component {
       topics: [],
       stdid: 'Thar',
       grp: '',
-      status:'',
+      status: '',
       flag: '0',
       flagcosup: '0',
       component: '',
       component2: '',
-      loggedUser:[],
+      loggedUser: [],
       groupDetails: [],
     }
   }
 
-async  componentDidMount() {
+  async componentDidMount() {
     // axios.get('http://localhost:5000/groups/')
     //   .then(response => {
     //     this.setState({ groups: response.data })
@@ -53,7 +55,7 @@ async  componentDidMount() {
 
     const student = {
       stdID: this.state.loggedUser.stdID
-  }
+    }
 
     //get the group details according to the user
     await axios.post('http://localhost:5000/groups/loggedUser', student)
@@ -63,7 +65,7 @@ async  componentDidMount() {
       .catch((error) => {
         console.log(error);
       })
-      console.log('groupMount => ', this.state.grp);
+    console.log('groupMount => ', this.state.grp);
 
     //   const group1 = {
     //     groupname: this.state.grp,
@@ -72,7 +74,7 @@ async  componentDidMount() {
 
     // console.log('A => ', this.state.group1.groupname);
 
-      // get the topic details according to the group
+    // get the topic details according to the group
     // await axios.post('http://localhost:5000/groups/loggedUserGroup', group1)
     // .then(response => {
     //   this.setState({ status: response.data.topic.state }) 
@@ -83,7 +85,7 @@ async  componentDidMount() {
     // console.log('topic => ', this.state.status);
 
     //get all the topics
-     axios.get('http://localhost:5000/supervisor/topic')
+    axios.get('http://localhost:5000/supervisor/topic')
       .then(response => {
         this.setState({ topics: response.data })
       })
@@ -158,18 +160,21 @@ async  componentDidMount() {
 
         <center><h2> STUDENT HOME </h2> </center>
 
+        {/* navigate to the student profile */}
+        <Link to={"/student-profile/" + this.state.loggedUser._id} className="nav-link"> <img style={{ width: "40px", height: "40px" }} src={profileIcon}></img></Link>
+
         <div className=''>
           <div className='container'>
             <div className='row justify-content-center'>
               <div className='col-3 col-md-auto'>
-                <button style={{ width:'300px', margin:'10px'}} onClick={this.RegGroup.bind(this)} type="button" class="btn btn-secondary col-16"> Submit the student group </button>
+                <button style={{ width: '300px', margin: '10px' }} onClick={this.RegGroup.bind(this)} type="button" class="btn btn-secondary col-16"> Submit the student group </button>
               </div>
             </div>
           </div>
           <div className='container'>
             <div className='row justify-content-center'>
               <div className='col-3 col-md-auto'>
-                <button style={{ width:'300px', margin:'10px'}} onClick={this.RegTopic.bind(this)} type="button" class="btn btn-success "> Register the research topic </button>
+                <button style={{ width: '300px', margin: '10px' }} onClick={this.RegTopic.bind(this)} type="button" class="btn btn-success "> Register the research topic </button>
                 {this.state.component}
               </div>
             </div>
@@ -177,7 +182,7 @@ async  componentDidMount() {
           <div className='container'>
             <div className='row justify-content-center'>
               <div className='col-3 col-md-auto'>
-                <button style={{ width:'300px', margin:'10px'}} type="button" onClick={this.ReqCosup.bind(this)} class="btn btn-danger"> Request Co-Supervisor  </button>
+                <button style={{ width: '300px', margin: '10px' }} type="button" onClick={this.ReqCosup.bind(this)} class="btn btn-danger"> Request Co-Supervisor  </button>
                 {this.state.component2}
               </div>
             </div>
@@ -185,20 +190,21 @@ async  componentDidMount() {
           <div className='container'>
             <div className='row justify-content-center'>
               <div className='col-3 col-md-auto'>
-                <button style={{ width:'300px', margin:'10px'}} onClick={this.submitDoc.bind(this)} type="button" class="btn btn-warning"> Submit documents </button>
+                <button style={{ width: '300px', margin: '10px' }} onClick={this.submitDoc.bind(this)} type="button" class="btn btn-warning"> Submit documents </button>
               </div>
             </div>
           </div>
           <div className='container'>
             <div className='row justify-content-center'>
               <div className='col-3 col-md-auto'>
-                <button style={{ width:'300px', margin:'10px'}} type="button" class="btn btn-success btn-info"> Download templates </button><br></br>
+                <button style={{ width: '300px', margin: '10px' }} type="button" class="btn btn-success btn-info"> Download templates </button><br></br>
               </div>
             </div>
           </div>
         </div>
 
       </div>
+
     )
   }
 }
