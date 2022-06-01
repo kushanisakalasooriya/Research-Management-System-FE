@@ -29,6 +29,8 @@ import SupervisorTopicList from './components/supervisor-components/supervisor-t
 import SupervisorEditTopics from './components/supervisor-components/supervisor-topic-edit.component';
 import SuperrvisorStdGroupList from './components/supervisor-components/supervisor-stdGroup-list.component';
 import SupervisorEditStdGroups from './components/supervisor-components/supervisor-stdGroup-edit.component';
+import SupervisorChatPage from './components/supervisor-components/supervisor-chat-page';
+import SupervisorMessage from './components/supervisor-components/supervisor-message';
 
 //co-supervisor routes
 import CoSupervisorHome from './components/co-supervisor-components/co-supervisor-home.component';
@@ -59,7 +61,8 @@ import CreateGroup from './components/student-components/create-group.component'
 import studentHome from './components/student-components/student-home.component';
 import regResearchTopic from './components/student-components/reg-researchtopic.component';
 import reqCoSupervisor from './components/student-components/req-cosupervisor.component';
-
+import StudentChat from './components/student-components/student-chat.component';
+import StudentMessage from './components/student-components/student-message';
 
 import HomePage from './components/homePage.component';
 
@@ -99,6 +102,8 @@ function App() {
         <Route path="/supervisor-topics/edit/:id" component={SupervisorEditTopics} />
         <Route path="/supervisor-std-groups" component={SuperrvisorStdGroupList} />
         <Route path="/supervisor-std-groups/edit/:id" component={SupervisorEditStdGroups} />
+        <Route path="/supervisor-chat" component={SupervisorChatPage} />
+        <Route path="/supervisor-chat/edit:id" component={SupervisorMessage} />
 
         {/* co-supervisor paths */}
         <Route path="/co-supervisor-home" component={CoSupervisorHome} />
@@ -131,6 +136,8 @@ function App() {
         <Route path="/student-home" component={studentHome} />
         <Route path="/reg-topic" component={regResearchTopic} />
         <Route path="/req-cosupervisor" component={reqCoSupervisor} />
+        <Route path="/student-chat" component={StudentChat} />
+        <Route path="/student-chat/edit:id" component={StudentMessage} />
 
       </div>
     </Router>
