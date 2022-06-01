@@ -58,7 +58,7 @@ const StuFileUpload = (props) => {
 
     try {
       const subName   = submissionName;
-      const groupname = 'Warriors';
+      const groupname = sessionStorage.getItem("group");
       const sub = subName.submissionName;
       // if (groupname.trim() !== '' && submissionName.trim() !== '') {
       if (file) {
@@ -66,9 +66,6 @@ const StuFileUpload = (props) => {
         formData.append('file', file);
         formData.append('groupname', groupname);
         formData.append('submissionName', sub);
-        // console.log('grp', groupname);
-        console.log('type', sub);
-        // console.log('form', formData);
 
         setErrorMsg('');
         await axios.post('http://localhost:5000/student-submission/upload', formData, {
@@ -118,7 +115,7 @@ const StuFileUpload = (props) => {
                 name="groupname"
                 required
                 readOnly
-                value={data.groupname || ''}
+                value={sessionStorage.getItem("group") || ''}
                 onChange={handleInputChange}
               />
             </Form.Group>
@@ -146,6 +143,36 @@ const StuFileUpload = (props) => {
                 }
                 
               </Form.Select>
+            </Form.Group>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <Form.Group controlId="groupname">
+              <Form.Label> Description </Form.Label>
+              <Form.Control
+                type="text"
+                name="a"
+                required
+                readOnly
+                // value={'defg'}
+                // onChange={}
+              />
+            </Form.Group>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <Form.Group controlId="groupname">
+              <Form.Label> Deadline </Form.Label>
+              <Form.Control
+                type="text"
+                name="a"
+                required
+                readOnly
+                // value={''}
+                // onChange={}
+              />
             </Form.Group>
           </Col>
         </Row>

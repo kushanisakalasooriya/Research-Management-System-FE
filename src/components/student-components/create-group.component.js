@@ -118,9 +118,10 @@ export default class CreateGroup extends Component {
             member02: this.state.member02,
             member03: this.state.member03,
             member04: this.state.member04,
-            supervisor: null,
-            cosupervisor: null,
-            topic: null,
+            supervisor: 'N/A',
+            cosupervisor: 'N/A',
+            panelMember: 'N/A',
+            topic: 'N/A',
             status: 'Pending'
         }
 
@@ -137,7 +138,7 @@ export default class CreateGroup extends Component {
 
         const topic = {
             groupname: this.state.groupname,
-            topic: null,
+            topic: '',
             state: 'Pending'
         }
         console.log(topic);

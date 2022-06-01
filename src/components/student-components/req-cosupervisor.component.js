@@ -11,11 +11,18 @@ export default class reqCoSupervisor extends Component {
         this.state = {
             groupname: '',
             cosupervisor: '',
-            groups: []
+            groups: [],
+            loggedUser: []
         }
     }
 
     componentDidMount() {
+
+        this.setState({
+            loggedUser: JSON.parse(sessionStorage.getItem("loggeduser")),
+            groupname: sessionStorage.getItem("group")
+        })
+
         axios.get('http://localhost:5000/groups/')
             .then(response => {
                 this.setState({ groups: response.data })
@@ -36,7 +43,7 @@ export default class reqCoSupervisor extends Component {
         e.preventDefault();
 
         const cosupervisor = {
-            groupname: 'Thar',
+            groupname: this.state.groupname,
             cosupervisor: this.state.cosupervisor,
         }
         console.log(cosupervisor);
