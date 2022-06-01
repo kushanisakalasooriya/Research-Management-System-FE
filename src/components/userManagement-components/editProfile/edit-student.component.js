@@ -89,8 +89,13 @@ export default class UpdateStudentDetails extends Component {
             image: '',
             email: ''
         })
-        // this.props.history.push('/student-details');
-        // this.props.history.push('/student-profile');
+
+         this.props.history.push(`/student-profile/${this.props.match.params.id}`);
+        
+    }
+
+    cancel() {
+        this.props.history.push(`/student-profile/${this.props.match.params.id}`);
     }
 
     render() {
@@ -141,6 +146,7 @@ export default class UpdateStudentDetails extends Component {
 
                     <div className="form-group">
                         <input type="submit" value="Update Details" className="btn btn-primary" />
+                        <button className="btn btn-danger" onClick={this.cancel.bind(this)} style={{marginLeft: "10px"}}> Cancel </button>
                     </div>
                 </form>
             </div>

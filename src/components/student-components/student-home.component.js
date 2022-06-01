@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios';
 
+import profileIcon from '../userManagement-components/images/profileicon.png'
+
 class Message extends React.Component {
   render() {
     return <p style={{ color: 'red' }}>
@@ -33,6 +35,7 @@ export default class studentHome extends Component {
       flagcosup: '0',
       component: '',
       component2: '',
+      loggedUser: []
     }
   }
 
@@ -52,6 +55,10 @@ export default class studentHome extends Component {
       .catch((error) => {
         console.log(error);
       })
+
+    //get the user details from the session
+    this.state.loggedUser = JSON.parse(sessionStorage.getItem("loggeduser"));
+    console.log('aa', this.state.loggedUser)
   }
 
   RegTopic() {
@@ -65,12 +72,12 @@ export default class studentHome extends Component {
     }
   }
 
-  ReqCosup(){
-    if (this.state.flagcosup === '1'){
-      window.location='/req-cosupervisor'
+  ReqCosup() {
+    if (this.state.flagcosup === '1') {
+      window.location = '/req-cosupervisor'
     } else {
       this.setState({
-        component2 : <Message2 />
+        component2: <Message2 />
       })
     }
   }
@@ -104,15 +111,21 @@ export default class studentHome extends Component {
 
     return (
       <div>
-        <Link to="/add-group"> <button type="button" class="btn btn-secondary"> Submit the student group </button> </Link><br></br>
+              {/* navigate to the student profile */}
+              <Link to={"/student-profile/" + this.state.loggedUser._id} className="nav-link"> <img style={{ width: "40px", height: "40px" }} src={profileIcon}></img></Link>
+            
 
-        <button onClick={this.RegTopic.bind(this)} type="button" class="btn btn-success"> Register the research topic </button>  <br></br>
-        {this.state.component}
-        <button type="button" onClick={this.ReqCosup.bind(this)} class="btn btn-danger"> Request Co-Supervisor  </button><br></br>
-        {this.state.component2}
-        <button type="button" class="btn btn-warning"> Submit documents </button><br></br>
-        <button type="button" class="btn btn-info"> Download templates </button><br></br>
+        <div>
+          <Link to="/add-group"> <button type="button" class="btn btn-secondary"> Submit the student group </button> </Link><br></br>
 
+          <button onClick={this.RegTopic.bind(this)} type="button" class="btn btn-success"> Register the research topic </button>  <br></br>
+          {this.state.component}
+          <button type="button" onClick={this.ReqCosup.bind(this)} class="btn btn-danger"> Request Co-Supervisor  </button><br></br>
+          {this.state.component2}
+          <button type="button" class="btn btn-warning"> Submit documents </button><br></br>
+          <button type="button" class="btn btn-info"> Download templates </button><br></br>
+
+        </div>
       </div>
     )
   }
