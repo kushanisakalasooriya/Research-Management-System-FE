@@ -138,12 +138,14 @@ export default class CreateGroup extends Component {
         const topic = {
             groupname: this.state.groupname,
             topic: null,
-            status: 'pending'
+            state: 'Pending'
         }
         console.log(topic);
 
         axios.post('http://localhost:5000/supervisor/topic/add', topic)
             .then(res => console.log(res.data));
+
+        this.props.history.push('/student-home');
 
     }
 

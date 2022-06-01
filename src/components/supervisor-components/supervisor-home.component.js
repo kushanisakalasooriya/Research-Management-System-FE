@@ -20,7 +20,7 @@ export default class SupervisorHome extends Component {
                                 <Link to="/supervisor-std-groups"><button >Accept Groups</button></Link>
                             </div>
                             <div className="lModBtn">
-                                <Link to="#"><button>Chat with Students</button></Link>
+                                <Link to="/supervisor-chat"><button>Chat with Students</button></Link>
                             </div>
                             <div className="lReportBtn">
                                 <button onClick={this.onClickReportV}>Evaluate documents</button>

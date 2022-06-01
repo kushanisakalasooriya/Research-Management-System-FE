@@ -27,27 +27,64 @@ export default class studentHome extends Component {
     super(props);
 
     this.state = {
-      groups: [],
+      // groups: [],
       topics: [],
       stdid: 'Thar',
-      grp: 'Thar',
+      grp: '',
+      status: '',
       flag: '0',
       flagcosup: '0',
       component: '',
       component2: '',
-      loggedUser: []
+      loggedUser: [],
+      groupDetails: [],
     }
   }
 
-  componentDidMount() {
-    axios.get('http://localhost:5000/groups/')
+  async componentDidMount() {
+    // axios.get('http://localhost:5000/groups/')
+    //   .then(response => {
+    //     this.setState({ groups: response.data })
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   })
+
+    //get the user details from the session
+    this.state.loggedUser = JSON.parse(sessionStorage.getItem("loggeduser"));
+
+    const student = {
+      stdID: this.state.loggedUser.stdID
+    }
+
+    //get the group details according to the user
+    await axios.post('http://localhost:5000/groups/loggedUser', student)
       .then(response => {
-        this.setState({ groups: response.data })
+        this.setState({ grp: response.data.user.groupname })
       })
       .catch((error) => {
         console.log(error);
       })
+    console.log('groupMount => ', this.state.grp);
 
+    //   const group1 = {
+    //     groupname: this.state.grp,
+    //     a: 'a'
+    // }
+
+    // console.log('A => ', this.state.group1.groupname);
+
+    // get the topic details according to the group
+    // await axios.post('http://localhost:5000/groups/loggedUserGroup', group1)
+    // .then(response => {
+    //   this.setState({ status: response.data.topic.state }) 
+    // })
+    // .catch((error) => {
+    //   console.log(error);
+    // })
+    // console.log('topic => ', this.state.status);
+
+    //get all the topics
     axios.get('http://localhost:5000/supervisor/topic')
       .then(response => {
         this.setState({ topics: response.data })
@@ -56,20 +93,46 @@ export default class studentHome extends Component {
         console.log(error);
       })
 
-    //get the user details from the session
-    this.state.loggedUser = JSON.parse(sessionStorage.getItem("loggeduser"));
-    console.log('aa', this.state.loggedUser)
+  }
+
+  componentDidUpdate() {
+
+    // const group = this.state.grp
+    // console.log('groupname => ', this.state.grp);
+
+    //checking the group is accepted or not
+    // for (var i = 0; i < this.state.groups.length; i++) {
+    //   // console.log('i ', this.state.groups[i].status)
+    //   if (this.state.groups[i].groupleader === this.state.stdid) {
+    //     if (this.state.groups[i].status === 'Pending' || this.state.groups[i].status === 'Rejected') {
+    //       // this.state.mygroup.push(this.state.groups[i]);
+    //       this.state.flag = '1'
+    //     }
+    //   }
+    // }
+
+    // checking the researchTopic Acceptance
+    for (var i = 0; i < this.state.topics.length; i++) {
+      // console.log('i ', this.state.groups[i].status)
+      if (this.state.topics[i].groupName === this.state.grp) {
+        if (this.state.topics[i].state === 'Accepted') {
+          this.state.flagcosup = '1'
+        }
+      }
+    }
+
+    console.log('update =>', this.state.flagcosup)
   }
 
   RegTopic() {
-    if (this.state.flag === '1') {
-      console.log("Done")
-      this.setState({
-        component: <Message />
-      })
-    } else {
-      window.location = '/reg-topic'
-    }
+    // if (this.state.flag === '1') {
+    //   console.log("Done")
+    //   this.setState({
+    //     component: <Message />
+    //   })
+    // } else {
+    window.location = '/reg-topic'
+    // }
   }
 
   ReqCosup() {
@@ -82,51 +145,66 @@ export default class studentHome extends Component {
     }
   }
 
+  submitDoc() {
+    window.location = '/stu-submission1'
+  }
+
+  RegGroup() {
+    window.location = '/add-group'
+  }
+
   render() {
 
-    for (var i = 0; i < this.state.groups.length; i++) {
-      // console.log('i ', this.state.groups[i].status)
-      if (this.state.groups[i].groupleader === this.state.stdid) {
-        if (this.state.groups[i].status === 'Pending' || this.state.groups[i].status === 'Rejected') {
-          // this.state.mygroup.push(this.state.groups[i]);
-          this.state.flag = '1'
-        }
-      }
-    }
-
-    // Need to check this from the first
-    for (var i = 0; i < this.state.topics.length; i++) {
-      // console.log('i ', this.state.groups[i].status)
-      if (this.state.topics[i].groupName === this.state.grp) {
-        if (this.state.topics[i].state === 'Accepted') {
-          this.state.flagcosup = '1'
-        }
-      }
-    }
-
-    console.log('flag =>', this.state.flag)
-    console.log('flagcosup =>', this.state.flagcosup)
-
-
-
     return (
-      <div>
-              {/* navigate to the student profile */}
-              <Link to={"/student-profile/" + this.state.loggedUser._id} className="nav-link"> <img style={{ width: "40px", height: "40px" }} src={profileIcon}></img></Link>
-            
+      <div className='container'>
 
-        <div>
-          <Link to="/add-group"> <button type="button" class="btn btn-secondary"> Submit the student group </button> </Link><br></br>
+        <center><h2> STUDENT HOME </h2> </center>
 
-          <button onClick={this.RegTopic.bind(this)} type="button" class="btn btn-success"> Register the research topic </button>  <br></br>
-          {this.state.component}
-          <button type="button" onClick={this.ReqCosup.bind(this)} class="btn btn-danger"> Request Co-Supervisor  </button><br></br>
-          {this.state.component2}
-          <button type="button" class="btn btn-warning"> Submit documents </button><br></br>
-          <button type="button" class="btn btn-info"> Download templates </button><br></br>
+        {/* navigate to the student profile */}
+        <Link to={"/student-profile/" + this.state.loggedUser._id} className="nav-link"> <img style={{ width: "40px", height: "40px" }} src={profileIcon}></img></Link>
 
+        <div className=''>
+          <div className='container'>
+            <div className='row justify-content-center'>
+              <div className='col-3 col-md-auto'>
+                <button style={{ width: '300px', margin: '10px' }} onClick={this.RegGroup.bind(this)} type="button" class="btn btn-secondary col-16"> Submit the student group </button>
+              </div>
+            </div>
+          </div>
+          <div className='container'>
+            <div className='row justify-content-center'>
+              <div className='col-3 col-md-auto'>
+                <button style={{ width: '300px', margin: '10px' }} onClick={this.RegTopic.bind(this)} type="button" class="btn btn-success "> Register the research topic </button>
+                {this.state.component}
+              </div>
+            </div>
+          </div>
+          <div className='container'>
+            <div className='row justify-content-center'>
+              <div className='col-3 col-md-auto'>
+                <button style={{ width: '300px', margin: '10px' }} type="button" onClick={this.ReqCosup.bind(this)} class="btn btn-danger"> Request Co-Supervisor  </button>
+                {this.state.component2}
+              </div>
+            </div>
+          </div>
+          <div className='container'>
+            <div className='row justify-content-center'>
+              <div className='col-3 col-md-auto'>
+                <button style={{ width: '300px', margin: '10px' }} onClick={this.submitDoc.bind(this)} type="button" class="btn btn-warning"> Submit documents </button>
+              </div>
+            </div>
+          </div>
+          <div className='container'>
+            <div className='row justify-content-center'>
+              <div className='col-3 col-md-auto'>
+                <button style={{ width: '300px', margin: '10px' }} type="button" class="btn btn-success btn-info"> Download templates </button><br></br>
+              </div>
+            </div>
+          </div>
         </div>
+
       </div>
+
     )
   }
 }
