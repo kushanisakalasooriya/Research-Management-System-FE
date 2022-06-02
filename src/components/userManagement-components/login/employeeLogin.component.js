@@ -67,13 +67,13 @@ export default class EmployeeLogin extends Component {
           if (res.data.user.empType === 'Supervisor') {
             this.props.history.push('/supervisor-home');
           }
-          else if (res.data.user.empType === 'co-Supervisor') {
+          else if (res.data.user.empType === 'Co-Supervisor') {
             this.props.history.push('/co-supervisor-home');
           }
-          else if (res.data.user.empType === 'panel member') {
+          else if (res.data.user.empType === 'Panel Member') {
             this.props.history.push('/panel-home');
           }
-          else if (res.data.user.empType === 'admin') {
+          else if (res.data.user.empType === 'Admin') {
             this.props.history.push('/admin-home');
           }
 
