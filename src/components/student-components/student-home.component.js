@@ -17,7 +17,7 @@ class Message extends React.Component {
 
 class Message2 extends React.Component {
   render() {
-    return <p style={{ color: "red" }}>Research topic is not accepted yet.</p>;
+    return <center><p style={{ color: "red" }}>Research topic is not accepted yet.</p></center>;
   }
 }
 
@@ -125,6 +125,8 @@ export default class studentHome extends Component {
           this.state.flagcosup = "1";
         } else if (this.state.topics[i].state === "Rejected") {
           this.state.flagcosup = "2";
+        } else if (this.state.topics[i].state === "Pending"){
+          this.state.flagcosup = "3";
         }
       }
     }
@@ -138,7 +140,9 @@ export default class studentHome extends Component {
       this.props.history.push('/reg-topic');
     } else if (this.state.flagcosup === "1"){
       alert("Your topic is already Accepted");
-    }else {
+    }else if(this.state.flagcosup === "3"){
+      alert("You already registered a topic !");
+    }else{
       // window.location = '/reg-topic'
       this.props.history.push("/reg-topic");
     }
@@ -173,6 +177,14 @@ export default class studentHome extends Component {
     }
   }
 
+  mschemeDownload(){
+    this.props.history.push('/mscheme-download');
+  }
+
+  templateDownload(){
+    this.props.history.push('/template-download');
+  }
+
   render() {
     return (
       <div className="container">
@@ -197,13 +209,13 @@ export default class studentHome extends Component {
             <div className="row justify-content-center">
               <div className="col-3 col-md-auto">
                 <button
-                  style={{ width: "300px", margin: "10px" }}
+                  style={{ width: "500px", margin: "15px" }}
                   onClick={this.RegGroup.bind(this)}
                   type="button"
-                  class="btn btn-secondary col-16"
+                  class="btn btn-secondary col-16 btn-lg"
                 >
                   {" "}
-                  Submit the student group{" "}
+                  Submit Student Group{" "}
                 </button>
               </div>
             </div>
@@ -212,13 +224,13 @@ export default class studentHome extends Component {
             <div className="row justify-content-center">
               <div className="col-3 col-md-auto">
                 <button
-                  style={{ width: "300px", margin: "10px" }}
+                  style={{ width: "500px", margin: "15px" }}
                   onClick={this.RegTopic.bind(this)}
                   type="button"
-                  class="btn btn-success "
+                  class="btn btn-success btn-lg"
                 >
                   {" "}
-                  Register the research topic{" "}
+                  Register Research Topic{" "}
                 </button>
                 {this.state.component}
               </div>
@@ -228,10 +240,10 @@ export default class studentHome extends Component {
             <div className="row justify-content-center">
               <div className="col-3 col-md-auto">
                 <button
-                  style={{ width: "300px", margin: "10px" }}
+                  style={{ width: "500px", margin: "15px" }}
                   type="button"
                   onClick={this.ReqCosup.bind(this)}
-                  class="btn btn-danger"
+                  class="btn btn-danger btn-lg"
                 >
                   {" "}
                   Request Co-Supervisor{" "}
@@ -244,13 +256,13 @@ export default class studentHome extends Component {
             <div className="row justify-content-center">
               <div className="col-3 col-md-auto">
                 <button
-                  style={{ width: "300px", margin: "10px" }}
+                  style={{ width: "500px", margin: "15px" }}
                   onClick={this.submitDoc.bind(this)}
                   type="button"
-                  class="btn btn-warning"
+                  class="btn btn-warning btn-lg"
                 >
                   {" "}
-                  Submit documents{" "}
+                  Submit Documents{" "}
                 </button>
               </div>
             </div>
@@ -259,12 +271,13 @@ export default class studentHome extends Component {
             <div className="row justify-content-center">
               <div className="col-3 col-md-auto">
                 <button
-                  style={{ width: "300px", margin: "10px" }}
+                  style={{ width: "500px", margin: "15px" }}
+                  onClick={this.templateDownload.bind(this)}
                   type="button"
-                  class="btn btn-success btn-info"
+                  class="btn btn-success btn-info btn-lg"
                 >
                   {" "}
-                  Download templates{" "}
+                  Download Templates{" "}
                 </button>
                 <br></br>
               </div>
@@ -274,9 +287,10 @@ export default class studentHome extends Component {
             <div className="row justify-content-center">
               <div className="col-3 col-md-auto">
                 <button
-                  style={{ width: "300px", margin: "10px" }}
+                  style={{ width: "500px", margin: "15px" }}
+                  onClick={this.mschemeDownload.bind(this)}
                   type="button"
-                  class="btn btn-success btn-info"
+                  class="btn btn-success btn-info btn-lg"
                 >
                   {" "}
                   Download Marking Schemes{" "}

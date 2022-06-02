@@ -29,21 +29,43 @@ export default class regResearchTopic extends Component {
       groups: [],
       stdid: "Thar",
       flag: "0",
-      loggedUser:'',
+      loggedUser: "",
+      employees: [],
+      supervisors:[]
     };
   }
 
   componentDidMount() {
     //get the user details from the session
     this.setState({
-        loggedUser: JSON.parse(sessionStorage.getItem("loggeduser")),
-        groupname: sessionStorage.getItem("group")
-    })
+      loggedUser: JSON.parse(sessionStorage.getItem("loggeduser")),
+      groupname: sessionStorage.getItem("group"),
+    });
 
+    //get all groups
     axios
       .get("http://localhost:5000/groups/")
       .then((response) => {
         this.setState({ groups: response.data });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+      //get employees and filter supervisors
+      axios
+      .get("http://localhost:5000/employee/registration/")
+      .then((response) => {
+        this.setState({ employees: response.data });
+        for (var i = 0; i < this.state.employees.length; i++) {
+          // console.log('i ', this.state.employees[i].empType)
+          if (this.state.employees[i].empType === 'Supervisor') {
+            this.state.supervisors.push(this.state.employees[i].firstName +
+               ' ' + this.state.employees[i].lastName + 
+               ' - ' + this.state.employees[i].researchField);
+          }
+        }
+        console.log('s', this.state.supervisors);
       })
       .catch((error) => {
         console.log(error);
@@ -54,7 +76,6 @@ export default class regResearchTopic extends Component {
       console.log("mount");
     }
   }
-
 
   onChangeResearchTopic(e) {
     this.setState({
@@ -125,7 +146,13 @@ export default class regResearchTopic extends Component {
 
     return (
       <div>
-        <h3> Register the research Topic</h3>
+        <div className="container" style={{width:'800px'}}>
+            <div className="row justify-content-center">
+              <div className="col-3 col-md-auto">
+                <h3 style={{
+                  width:'100%',
+                marginBottom:'40px'
+            }}> Register Research Topic</h3>
         {/* {component} */}
 
         <form onSubmit={this.onSubmit}>
@@ -133,38 +160,62 @@ export default class regResearchTopic extends Component {
             <label> Research Topic : </label>
             <input
               type="text"
-            //   disabled={isDisabled}
+              //   disabled={isDisabled}
               required
               className="form-control"
               value={this.state.topic}
               onChange={this.onChangeResearchTopic}
+              style={{
+                marginBottom:'20px'
+            }}
             />
           </div>
 
           <div>
+          <label> Supervisor : </label>
             <select
+              className="browser-default custom-select"
+              aria-label="Default select example"
               name="supervisor"
               id="supervisor"
               onChange={this.onChangeSupervisor}
-            >
-              <option value="" selected>
+              style={{
+                marginBottom:'20px'
+            }}
+            ><option value="" selected>
+            Choose
+          </option>
+              
+              {
+                  this.state.supervisors.map(function (superv) {
+                    return <option
+                      key={superv}
+                      value={superv}>{superv}
+                    </option>;
+                  })
+                }
+              {/* <option value="" selected>
                 Choose
-              </option>
-              <option value="Janith">Janith - IOT</option>
+              </option> */}
+              {/* <option value="Janith">Janith - IOT</option>
               <option value="Sahan">Sahan - AI </option>
               <option value="Poorna">Poorna - AI</option>
-              <option value="Eranda">Eranda - WEB</option>
+              <option value="Eranda">Eranda - WEB</option> */}
             </select>
           </div>
 
-          <div className="form-group">
+          <div className="form-group text-center">
             <input
+            class="btn btn-outline-dark"
               type="submit"
               value="Submit topic"
-              className="btn btn-primary"
             />
           </div>
         </form>
+              </div>
+            </div>
+          </div>
+        
       </div>
     );
   }

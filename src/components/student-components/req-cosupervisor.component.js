@@ -60,12 +60,16 @@ export default class reqCoSupervisor extends Component {
     render() {
         return (
             <div>
-                <h3> Request a cosupervisor </h3>
+                <h4> Request a cosupervisor </h4>
                 <form onSubmit={this.onSubmit}>
 
                     <div>
-                        <select name="cosupervisor" id="cosupervisor"
-                            onChange={this.onChangeCoSupervisor}>
+                        <select className="browser-default custom-select" name="cosupervisor" id="cosupervisor"
+                            onChange={this.onChangeCoSupervisor}
+                            style={{
+                                width:'25%',
+                                marginBottom:'20px'
+                            }}>
                             <option value="" selected>Choose</option>
                             <option value="Amal">Amal</option>
                             <option value="Kasun">Kasun</option>
@@ -75,7 +79,7 @@ export default class reqCoSupervisor extends Component {
                     </div>
 
                     <div className="form-group">
-                        <input type="submit" value="Submit topic" className="btn btn-primary" />
+                        <input type="submit" value="Submit" className="btn btn-primary" />
                     </div>
                 </form>
             </div>

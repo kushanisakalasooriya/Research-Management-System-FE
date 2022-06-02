@@ -4,6 +4,10 @@ import { Link } from 'react-router-dom';
 
 export default class Navbar extends Component {
 
+  logOut() {
+    sessionStorage.clear();
+  }
+
   render() {
     return (
       <nav className="navbar navbar-dark bg-dark navbar-expand-lg">
@@ -38,7 +42,7 @@ export default class Navbar extends Component {
               <Link to="/student-profile" className="nav-link"> <img style={{ width: "40px", height: "40px" }} src={profileIcon}></img></Link>
             </li> */}
             <li className="navbar-item">
-              <Link to="/student-login" className="nav-link"> logout</Link>
+              <Link onClick={this.logOut.bind(this)} to="/student-login" className="nav-link"> logout</Link>
             </li>
           </ul>
         </div>

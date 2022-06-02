@@ -77,6 +77,8 @@ import StudentChat from './components/student-components/student-chat.component'
 import StudentMessage from './components/student-components/student-message';
 import addSubmission from './components/student-components/add-submission.component';
 import StuFileUpload from './components/student-components/stu-file-upload.component';
+import MarkingSchemeDownload from "./components/student-components/markingSchemeDownload.component";
+import TemplateDownload from "./components/student-components/templateDownload.component";
 
 import HomePage from './components/homePage.component';
 
@@ -200,6 +202,8 @@ function App() {
         <Route path="/student-chat/edit:id" component={StudentMessage} />
         <Route path="/stu-submission" component={addSubmission} />
         <Route path="/stu-submission1" component={StuFileUpload} />
+        <Route path="/template-download" component={TemplateDownload} />
+        <Route path="/mscheme-download" component={MarkingSchemeDownload} />
 
       </div>
     </Router>
