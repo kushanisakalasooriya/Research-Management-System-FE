@@ -53,9 +53,6 @@ export default class StudentProfile extends Component {
 
     deleteStudentDetails(id) {
 
-        // axios.delete('http://localhost:5000/student/registration/' + this.props.match.params.id)
-        //     .then(res => console.log(res.data));
-
         const confirmBox = window.confirm(
             "Are you sure want to delete your account?"
         )
@@ -65,9 +62,6 @@ export default class StudentProfile extends Component {
             alert('Your account delete successfully!');
             this.props.history.push('/student-registration');
         }
-
-        // alert('Employee details are deleted.');
-        // this.props.history.push('/student-registration');
 
     }
 

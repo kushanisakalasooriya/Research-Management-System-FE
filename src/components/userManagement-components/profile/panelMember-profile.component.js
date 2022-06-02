@@ -4,7 +4,9 @@ import styles from "./styles.module.css";
 
 const empdetails = window.sessionStorage.getItem("loggeduser")
 
-export default class EmployeeProfile extends Component {
+
+export default class PanelMemberProfile extends Component {
+  
     constructor(props) {
         super(props);
 
@@ -18,7 +20,8 @@ export default class EmployeeProfile extends Component {
             lastName: '',
             empType: '',
             image: '',
-            researchField:''
+            
+
 
         }
     }
@@ -34,8 +37,7 @@ export default class EmployeeProfile extends Component {
                     email: response.data.email,
                     password: response.data.password,
                     empType: response.data.empType,
-                    image: response.data.image,
-                    researchField: response.data.researchField
+                    image: response.data.image
                 })
             })
             .catch(function (error) {
@@ -125,14 +127,6 @@ export default class EmployeeProfile extends Component {
                     </div>
 
                     <div className="form-group">
-                        <label>Research Field: </label>
-                        <input type="text"
-                            className="form-control"
-                            value={this.state.researchField}
-                        />
-                    </div>
-
-                    <div className="form-group">
                         <input type="submit" value="Update" className="btn btn-primary" />
                         <button style={{ marginLeft: "10px" }} className="btn btn-danger" type='button' onClick={this.deleteEmployeeDetails}> Delete</button>
                         <button style={{ marginLeft: "10px" }} className="btn btn-danger" type='button' onClick={this.employeeLogout}> Logout</button>
@@ -145,4 +139,3 @@ export default class EmployeeProfile extends Component {
         )
     }
 }
-

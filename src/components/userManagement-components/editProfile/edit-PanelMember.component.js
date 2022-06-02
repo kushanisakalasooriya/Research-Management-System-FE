@@ -2,63 +2,69 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import styles from "./styles.module.css";
 
-export default class UpdateStudentDetails extends Component {
+export default class UpdatePanelMemberDetails extends Component {
     constructor(props) {
         super(props);
 
-        this.onChangeStudentID = this.onChangeStudentID.bind(this);
-        this.onChangeStudentfirstName = this.onChangeStudentfirstName.bind(this);
-        this.onChangeStudentlastName = this.onChangeStudentlastName.bind(this);
-        this.onChangeImage = this.onChangeImage.bind(this);
+        this.onChangeEmployeeID = this.onChangeEmployeeID.bind(this);
+        this.onChangeEmployeefirstName = this.onChangeEmployeefirstName.bind(this);
+        this.onChangeEmployeelastName = this.onChangeEmployeelastName.bind(this);
+        this.onChangeEmployeeImage = this.onChangeEmployeeImage.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
 
         this.state = {
-            students: [],
-            stdID: '',
+            emp: [],
+            employees: [],
+            empID: '',
             firstName: '',
             lastName: '',
+            email: '',
             password: '',
+            empType: '',
             image: '',
-            email: ''
+            researchField: 'N/A'
         }
     }
 
     componentDidMount() {
-        axios.get('http://localhost:5000/student/registration/' + this.props.match.params.id)
+        axios.get('http://localhost:5000/employee/registration/' + this.props.match.params.id)
             .then(response => {
                 this.setState({
-                    stdID: response.data.stdID,
+                    empID: response.data.empID,
                     firstName: response.data.firstName,
                     lastName: response.data.lastName,
+                    email: response.data.email,
                     password: response.data.password,
+                    empType: response.data.empType,
                     image: response.data.image,
-                    email: response.data.email
+                    researchField: response.data.researchField
                 })
             })
             .catch(function (error) {
                 console.log(error);
             })
+
     }
 
-    onChangeStudentID(e) {
+    onChangeEmployeeID(e) {
         this.setState({
-            stdID: e.target.value
+            empID: e.target.value
         })
     }
 
-    onChangeStudentfirstName(e) {
+    onChangeEmployeefirstName(e) {
         this.setState({
             firstName: e.target.value
         })
     }
 
-    onChangeStudentlastName(e) {
+    onChangeEmployeelastName(e) {
         this.setState({
             lastName: e.target.value
         })
     }
 
-    onChangeImage(e) {
+    onChangeEmployeeImage(e) {
         this.setState({
             image: e.target.value
         })
@@ -67,35 +73,38 @@ export default class UpdateStudentDetails extends Component {
     onSubmit(e) {
         e.preventDefault();
 
-        const studentDetails = {
-            stdID: this.state.stdID,
+        const employeeDetails = {
+            empID: this.state.empID,
             firstName: this.state.firstName,
             lastName: this.state.lastName,
-            password: this.state.password,
+            empType: this.state.empType,
             image: this.state.image,
-            email: this.state.email
+            password: this.state.password,
+            email: this.state.email,
+            researchField: this.state.researchField
         }
 
-        console.log(studentDetails);
+        console.log(employeeDetails);
 
-        axios.post('http://localhost:5000/student/registration/update-student/' + this.props.match.params.id, studentDetails)
+        axios.post('http://localhost:5000/employee/registration/update-employee/' + this.props.match.params.id, employeeDetails)
             .then(res => alert(res.data));
 
         this.setState({
-            stdID: '',
+            empID: '',
             firstName: '',
             lastName: '',
-            password: '',
+            empType: '',
             image: '',
-            email: ''
+            password: '',
+            email: '',
+            researchField: 'N/A'
         })
 
-        this.props.history.push(`/student-profile/${this.props.match.params.id}`);
-
+        this.props.history.push(`/employee-profile/${this.props.match.params.id}`);
     }
 
     cancel() {
-        this.props.history.push(`/student-profile/${this.props.match.params.id}`);
+        this.props.history.push(`/employee-profile/${this.props.match.params.id}`);
     }
 
     render() {
@@ -104,43 +113,52 @@ export default class UpdateStudentDetails extends Component {
 
                 <br />
                 <form className={styles.form_container} onSubmit={this.onSubmit}>
-                    <h3>Update Student Details</h3>
+                    <h3>Update Employee Details</h3>
                     <div className="form-group">
-                        <label>Student ID: </label>
+                        <label>Employee Type: </label>
                         <input type="text"
-                            required
                             className="form-control"
-                            value={this.state.stdID}
-                            onChange={this.onChangeStudentID}
+                            value={this.state.empType}
                         />
                     </div>
 
                     <div className="form-group">
-                        <label>Student first Name: </label>
+                        <label>Employee ID: </label>
+                        <input type="text"
+                            required
+                            className="form-control"
+                            value={this.state.empID}
+                            onChange={this.onChangeEmployeeID}
+                        />
+                    </div>
+
+                    <div className="form-group">
+                        <label>Employee first Name: </label>
                         <input type="text"
                             required
                             className="form-control"
                             value={this.state.firstName}
-                            onChange={this.onChangeStudentfirstName}
+                            onChange={this.onChangeEmployeefirstName}
                         />
                     </div>
 
                     <div className="form-group">
-                        <label>Student last Name: </label>
+                        <label>Employee last Name: </label>
                         <input type="text"
                             required
                             className="form-control"
                             value={this.state.lastName}
-                            onChange={this.onChangeStudentlastName}
+                            onChange={this.onChangeEmployeelastName}
                         />
                     </div>
 
                     <div className="form-group">
-                        <label>Image: </label>
+                        <label>Profile photo: </label>
                         <input type="text"
+                            required
                             className="form-control"
                             value={this.state.image}
-                            onChange={this.onChangeImage}
+                            onChange={this.onChangeEmployeeImage}
                         />
                     </div>
 

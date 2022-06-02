@@ -47,7 +47,7 @@ import CoSupervisorEditGroups from "./components/co-supervisor-components/co-sup
 //panel member routes
 import PanelHome from "./components/panel-member-component/panel-home.component";
 
-//usermanagement routes
+//userManagement routes
 import userManagementHome from "./components/userManagement-components/userManagement-home.component";
 import StudentDetailsList from "./components/userManagement-components/student-list.component";
 import AddStudentDetails from "./components/userManagement-components/create-student.component";
@@ -58,16 +58,18 @@ import StudentLogin from "./components/userManagement-components/login/studentLo
 import EmployeeRegistration from "./components/userManagement-components/registration/employeeRegistration.component";
 import EmployeeLogin from "./components/userManagement-components/login/employeeLogin.component";
 import EmployeeProfile from "./components/userManagement-components/profile/employee-profile.component";
+import PanelMemberProfile from "./components/userManagement-components/profile/panelMember-profile.component";
 import StudentProfile from "./components/userManagement-components/profile/student-profile.component";
 
 import UpdateStudentDetails from "./components/userManagement-components/editProfile/edit-student.component";
 import UpdateEmployeeDetails from "./components/userManagement-components/editProfile/edit-employee.component";
+import UpdatePanelMemberDetails from "./components/userManagement-components/editProfile/edit-PanelMember.component";
 import StudentForgotPassword from "./components/userManagement-components/forgotPassword/StudentForgotPassword";
-import StudentPasswordReset from "./components/userManagement-components/passwordReset/studentPasswordReser";
-import EmployeeForgotPassword from "./components/userManagement-components/forgotPassword/EmployeeFrogotPassword";
+import StudentPasswordReset from "./components/userManagement-components/passwordReset/studentPasswordReset";
+import EmployeeForgotPassword from "./components/userManagement-components/forgotPassword/EmployeeForgotPassword";
 import EmployeePasswordReset from "./components/userManagement-components/passwordReset/EmployeePasswordReset";
 
-//studenet routes
+//student routes
 import CreateGroup from './components/student-components/create-group.component';
 import studentHome from './components/student-components/student-home.component';
 import regResearchTopic from './components/student-components/reg-researchtopic.component';
@@ -78,6 +80,7 @@ import addSubmission from './components/student-components/add-submission.compon
 import StuFileUpload from './components/student-components/stu-file-upload.component';
 
 import HomePage from './components/homePage.component';
+
 
 function App() {
 
@@ -151,44 +154,26 @@ function App() {
         {/* panel member paths */}
         <Route path="/panel-home" component={PanelHome} />
 
-        {/* usermanagement paths */}
+        {/* userManagement paths */}
         <Route path="/user-management-home" component={userManagementHome} />
         <Route path="/student-details" component={StudentDetailsList} />
         <Route path="/add-student-details" component={AddStudentDetails} />
-        <Route
-          path="/update-student-details/:id"
-          component={UpdateStudentDetails}
-        />
+        <Route path="/update-student-details/:id" component={UpdateStudentDetails} />
         <Route path="/employee-details" component={EmployeeDetailsList} />
         <Route path="/add-employee-details" component={AddEmployeeDetails} />
-        <Route
-          path="/update-employee-details/:id"
-          component={UpdateEmployeeDetails}
-        />
+        <Route path="/update-employee-details/:id" component={UpdateEmployeeDetails} />
+        <Route path="/update-panelMember-details/:id" component={UpdatePanelMemberDetails} />
         <Route path="/student-profile/:id" component={StudentProfile} />
         <Route path="/student-registration" component={StudentRegistration} />
         <Route path="/student-login" component={StudentLogin} />
         <Route path="/employee-registration" component={EmployeeRegistration} />
         <Route path="/employee-profile/:id" component={EmployeeProfile} />
+        <Route path="/panelMember-profile/:id" component={PanelMemberProfile} />
         <Route path="/employee-login" component={EmployeeLogin} />
-        <Route
-          path="/student-forgot-password"
-          component={StudentForgotPassword}
-        />
-        {/* <Route path="/student-password-reset" component={StudentPasswordReset} /> */}
-
-        <Route
-          path="/student-password-reset/:id/:token"
-          component={StudentPasswordReset}
-        />
-        <Route
-          path="/employee-forgot-password"
-          component={EmployeeForgotPassword}
-        />
-        <Route
-          path="/employee-password-reset/:id/:token"
-          component={EmployeePasswordReset}
-        />
+        <Route path="/student-forgot-password" component={StudentForgotPassword} />
+        <Route path="/student-password-reset/:id/:token" component={StudentPasswordReset} />
+        <Route path="/employee-forgot-password" component={EmployeeForgotPassword} />
+        <Route path="/employee-password-reset/:id/:token" component={EmployeePasswordReset} />
 
         {/* students paths */}
         <Route path="/add-group" component={CreateGroup} />
