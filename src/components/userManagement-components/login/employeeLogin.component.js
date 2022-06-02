@@ -49,6 +49,7 @@ export default class EmployeeLogin extends Component {
 
     axios.post('http://localhost:5000/employee/login/', empDetails)
       .then((res) => {
+        //create session for passing employee details
         window.sessionStorage.setItem(
           "loggeduser",
           JSON.stringify(res.data.user)
@@ -60,8 +61,7 @@ export default class EmployeeLogin extends Component {
         });
 
         if (res.data.status === 200) {
-
-          alert("Login Success");
+          alert("logged in successfully");
 
           //Navigate to the employee related page
           if (res.data.user.empType === 'Supervisor') {
@@ -76,9 +76,8 @@ export default class EmployeeLogin extends Component {
           else if (res.data.user.empType === 'Admin') {
             this.props.history.push('/admin-home');
           }
-
-
           // this.props.history.push(`/employee-profile/${res.data.user._id}`);
+
         } else {
           alert("Login Failed. Please re-check your credentials.");
         }

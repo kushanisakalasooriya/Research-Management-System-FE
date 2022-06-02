@@ -10,6 +10,7 @@ export default class UpdateEmployeeDetails extends Component {
         this.onChangeEmployeefirstName = this.onChangeEmployeefirstName.bind(this);
         this.onChangeEmployeelastName = this.onChangeEmployeelastName.bind(this);
         this.onChangeEmployeeImage = this.onChangeEmployeeImage.bind(this);
+        this.onChangeEmployeeResearchField = this.onChangeEmployeeResearchField.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
 
         this.state = {
@@ -21,7 +22,8 @@ export default class UpdateEmployeeDetails extends Component {
             email: '',
             password: '',
             empType: '',
-            image: ''
+            image: '',
+            researchField:''
         }
     }
 
@@ -35,17 +37,14 @@ export default class UpdateEmployeeDetails extends Component {
                     email: response.data.email,
                     password: response.data.password,
                     empType: response.data.empType,
-                    image: response.data.image
+                    image: response.data.image,
+                    researchField: response.data.researchField
                 })
             })
             .catch(function (error) {
                 console.log(error);
             })
 
-        this.setState({
-            emp: ['Supervisor', 'co-Supervisor', 'staff'],
-            employeeType: 'Supervisor'
-        });
     }
 
     onChangeEmployeeID(e) {
@@ -72,6 +71,12 @@ export default class UpdateEmployeeDetails extends Component {
         })
     }
 
+    onChangeEmployeeResearchField(e) {
+        this.setState({
+            researchField: e.target.value
+        })
+    }
+
     onSubmit(e) {
         e.preventDefault();
 
@@ -82,7 +87,8 @@ export default class UpdateEmployeeDetails extends Component {
             empType: this.state.empType,
             image: this.state.image,
             password: this.state.password,
-            email: this.state.email
+            email: this.state.email,
+            researchField: this.state.researchField
         }
 
         console.log(employeeDetails);
@@ -97,10 +103,11 @@ export default class UpdateEmployeeDetails extends Component {
             empType: '',
             image: '',
             password: '',
-            email: ''
+            email: '',
+            researchField: ''
         })
-        // this.props.history.push('/employee-details');
-        this.props.history.push('/home');
+        
+        this.props.history.push(`/employee-profile/${this.props.match.params.id}`);
     }
 
     cancel() {
@@ -153,6 +160,16 @@ export default class UpdateEmployeeDetails extends Component {
                     </div>
 
                     <div className="form-group">
+                        <label>Research Field: </label>
+                        <input type="text"
+                            required
+                            className="form-control"
+                            value={this.state.researchField}
+                            onChange={this.onChangeEmployeeResearchField}
+                        />
+                    </div>
+
+                    <div className="form-group">
                         <label>Profile photo: </label>
                         <input type="text"
                             required
@@ -164,7 +181,7 @@ export default class UpdateEmployeeDetails extends Component {
 
                     <div className="form-group">
                         <input type="submit" value="Update Details" className="btn btn-primary" />
-                        <button className="btn btn-danger" onClick={this.cancel.bind(this)} style={{marginLeft: "10px"}}> Cancel </button>
+                        <button className="btn btn-danger" onClick={this.cancel.bind(this)} style={{ marginLeft: "10px" }}> Cancel </button>
                     </div>
                 </form>
             </div>

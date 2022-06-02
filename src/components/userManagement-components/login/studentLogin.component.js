@@ -51,6 +51,7 @@ export default class StudentLogin extends Component {
 
     axios.post('http://localhost:5000/student/login/', studentDetails)
       .then((res) => {
+        //create session for passing student details
         window.sessionStorage.setItem(
           "loggeduser",
           JSON.stringify(res.data.user)
@@ -63,7 +64,7 @@ export default class StudentLogin extends Component {
 
         if (res.data.status === 200) {
           // navigate to the student home page
-          alert("Login Success");
+          alert("logged in successfully");
 
           this.props.history.push('/student-home');
         } else {
@@ -102,8 +103,8 @@ export default class StudentLogin extends Component {
                 />
               </div>
 
-              <Link to="/student-forgot-password" style={{marginLeft:'85px', alignSelf: "flex-start" }}>
-                <p style={{ padding: "0 15px"}}>Forgot Password ?</p>
+              <Link to="/student-forgot-password" style={{ marginLeft: '85px', alignSelf: "flex-start" }}>
+                <p style={{ padding: "0 15px" }}>Forgot Password ?</p>
               </Link>
 
               <button type="submit" className={styles.g_btn}>
