@@ -17,8 +17,11 @@ export default class SupervisorHome extends Component {
                                 <Link to="/supervisor-topics"><button >Accept Topics</button></Link>
                             </div><br />
                             <div className="laddBtn">
-                                <Link to="/supervisor-std-groups"><button >Accept Groups</button></Link>
+                                <Link to="/supervisor-research"><button >Accept Research</button></Link>
                             </div>
+                            {/* <div className="laddBtn">
+                                <Link to="/supervisor-std-groups"><button >Accept Groups</button></Link>
+                            </div> */}
                             <div className="lModBtn">
                                 <Link to="/supervisor-chat"><button>Chat with Students</button></Link>
                             </div>

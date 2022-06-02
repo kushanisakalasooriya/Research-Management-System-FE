@@ -30,7 +30,6 @@ import AllocatePanelMember from "./components/admin-components/allocate-panel-me
 import AddSubmission from "./components/admin-components/add-submission.component";
 
 //supervisour routes
-
 import SupervisorHome from './components/supervisor-components/supervisor-home.component';
 import SupervisorTopicList from './components/supervisor-components/supervisor-topic-list.component';
 import SupervisorEditTopics from './components/supervisor-components/supervisor-topic-edit.component';
@@ -38,6 +37,8 @@ import SuperrvisorStdGroupList from './components/supervisor-components/supervis
 import SupervisorEditStdGroups from './components/supervisor-components/supervisor-stdGroup-edit.component';
 import SupervisorChatPage from './components/supervisor-components/supervisor-chat-page';
 import SupervisorMessage from './components/supervisor-components/supervisor-message';
+import SuperrvisorResearchList from "./components/supervisor-components/supervisor-research-list.component";
+import AddFeedback from "./components/supervisor-components/add-feedback.component";
 
 //co-supervisor routes
 import CoSupervisorHome from "./components/co-supervisor-components/co-supervisor-home.component";
@@ -139,13 +140,13 @@ function App() {
         <Route path="/supervisor-std-groups/edit/:id" component={SupervisorEditStdGroups} />
         <Route path="/supervisor-chat" component={SupervisorChatPage} />
         <Route path="/supervisor-chat/edit:id" component={SupervisorMessage} />
+        <Route path="/supervisor-research" component={SuperrvisorResearchList} />
+        <Route path="/supervisor-research/add/:id" component={AddFeedback} />
 
         {/* co-supervisor paths */}
         <Route path="/co-supervisor-home" component={CoSupervisorHome} />
         <Route path="/co-supervisor-topics" component={CoSupervisorGroupList} />
-        <Route
-          path="/co-supervisor-topics/edit/:id"
-          component={CoSupervisorEditGroups}
+        <Route path="/co-supervisor-topics/edit/:id" component={CoSupervisorEditGroups}
         />
 
         {/* panel member paths */}
