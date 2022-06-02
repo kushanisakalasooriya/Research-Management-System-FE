@@ -14,7 +14,7 @@ export default class EmployeeRegistration extends Component {
         this.onChangeEmployeePassword = this.onChangeEmployeePassword.bind(this);
         this.onChangeEmployeeType = this.onChangeEmployeeType.bind(this);
         this.onChangeToLogin = this.onChangeToLogin.bind(this);
-        this.onChangeImage = this.onChangeImage.bind(this);
+        // this.onChangeImage = this.onChangeImage.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
 
         this.state = {
@@ -25,14 +25,14 @@ export default class EmployeeRegistration extends Component {
             email: '',
             empType: '',
             password: '',
-            image:''
+            image:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_BzGCRFUnQvDPPd8rrI9cHczEpj4ED5avR1pnKjAxkZ3yq_yoCrdXalvDvjLLEaaEMH0&usqp=CAU'
         }
 
     }
 
     componentDidMount() {
         this.setState({
-            employees: ['Supervisor', 'co-Supervisor', 'panel member'],
+            employees: ['Supervisor', 'Co-Supervisor', 'Panel Member'],
             empType: 'Supervisor'
         });
     }
@@ -73,11 +73,11 @@ export default class EmployeeRegistration extends Component {
         })
     }
 
-    onChangeImage(e) {
-        this.setState({
-            image: e.target.value
-        })
-    }
+    // onChangeImage(e) {
+    //     this.setState({
+    //         image: e.target.value
+    //     })
+    // }
 
     onChangeToLogin() {
         this.props.history.push('/employee-login');
@@ -110,7 +110,7 @@ export default class EmployeeRegistration extends Component {
             email: '',
             empType: '',
             password: '',
-            image:''
+            image:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_BzGCRFUnQvDPPd8rrI9cHczEpj4ED5avR1pnKjAxkZ3yq_yoCrdXalvDvjLLEaaEMH0&usqp=CAU'
         })
 
         //after registration success navigate to the login
@@ -210,7 +210,7 @@ export default class EmployeeRegistration extends Component {
                                 />
                             </div>
 
-                            <div className="form-group">
+                            {/* <div className="form-group">
                                 <label>Image: </label>
                                 <input type="text"
                                     required
@@ -218,7 +218,7 @@ export default class EmployeeRegistration extends Component {
                                     value={this.state.image}
                                     onChange={this.onChangeImage}
                                 />
-                            </div>
+                            </div> */}
 
 
                             <button type="submit" className={styles.g_btn}>
