@@ -14,35 +14,35 @@ export default class AdminEmployeeList extends Component {
     }
     this.columns = [
       {
-        key: "staffID",
+        key: "empID",
         text: "Employee ID",
         className: "name",
         align: "left",
         sortable: true,
       },
       {
-        key: "employeefirstName",
+        key: "firstName",
         text: "First Name",
         className: "name",
         align: "left",
         sortable: true
       },
       {
-        key: "employeelastName",
+        key: "lastName",
         text: "Last Name",
         className: "name",
         align: "left",
         sortable: true
       },
       {
-        key: "employeeEmail",
+        key: "email",
         text: "Email",
         className: "name",
         align: "left",
         sortable: true
       },
       {
-        key: "employeeType",
+        key: "empType",
         text: "Employee Type",
         className: "name",
         align: "left",
@@ -134,7 +134,7 @@ export default class AdminEmployeeList extends Component {
 
   deleteRecord(record) {
     try {
-      axios.delete(`http://localhost:5000/employeeDetails/${record._id}`)
+      axios.delete(`http://localhost:5000/employee/registration/${record._id}`)
         .then(response => { console.log(response.data) });
       window.location.reload(true);
     } catch (error) {
@@ -147,7 +147,7 @@ export default class AdminEmployeeList extends Component {
   }
 
   componentWillMount(props) {
-    axios.get(`${API_URL}/employeeDetails`)
+    axios.get(`${API_URL}/employee/registration`)
       .then(res => {
         this.setState({ records: res.data });
         console.log(this.state.records)

@@ -9,32 +9,30 @@ export default class AdminUpdateStudentDetails extends Component {
     this.onChangeStudentfirstName = this.onChangeStudentfirstName.bind(this);
     this.onChangeStudentlastName = this.onChangeStudentlastName.bind(this);
     this.onChangeStudentEmail = this.onChangeStudentEmail.bind(this);
-    this.onChangeStudentPassword = this.onChangeStudentPassword.bind(this);
-    this.onChangeStudentGrpID = this.onChangeStudentGrpID.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
 
     this.state = {
       students: [],
       stdID: "",
-      studentfirstName: "",
-      studentlastName: "",
-      studentEmail: "",
-      studentPassword: "",
-      studentGrpID: "",
+      firstName: "",
+      lastName: "",
+      password:"",
+      image:"",
+      email: "",
     };
   }
 
   componentDidMount() {
     axios
-      .get("http://localhost:5000/studentDetails/" + this.props.match.params.id)
+      .get("http://localhost:5000/student/registration/" + this.props.match.params.id)
       .then((response) => {
         this.setState({
           stdID: response.data.stdID,
-          studentfirstName: response.data.studentfirstName,
-          studentlastName: response.data.studentlastName,
-          studentEmail: response.data.studentEmail,
-          studentPassword: response.data.studentPassword,
-          studentGrpID: response.data.studentGrpID,
+          firstName: response.data.firstName,
+          lastName: response.data.lastName,
+          email: response.data.email,
+          image:response.data.image,
+          password:response.data.password
         });
       })
       .catch(function (error) {
@@ -50,51 +48,40 @@ export default class AdminUpdateStudentDetails extends Component {
 
   onChangeStudentfirstName(e) {
     this.setState({
-      studentfirstName: e.target.value,
+      firstName: e.target.value,
     });
   }
 
   onChangeStudentlastName(e) {
     this.setState({
-      studentlastName: e.target.value,
+      lastName: e.target.value,
     });
   }
 
   onChangeStudentEmail(e) {
     this.setState({
-      studentEmail: e.target.value,
+      email: e.target.value,
     });
   }
 
-  onChangeStudentPassword(e) {
-    this.setState({
-      studentPassword: e.target.value,
-    });
-  }
-
-  onChangeStudentGrpID(e) {
-    this.setState({
-      studentGrpID: e.target.value,
-    });
-  }
 
   onSubmit(e) {
     e.preventDefault();
 
     const studentDetails = {
       stdID: this.state.stdID,
-      studentfirstName: this.state.studentfirstName,
-      studentlastName: this.state.studentlastName,
-      studentEmail: this.state.studentEmail,
-      studentPassword: this.state.studentPassword,
-      studentGrpID: this.state.studentGrpID,
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
+      email: this.state.email,
+      password:this.state.password,
+      image:this.state.image
     };
 
     console.log(studentDetails);
 
     axios
       .post(
-        "http://localhost:5000/studentDetails/update-student/" +
+        "http://localhost:5000/student/registration/update-student/" +
           this.props.match.params.id,
         studentDetails
       )
@@ -102,11 +89,11 @@ export default class AdminUpdateStudentDetails extends Component {
 
     this.setState({
       stdID: "",
-      studentfirstName: "",
-      studentlastName: "",
-      studentEmail: "",
-      studentPassword: "",
-      studentGrpID: "",
+      firstName: "",
+      lastName: "",
+      email: "",
+      image:"",
+      password:""
     });
     this.props.history.push("/admin-all-students");
   }
@@ -134,7 +121,7 @@ export default class AdminUpdateStudentDetails extends Component {
               type="text"
               required
               className="form-control"
-              value={this.state.studentfirstName}
+              value={this.state.firstName}
               onChange={this.onChangeStudentfirstName}
             />
           </div>
@@ -145,7 +132,7 @@ export default class AdminUpdateStudentDetails extends Component {
               type="text"
               required
               className="form-control"
-              value={this.state.studentlastName}
+              value={this.state.lastName}
               onChange={this.onChangeStudentlastName}
             />
           </div>
@@ -157,19 +144,8 @@ export default class AdminUpdateStudentDetails extends Component {
               required
               readOnly
               className="form-control"
-              value={this.state.studentEmail}
+              value={this.state.email}
               onChange={this.onChangeStudentEmail}
-            />
-          </div>
-
-          <div className="form-group">
-            <label>Student Group No: </label>
-            <input
-              type="text"
-              required
-              className="form-control"
-              value={this.state.studentGrpID}
-              onChange={this.onChangeStudentGrpID}
             />
           </div>
           <div className="form-group">

@@ -21,29 +21,22 @@ export default class AdminStudentList extends Component {
         sortable: true,
       },
       {
-        key: "studentfirstName",
+        key: "firstName",
         text: "First Name",
         className: "name",
         align: "left",
         sortable: true
       },
       {
-        key: "studentlastName",
+        key: "lastName",
         text: "Last Name",
         className: "name",
         align: "left",
         sortable: true
       },
       {
-        key: "studentEmail",
+        key: "email",
         text: "Email",
-        className: "name",
-        align: "left",
-        sortable: true
-      },
-      {
-        key: "studentGrpID",
-        text: "Group ID",
         className: "name",
         align: "left",
         sortable: true
@@ -134,7 +127,7 @@ export default class AdminStudentList extends Component {
 
   deleteRecord(record) {
     try {
-      axios.delete(`http://localhost:5000/studentDetails/${record._id}`)
+      axios.delete(`http://localhost:5000/student/registration/${record._id}`)
         .then(response => { console.log(response.data) });
       window.location.reload(true);
     } catch (error) {
@@ -147,7 +140,7 @@ export default class AdminStudentList extends Component {
   }
 
   componentWillMount(props) {
-    axios.get(`${API_URL}/studentDetails`)
+    axios.get(`${API_URL}/student/registration`)
       .then(res => {
         this.setState({ records: res.data });
         console.log(this.state.records)
