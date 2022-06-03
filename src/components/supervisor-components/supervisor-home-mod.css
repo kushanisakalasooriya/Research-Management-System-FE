@@ -81,6 +81,21 @@
 
 }
 
+.headingModsLand h3 {
+    text-align: center;
+    text-transform: uppercase;
+    padding-bottom: 5px;
+
+}
+
+.headingModsLand h5 {
+    text-align: center;
+    text-transform: uppercase;
+    padding-bottom: 5px;
+    color: red;
+
+}
+
 /* .headingModsLand h1:before {
     width: 100px;
     height: 10px;

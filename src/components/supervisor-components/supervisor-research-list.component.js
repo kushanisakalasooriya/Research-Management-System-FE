@@ -176,8 +176,8 @@ export default class SuperrvisorResearchList extends Component {
     render() {
         return (
             <div>
-                <hr />
-                <h4>Supervisor - Research List </h4>
+                <br />
+                <h4>Download Research Papers </h4>
                 <hr />
                 <br />
                 <ReactDatatable

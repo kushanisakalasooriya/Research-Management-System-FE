@@ -51,20 +51,22 @@ export default class AddFeedback extends Component {
     render() {
         return (
             <div>
-                <h3>ADD FEEDBACK</h3>
-                <form onSubmit={this.onSubmit}>
-                    <div className="form-group">
-                        <label>Title: </label>
-                        <input ref="userInput"
-                            required
-                            className="form-control"
-                            value={this.state.feedback}
-                            onChange={this.onChangeFeedback} />
-                    </div>
-                    <div className="form-group">
-                        <input type="submit" value="Add Feedback" className="btn btn-primary" />
-                    </div>
-                </form>
+                <div className="headingModsLand" style={{ marginBottom: "30px", marginTop: "20px" }}> <h3> Add Feedback</h3> </div>
+                <center>
+                    <form onSubmit={this.onSubmit}>
+                        <div className="form-group">
+                            <label>New Feedback : </label>
+                            <input style={{ width: '30%' }} ref="userInput"
+                                required
+                                className="form-control"
+                                value={this.state.feedback}
+                                onChange={this.onChangeFeedback} />
+                        </div>
+                        <div className="form-group">
+                            <input type="submit" value="Add Feedback" className="btn btn-primary" />
+                        </div>
+                    </form>
+                </center>
             </div>
         )
     }

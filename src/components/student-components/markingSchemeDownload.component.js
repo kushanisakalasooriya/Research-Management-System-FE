@@ -116,7 +116,7 @@ export default class MarkingSchemeDownload extends Component {
     } catch (error) {
       if (error.response && error.response.status === 400) {
         alert('Error while downloading file. Try again later');
-      }else if(error.response && error.response.status === 404){
+      } else if (error.response && error.response.status === 404) {
         alert('File does not exists. Sorry for the inconvenience.');
       }
     }
@@ -140,7 +140,7 @@ export default class MarkingSchemeDownload extends Component {
     return (
       <div>
         <hr />
-        <h4>System Admin - Uploaded Marking Schemes Portal </h4>
+        <h4>Download Marking Schemes</h4>
         <hr />
         <br />
         <ReactDatatable

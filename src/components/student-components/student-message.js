@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import "react-datepicker/dist/react-datepicker.css";
 import './student-chat.css';
-
 export default class StudentMessage extends Component {
     constructor(props) {
         super(props);
@@ -103,7 +102,7 @@ export default class StudentMessage extends Component {
     render() {
         return (
             <div>
-                <h3>Student Chat</h3>
+                <div className="headingModsLand" style={{ marginBottom: "30px", marginTop: "20px" }}> <h3>  Chat with Your supervisor</h3> </div>
                 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 
                 <div class="container">
@@ -145,7 +144,7 @@ export default class StudentMessage extends Component {
                                         <div class="input-group mb-0">
 
                                             <input type="text" class="form-control" placeholder="Enter text here..." onChange={this.onChangeStudentMsg} />
-                                            <button onClick={this.onSubmit} >Send Message</button>
+                                            <button onClick={this.onSubmit} className="MsgSendBtn"><i className="fa fa-paper-plane" ></i></button>
                                         </div>
                                     </div>
                                 </div>

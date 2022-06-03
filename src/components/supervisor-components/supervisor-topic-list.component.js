@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import './supervisor-home-mod.css';
 
 const ResearchTopic = props => (
     <tr>
         <td>{props.researchTopic.topic}</td>
         <td>{props.researchTopic.groupName}</td>
-        <td>{props.researchTopic.state} <Link to={"/supervisor-topics/edit/" + props.researchTopic._id}>Change</Link>
+        <td>{props.researchTopic.state} </td>
+        <td><Link to={"/supervisor-topics/edit/" + props.researchTopic._id}>Change</Link>
         </td>
 
     </tr>
@@ -78,14 +80,15 @@ export default class SuperrvisorTopicList extends Component {
     render() {
         return (
             <div>
-                <h3>Topics</h3>
-                <table className="table">
-                    <thead className="thead-light">
+                <div className="headingModsLand" style={{ marginBottom: "30px", marginTop: "20px" }}> <h3> Research topics</h3> </div>
+
+                <table className="table table-bordered table-light">
+                    <thead className="table-dark">
                         <tr>
                             <th>Topic</th>
                             <th>Group Name</th>
-                            <th>State</th>
-                            {/* <th>Actions</th> */}
+                            <th>Status</th>
+                            <th>Update Status</th>
                         </tr>
                     </thead>
                     <tbody>
