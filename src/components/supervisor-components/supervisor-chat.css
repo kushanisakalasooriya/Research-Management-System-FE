@@ -1,10 +1,5 @@
-body {
-    background-color: #f4f7f6;
-    margin-top: 20px;
-}
-
 .card {
-    background: #fff;
+    background: #ffffff;
     transition: .5s;
     border: 0;
     margin-bottom: 30px;
