@@ -17,11 +17,9 @@ export default class SupervisorHome extends Component {
         this.setState({
             user: JSON.parse(sessionStorage.getItem("loggeduser")),
         })
-        console.log('User', this.state.user);
     }
 
     componentDidUpdate() {
-        console.log('cUpdateUser', this.state.user);
     }
 
     render() {
