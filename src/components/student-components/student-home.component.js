@@ -28,7 +28,7 @@ export default class studentHome extends Component {
     this.state = {
       // groups: [],
       topics: [],
-      stdid: "Thar",
+      // stdid: "",
       grp: "",
       status: "",
       flag: "0",
@@ -57,6 +57,7 @@ export default class studentHome extends Component {
     };
 
     console.log("aaa", student.stdID);
+    console.log("bbb", this.state.loggedUser._id);
 
     //get the group details according to the user
     await axios
@@ -177,10 +178,6 @@ export default class studentHome extends Component {
     }
   }
 
-  mschemeDownload(){
-    this.props.history.push('/mscheme-download');
-  }
-
   templateDownload(){
     this.props.history.push('/template-download');
   }
@@ -278,22 +275,6 @@ export default class studentHome extends Component {
                 >
                   {" "}
                   Download Templates{" "}
-                </button>
-                <br></br>
-              </div>
-            </div>
-          </div>
-          <div className="container">
-            <div className="row justify-content-center">
-              <div className="col-3 col-md-auto">
-                <button
-                  style={{ width: "500px", margin: "15px" }}
-                  onClick={this.mschemeDownload.bind(this)}
-                  type="button"
-                  class="btn btn-success btn-info btn-lg"
-                >
-                  {" "}
-                  Download Marking Schemes{" "}
                 </button>
                 <br></br>
               </div>

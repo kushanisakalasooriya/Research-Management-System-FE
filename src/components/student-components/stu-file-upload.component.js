@@ -246,9 +246,12 @@ const StuFileUpload = (props) => {
           )}
         </div>
         <br />
-        <Button variant="primary" type="submit">
+        {/* <Button  style={{marginBottom:"20px", float:'right', width:'25%', color:'black'}} type="submit" className='btn btn-outline-dark'>
           Submit
-        </Button>
+        </Button> */}
+        <button style={{marginBottom:"20px", float:'right', width:'25%', color:'black'}} type="submit" className='btn btn-outline-dark'>
+            SUBMIT
+        </button>
       </Form>
     </React.Fragment>
   );
