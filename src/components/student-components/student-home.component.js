@@ -185,6 +185,7 @@ export default class studentHome extends Component {
     }
   }
 
+
   templateDownload(){
     this.props.history.push('/template-download');
   }
@@ -283,6 +284,21 @@ export default class studentHome extends Component {
                   {" "}
                   Download Templates{" "}
                 </button>
+                <br></br>
+              </div>
+            </div>
+          </div>
+          <div className="container">
+            <div className="row justify-content-center">
+              <div className="col-3 col-md-auto">
+                <Link to="/student-chat/"> < button
+                  style={{ width: "500px", margin: "15px" }}
+                  type="button"
+                  class="btn btn-success btn-info btn-lg"
+                >
+                  {" "}
+                  Chat with Supervisor{" "}
+                </button></Link>
                 <br></br>
               </div>
             </div>

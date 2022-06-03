@@ -7,6 +7,7 @@ import Navbar from "./components/navbar.component";
 import NavbarSupervisor from "./components/navbarSupervisor.component";
 import NavbarAdmin from "./components/navbarAdmin.component";
 import HomePage from "./components/homePage.component";
+import HomePage from "./components/homePage.component";
 
 //admin routes
 import AdminDocUpload from "./components/admin-components/admin-file-upload.component";
@@ -80,9 +81,6 @@ import addSubmission from './components/student-components/add-submission.compon
 import StuFileUpload from './components/student-components/stu-file-upload.component';
 import MarkingSchemeDownload from "./components/student-components/markingSchemeDownload.component";
 import TemplateDownload from "./components/student-components/templateDownload.component";
-
-
-
 
 function App() {
   // console.log('app.js =>', JSON.parse(sessionStorage.getItem("loggeduser"))._id );
