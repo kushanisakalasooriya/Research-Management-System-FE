@@ -13,6 +13,7 @@ export default class SupervisorChatPage extends Component {
 
         this.state = {
             supervisorName: '',
+            supervisorId: JSON.parse(sessionStorage.getItem("loggeduser")).firstName,
             studentName: '',
             studentMsg: '',
             supervisorMsg: '',
@@ -20,6 +21,7 @@ export default class SupervisorChatPage extends Component {
             oneChat: [],
 
         }
+        console.log('Supervisor Name', this.state.supervisorId);
     }
 
     componentDidMount() {
@@ -30,7 +32,7 @@ export default class SupervisorChatPage extends Component {
 
                 var i = 0;
                 for (i = 0; i < this.state.chats.length; i++) {
-                    if (this.state.chats[i].supervisorName == "Jagath") {
+                    if (this.state.chats[i].supervisorName === this.state.supervisorId) {
                         this.state.oneChat.push(this.state.chats[i]);
                     }
                 }
@@ -101,6 +103,7 @@ export default class SupervisorChatPage extends Component {
                             </div>
                     )
                 } */}
+                <h3>Supervisor Chat</h3>
 
                 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 
@@ -113,7 +116,6 @@ export default class SupervisorChatPage extends Component {
                                     <div class="input-group">
 
                                     </div>
-
 
                                     {
                                         this.state.oneChat.map(
@@ -131,13 +133,11 @@ export default class SupervisorChatPage extends Component {
                                     }
                                 </div>
 
-                                {this.state.check == false && <div class="chat" >
+                                {this.state.check === false && <div class="chat" >
                                     <div class="chat-header clearfix">
                                         <div class="row">
                                             <div class="col-lg-6">
-                                                <a href="javascript:void(0);" data-toggle="modal" data-target="#view_info">
-                                                    <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="avatar" />
-                                                </a>
+                                                <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="avatar" />
                                                 <div class="chat-about">
                                                     <h6 class="m-b-0">{this.state.studentName}</h6>
                                                 </div>
@@ -176,7 +176,7 @@ export default class SupervisorChatPage extends Component {
                     </div>
                 </div>
 
-            </div>
+            </div >
 
 
         )

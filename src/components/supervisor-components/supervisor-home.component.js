@@ -4,6 +4,26 @@ import './supervisor-home-mod.css';
 
 export default class SupervisorHome extends Component {
 
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            user: [],
+        }
+
+    }
+
+    componentDidMount() {
+        this.setState({
+            user: JSON.parse(sessionStorage.getItem("loggeduser")),
+        })
+        console.log('User', this.state.user);
+    }
+
+    componentDidUpdate() {
+        console.log('cUpdateUser', this.state.user);
+    }
+
     render() {
         return (
             <div>

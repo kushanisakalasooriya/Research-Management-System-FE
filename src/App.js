@@ -184,7 +184,7 @@ function App() {
         <Route path="/reg-topic" component={regResearchTopic} />
         <Route path="/req-cosupervisor" component={reqCoSupervisor} />
         <Route path="/student-chat" component={StudentChat} />
-        <Route path="/student-chat/edit:id" component={StudentMessage} />
+        <Route path="/student-chatGo/edit/:id" component={StudentMessage} />
         <Route path="/stu-submission" component={addSubmission} />
         <Route path="/stu-submission1" component={StuFileUpload} />
         <Route path="/template-download" component={TemplateDownload} />
