@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
 //common routes
 import Navbar from "./components/navbar.component";
+import NavbarSupervisor from "./components/navbarSupervisor.component";
+import NavbarAdmin from "./components/navbarAdmin.component";
 import HomePage from "./components/homePage.component";
 import FooterComponent from "./components/FooterComponent";
+
 //admin routes
 import AdminDocUpload from "./components/admin-components/admin-file-upload.component";
 import AdminHome from "./components/admin-components/admin-home.component";
@@ -79,10 +82,47 @@ import StuFileUpload from './components/student-components/stu-file-upload.compo
 import MarkingSchemeDownload from "./components/student-components/markingSchemeDownload.component";
 import TemplateDownload from "./components/student-components/templateDownload.component";
 
-
 function App() {
+  // console.log('app.js =>', JSON.parse(sessionStorage.getItem("loggeduser"))._id );
+  const [flag, setFlag] = useState('');
+  // const [nav, setNav] = useState('');
+  let nav;
+
+  // setFlag(JSON.parse(sessionStorage.getItem("loggeduser")));
+
+  useEffect(() => {
+    setFlag(sessionStorage.getItem("navBarType"));
+    console.log('abcd1234 =>',flag);
+    // navBarSetter();
+    
+  },[]);
+
+  console.log('flagprint =>',flag);
+  
+  const navBarSetter = () => {
+    console.log('abc',flag);
+    if ( flag === "1") {
+      // setNav({
+        nav = <Navbar/>
+      // });
+    } else if (flag === '2'){
+      // setNav({
+        nav = <NavbarAdmin/>
+      // });
+    } else if  (flag === '3'){
+      // setNav({
+        nav = <NavbarSupervisor/>
+      // });
+    } else {
+      nav = null;
+    }
+  }
+  navBarSetter();
+
+  // let con =  <NavbarSupervisor/>
 
   return (
+
     <div className="bg-image" style={{
       backgroundImage: `url("https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=822&q=80")`,
       backgroundSize: 'cover',
@@ -195,6 +235,7 @@ function App() {
           </div>
           {/* <FooterComponent /> */}
         </Router>
+
       </div>
     </div>
   );

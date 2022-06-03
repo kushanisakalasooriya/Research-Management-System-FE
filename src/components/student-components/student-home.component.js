@@ -28,7 +28,7 @@ export default class studentHome extends Component {
     this.state = {
       // groups: [],
       topics: [],
-      stdid: "Thar",
+      // stdid: "",
       grp: "",
       status: "",
       flag: "0",
@@ -56,14 +56,20 @@ export default class studentHome extends Component {
       stdID: this.state.loggedUser.stdID,
     };
 
-    console.log("aaa", student.stdID);
+    // console.log("aaa", student.stdID);
+    // console.log("bbb", this.state.loggedUser._id);
 
     //get the group details according to the user
     await axios
       .post("http://localhost:5000/groups/loggedUser", student)
       .then((response) => {
-        // if (response.data.user.groupname){
+        if (response.status == 201){
+          
+      } else {
         this.setState({ grp: response.data.user.groupname });
+      }
+        // if (response.data.user.groupname){
+        
         // }else {
         // alert('User does not have a group');
         // }
@@ -179,11 +185,8 @@ export default class studentHome extends Component {
     }
   }
 
-  mschemeDownload() {
-    this.props.history.push('/mscheme-download');
-  }
 
-  templateDownload() {
+  templateDownload(){
     this.props.history.push('/template-download');
   }
 
@@ -288,15 +291,14 @@ export default class studentHome extends Component {
           <div className="container">
             <div className="row justify-content-center">
               <div className="col-3 col-md-auto">
-                <button
+                <Link to="/student-chat/"> < button
                   style={{ width: "500px", margin: "15px" }}
-                  onClick={this.mschemeDownload.bind(this)}
                   type="button"
                   class="btn btn-success btn-info btn-lg"
                 >
                   {" "}
-                  Download Marking Schemes{" "}
-                </button>
+                  Chat with Supervisor{" "}
+                </button></Link>
                 <br></br>
               </div>
             </div>
