@@ -8,9 +8,7 @@ const ResearchTopic = props => (
         <td>{props.researchTopic.groupName}</td>
         <td>{props.researchTopic.state} <Link to={"/supervisor-topics/edit/" + props.researchTopic._id}>Change</Link>
         </td>
-        {/* <td>
-            <a href="#" onClick={() => { props.deleteTopic(props.researchTopic._id) }}>delete</a>
-        </td> */}
+
     </tr>
 )
 
@@ -18,18 +16,43 @@ export default class SuperrvisorTopicList extends Component {
     constructor(props) {
         super(props);
 
-        this.deleteTopic = this.deleteTopic.bind(this)
-
         this.state = {
+            supervisorName: JSON.parse(sessionStorage.getItem("loggeduser")).firstName + " " +
+                JSON.parse(sessionStorage.getItem("loggeduser")).lastName + " - " +
+                JSON.parse(sessionStorage.getItem("loggeduser")).researchField,
             researchTopics: [],
             pendingTopics: [],
+            stdGroup: [],
+            theGroup: [],
         };
+        console.log(JSON.parse(sessionStorage.getItem("loggeduser")));
+        console.log('Supervisor Name', this.state.supervisorName);
     }
 
-    componentDidMount() {
-        axios.get('http://localhost:5000/supervisor/topic')
+    async componentDidMount() {
+        await axios.get('http://localhost:5000/groups')
             .then(response => {
-                this.setState({ researchTopics: response.data })
+                this.setState({ stdGroup: response.data })
+
+                var i = 0;
+                for (i = 0; i < this.state.stdGroup.length; i++) {
+                    if (this.state.stdGroup[i].supervisor === this.state.supervisorName) {
+                        this.state.theGroup.push(this.state.stdGroup[i].groupname);
+                    }
+                }
+                this.setState({ topic: response.data })
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+
+        const topicGroup = {
+            theGroup: this.state.theGroup
+        }
+
+        await axios.post('http://localhost:5000/supervisor/topic/researchTopics', topicGroup)
+            .then(response => {
+                this.setState({ researchTopics: response.data.group })
 
                 var i = 0;
                 for (i = 0; i < this.state.researchTopics.length; i++) {
@@ -40,32 +63,22 @@ export default class SuperrvisorTopicList extends Component {
 
                 this.setState({ topic: response.data })
 
-
             })
             .catch((error) => {
                 console.log(error);
             })
     }
 
-    deleteTopic(id) {
-        axios.delete('http://localhost:5000/supervisor/topic/' + id)
-            .then(response => { console.log(response.data) });
-
-        this.setState({
-            researchTopics: this.state.researchTopics.filter(el => el._id !== id)
-        })
-    }
-
     topicList() {
         return this.state.pendingTopics.map(currenttopic => {
-            return <ResearchTopic researchTopic={currenttopic} deleteTopic={this.deleteTopic} key={currenttopic._id} />;
+            return <ResearchTopic researchTopic={currenttopic} />;
         })
     }
 
     render() {
         return (
             <div>
-                <h3>Tpoics</h3>
+                <h3>Topics</h3>
                 <table className="table">
                     <thead className="thead-light">
                         <tr>

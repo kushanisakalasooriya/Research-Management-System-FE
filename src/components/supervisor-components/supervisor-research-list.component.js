@@ -10,8 +10,12 @@ export default class SuperrvisorResearchList extends Component {
         this.state = {
             filesList: '',
             errorMsg: '',
-            data: ''
+            data: '',
+            stdGroup: [],
+            theGroup: [],
+            supervisorName: JSON.parse(sessionStorage.getItem("loggeduser")).firstName,
         }
+        console.log('Supervisor Name', this.state.supervisorName);
         this.columns = [
             {
                 key: "groupname",
@@ -67,26 +71,7 @@ export default class SuperrvisorResearchList extends Component {
                     );
                 }
             },
-            // {
-            //     key: "action",
-            //     text: "Delete",
-            //     className: "action",
-            //     width: 100,
-            //     align: "left",
-            //     sortable: false,
-            //     cell: record => {
-            //         return (
-            //             <Fragment>
-            //                 <button
-            //                     name="Delete"
-            //                     className="btn btn-danger btn-sm"
-            //                     onClick={() => this.deleteRecord(record)}>
-            //                     Delete
-            //                 </button>
-            //             </Fragment>
-            //         );
-            //     }
-            // }
+
         ];
         this.config = {
             page_size: 5,
@@ -131,20 +116,6 @@ export default class SuperrvisorResearchList extends Component {
         this.props.history.push("/supervisor-research/add/" + record._id);
     }
 
-    // deleteRecord(record) {
-    //     try {
-    //         axios.delete(`${API_URL}/admin/marking/file-delete/${record._id}`)
-    //             .then(response => { console.log(response.data) });
-    //         window.location.reload(true);
-    //     } catch (error) {
-    //         if (error.response && error.response.status === 400) {
-    //             this.setState = {
-    //                 errorMsg: 'Error while deleting file. Try again later'
-    //             }
-    //         }
-    //     }
-    // }
-
     async downloadFile(record) {
         try {
             const result = await axios.get(`${API_URL}/student-submission/download/${record._id}`, {
@@ -163,13 +134,38 @@ export default class SuperrvisorResearchList extends Component {
         }
     }
 
-    componentWillMount(props) {
-        axios.get(`${API_URL}/student-submission/getAllFiles`)
+    async componentWillMount(props) {
+
+        await axios.get('http://localhost:5000/groups')
+            .then(response => {
+                this.setState({ stdGroup: response.data })
+
+                var i = 0;
+                for (i = 0; i < this.state.stdGroup.length; i++) {
+                    if (this.state.stdGroup[i].supervisor === this.state.supervisorName) {
+                        this.state.theGroup.push(this.state.stdGroup[i].groupname);
+                    }
+                }
+                this.setState({ topic: response.data })
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+
+        const topicGroup = {
+            theGroup: this.state.theGroup
+        }
+        console.log("The Group", this.state.theGroup);
+
+        await axios.post('http://localhost:5000/student-submission/researchSubmission', topicGroup)
             .then(res => {
-                this.setState({ records: res.data });
-                console.log(this.state.records)
-            }
-            )
+                this.setState({ records: res.data.group })
+                console.log("Records", this.state.records)
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+
     }
 
     setErrorMsg(err) {

@@ -136,9 +136,9 @@ export default class studentHome extends Component {
     if (this.state.flagcosup === "2") {
       alert("Your topic is Rejected.Register a new Topic.");
       this.props.history.push('/reg-topic');
-    } else if (this.state.flagcosup === "1"){
+    } else if (this.state.flagcosup === "1") {
       alert("Your topic is already Accepted");
-    }else {
+    } else {
       // window.location = '/reg-topic'
       this.props.history.push("/reg-topic");
     }
@@ -157,9 +157,9 @@ export default class studentHome extends Component {
   submitDoc() {
     if (this.state.flagcosup === "2") {
       alert("Your topic is Rejected.");
-    } else if (this.state.flagcosup === "0"){
+    } else if (this.state.flagcosup === "0") {
       alert("Your topic is not yet accepted");
-    }else {
+    } else {
       // window.location = '/reg-topic'
       this.props.history.push("/stu-submission1");
     }
@@ -285,8 +285,23 @@ export default class studentHome extends Component {
               </div>
             </div>
           </div>
+          <div className="container">
+            <div className="row justify-content-center">
+              <div className="col-3 col-md-auto">
+                <Link to="/student-chat/"> < button
+                  style={{ width: "300px", margin: "10px" }}
+                  type="button"
+                  class="btn btn-success btn-info"
+                >
+                  {" "}
+                  Chat with Supervisor{" "}
+                </button></Link>
+                <br></br>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
+      </div >
     );
   }
 }

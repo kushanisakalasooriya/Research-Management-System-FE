@@ -30,7 +30,7 @@ export default class SuperrvisorStdGroupList extends Component {
 
                 var i = 0;
                 for (i = 0; i < this.state.groups.length; i++) {
-                    if (this.state.groups[i].status == "Pending") {
+                    if (this.state.groups[i].status === "Pending") {
                         this.state.pendingGroups.push(this.state.groups[i]);
                     }
                 }
