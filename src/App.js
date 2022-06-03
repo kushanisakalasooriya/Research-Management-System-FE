@@ -4,12 +4,9 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 
 //common routes
 import Navbar from "./components/navbar.component";
-import ExercisesList from "./components/exercises-list.component";
-import EditExercise from "./components/edit-exercise.component";
-import CreateExercise from "./components/create-exercise.component";
-import CreateUser from "./components/create-user.component";
 import NavbarSupervisor from "./components/navbarSupervisor.component";
 import NavbarAdmin from "./components/navbarAdmin.component";
+import HomePage from "./components/homePage.component";
 
 //admin routes
 import AdminDocUpload from "./components/admin-components/admin-file-upload.component";
@@ -84,8 +81,6 @@ import StuFileUpload from './components/student-components/stu-file-upload.compo
 import MarkingSchemeDownload from "./components/student-components/markingSchemeDownload.component";
 import TemplateDownload from "./components/student-components/templateDownload.component";
 
-import HomePage from './components/homePage.component';
-
 
 
 
@@ -140,10 +135,6 @@ function App() {
         <Route path="/home" exact component={HomePage} />
 
         {/* admin paths */}
-        <Route path="/" exact component={ExercisesList} />
-        <Route path="/edit/:id" component={EditExercise} />
-        <Route path="/create" component={CreateExercise} />
-        <Route path="/user" component={CreateUser} />
         <Route path="/admin-file-upload" component={AdminDocUpload} />
         <Route path="/admin-file-download" component={AdminFileList} />
         <Route path="/admin-file-edit/:id" component={EditAdminFile} />
@@ -227,8 +218,7 @@ function App() {
         <Route path="/reg-topic" component={regResearchTopic} />
         <Route path="/req-cosupervisor" component={reqCoSupervisor} />
         <Route path="/student-chat" component={StudentChat} />
-        <Route path="/student-chat/edit:id" component={StudentMessage} />
-        {/* <Route path="/stu-submission" component={addSubmission} /> */}
+        <Route path="/student-chatGo/edit/:id" component={StudentMessage} />
         <Route path="/stu-submission1" component={StuFileUpload} />
         <Route path="/template-download" component={TemplateDownload} />
         <Route path="/mscheme-download" component={MarkingSchemeDownload} />

@@ -56,15 +56,20 @@ export default class studentHome extends Component {
       stdID: this.state.loggedUser.stdID,
     };
 
-    console.log("aaa", student.stdID);
-    console.log("bbb", this.state.loggedUser._id);
+    // console.log("aaa", student.stdID);
+    // console.log("bbb", this.state.loggedUser._id);
 
     //get the group details according to the user
     await axios
       .post("http://localhost:5000/groups/loggedUser", student)
       .then((response) => {
-        // if (response.data.user.groupname){
+        if (response.status == 201){
+          
+      } else {
         this.setState({ grp: response.data.user.groupname });
+      }
+        // if (response.data.user.groupname){
+        
         // }else {
         // alert('User does not have a group');
         // }
@@ -126,7 +131,7 @@ export default class studentHome extends Component {
           this.state.flagcosup = "1";
         } else if (this.state.topics[i].state === "Rejected") {
           this.state.flagcosup = "2";
-        } else if (this.state.topics[i].state === "Pending"){
+        } else if (this.state.topics[i].state === "Pending") {
           this.state.flagcosup = "3";
         }
       }
@@ -139,11 +144,13 @@ export default class studentHome extends Component {
     if (this.state.flagcosup === "2") {
       alert("Your topic is Rejected.Register a new Topic.");
       this.props.history.push('/reg-topic');
-    } else if (this.state.flagcosup === "1"){
+    } else if (this.state.flagcosup === "1") {
       alert("Your topic is already Accepted");
-    }else if(this.state.flagcosup === "3"){
+
+    } else if (this.state.flagcosup === "3") {
       alert("You already registered a topic !");
-    }else{
+    } else {
+
       // window.location = '/reg-topic'
       this.props.history.push("/reg-topic");
     }
@@ -162,9 +169,9 @@ export default class studentHome extends Component {
   submitDoc() {
     if (this.state.flagcosup === "2") {
       alert("Your topic is Rejected.");
-    } else if (this.state.flagcosup === "0"){
+    } else if (this.state.flagcosup === "0") {
       alert("Your topic is not yet accepted");
-    }else {
+    } else {
       // window.location = '/reg-topic'
       this.props.history.push("/stu-submission1");
     }
@@ -280,8 +287,23 @@ export default class studentHome extends Component {
               </div>
             </div>
           </div>
+          <div className="container">
+            <div className="row justify-content-center">
+              <div className="col-3 col-md-auto">
+                <Link to="/student-chat/"> < button
+                  style={{ width: "500px", margin: "15px" }}
+                  type="button"
+                  class="btn btn-success btn-info btn-lg"
+                >
+                  {" "}
+                  Chat with Supervisor{" "}
+                </button></Link>
+                <br></br>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
+      </div >
     );
   }
 }

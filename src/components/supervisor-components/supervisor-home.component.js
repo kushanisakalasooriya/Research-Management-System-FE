@@ -4,6 +4,24 @@ import './supervisor-home-mod.css';
 
 export default class SupervisorHome extends Component {
 
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            user: [],
+        }
+
+    }
+
+    componentDidMount() {
+        this.setState({
+            user: JSON.parse(sessionStorage.getItem("loggeduser")),
+        })
+    }
+
+    componentDidUpdate() {
+    }
+
     render() {
         return (
             <div>
@@ -26,7 +44,7 @@ export default class SupervisorHome extends Component {
                                 <Link to="/supervisor-chat"><button>Chat with Students</button></Link>
                             </div>
                             <div className="lReportBtn">
-                                <button onClick={this.onClickReportV}>Evaluate documents</button>
+                                <Link to="/mscheme-download"><button>Evaluate documents</button></Link>
                             </div>
                         </center>
 
