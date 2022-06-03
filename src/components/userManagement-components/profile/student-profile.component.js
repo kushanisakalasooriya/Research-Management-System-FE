@@ -11,7 +11,6 @@ export default class StudentProfile extends Component {
         this.stuentLogout = this.stuentLogout.bind(this);
 
         this.state = {
-            // Employees: [],
             stdID: '',
             firstName: '',
             lastName: '',
@@ -54,10 +53,15 @@ export default class StudentProfile extends Component {
 
     deleteStudentDetails(id) {
 
-        axios.delete('http://localhost:5000/student/registration/' + this.props.match.params.id)
-            .then(res => console.log(res.data));
-        alert('Employee details are deleted.');
-        this.props.history.push('/student-registration');
+        const confirmBox = window.confirm(
+            "Are you sure want to delete your account?"
+        )
+        if (confirmBox === true) {
+            axios.delete('http://localhost:5000/student/registration/' + this.props.match.params.id)
+                .then(res => console.log(res.data));
+            alert('Your account delete successfully!');
+            this.props.history.push('/student-registration');
+        }
 
     }
 
@@ -66,11 +70,11 @@ export default class StudentProfile extends Component {
     render() {
         return (
             <div>
-                <div style={{ marginLeft:"-200px"}}  className={styles.container}>
-                    <div>                      
+                <div style={{ marginLeft: "-200px" }} className={styles.container}>
+                    <div>
                         <br />
                         <form className={styles.form_container} onSubmit={this.editStudentDetails}>
-                        <h3>Profile</h3>
+                            <h3>Profile</h3>
                             <div className="form-group">
                                 <label>Profile photo:</label>
                                 <div><img style={{ width: "200px", height: "200px" }} src={this.state.image}></img></div>
@@ -103,8 +107,8 @@ export default class StudentProfile extends Component {
                             <div className="form-group">
                                 <input type="submit" value="Update" className="btn btn-primary" />
                                 <button style={{ marginLeft: "10px" }} className="btn btn-danger" type='button' onClick={this.deleteStudentDetails}> Delete</button>
-                                <button style={{ marginLeft: "10px" }} className="btn btn-success" type='button' onClick={this.stuentLogout}> LogOut</button>
-                               
+                                <button style={{ marginLeft: "10px" }} className="btn btn-success" type='button' onClick={this.stuentLogout}> Logout</button>
+
                             </div>
                         </form>
 

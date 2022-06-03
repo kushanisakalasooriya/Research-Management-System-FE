@@ -4,7 +4,7 @@ import download from 'downloadjs';
 import axios from 'axios';
 import { API_URL } from '../../utils/constants';
 
-export default class AdminStudentList extends Component {
+export default class TemplateDownload extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -14,36 +14,22 @@ export default class AdminStudentList extends Component {
     }
     this.columns = [
       {
-        key: "stdID",
-        text: "Student ID",
+        key: "title",
+        text: "File Name",
         className: "name",
         align: "left",
         sortable: true,
       },
       {
-        key: "firstName",
-        text: "First Name",
-        className: "name",
-        align: "left",
-        sortable: true
-      },
-      {
-        key: "lastName",
-        text: "Last Name",
-        className: "name",
-        align: "left",
-        sortable: true
-      },
-      {
-        key: "email",
-        text: "Email",
-        className: "name",
+        key: "description",
+        text: "Content Description",
+        className: "address",
         align: "left",
         sortable: true
       },
       {
         key: "action",
-        text: "Update",
+        text: "Download",
         className: "action",
         width: 100,
         align: "left",
@@ -52,30 +38,9 @@ export default class AdminStudentList extends Component {
           return (
             <Fragment>
               <button
-                className="btn btn-primary btn-sm"
-                onClick={() => this.editRecord(record)}
-                style={{ marginRight: '5px' }}>
-                Update
-              </button>
-            </Fragment>
-          );
-        }
-      },
-      {
-        key: "action",
-        text: "Delete",
-        className: "action",
-        width: 100,
-        align: "left",
-        sortable: false,
-        cell: record => {
-          return (
-            <Fragment>
-              <button
-                name="Delete"
-                className="btn btn-danger btn-sm"
-                onClick={() => this.deleteRecord(record)}>
-                Delete
+                className="btn btn-info btn-sm"
+                onClick={() => this.downloadFile(record)}>
+                Download
               </button>
             </Fragment>
           );
@@ -94,7 +59,7 @@ export default class AdminStudentList extends Component {
     this.extraButtons = [
       {
         className: "btn btn-primary buttons-pdf",
-        title: "Export TEst",
+        title: "Export Test",
         children: [
           <span>
             <i className="glyphicon glyphicon-print fa fa-print" aria-hidden="true"></i>
@@ -122,12 +87,12 @@ export default class AdminStudentList extends Component {
     ]
   }
   editRecord(record) {
-    this.props.history.push("/admin-update-student/" + record._id);
+    this.props.history.push("/admin-file-edit/" + record._id);
   }
 
   deleteRecord(record) {
     try {
-      axios.delete(`http://localhost:5000/student/registration/${record._id}`)
+      axios.delete(`${API_URL}/admin/file-delete/${record._id}`)
         .then(response => { console.log(response.data) });
       window.location.reload(true);
     } catch (error) {
@@ -139,8 +104,24 @@ export default class AdminStudentList extends Component {
     }
   }
 
+  async downloadFile(record) {
+    try {
+      const result = await axios.get(`${API_URL}/admin/download/${record._id}`, {
+        responseType: 'blob'
+      });
+      const split = record.file_path.split('/');
+      const filename = split[split.length - 1];
+      this.state.errorMsg = '';
+      return download(result.data, filename, record.mimetype);
+    } catch (error) {
+      if (error.response && error.response.status === 400) {
+        this.state.errorMsg = 'Error while downloading file. Try again later';
+      }
+    }
+  }
+
   componentWillMount(props) {
-    axios.get(`${API_URL}/student/registration`)
+    axios.get(`${API_URL}/admin/getAllFiles`)
       .then(res => {
         this.setState({ records: res.data });
         console.log(this.state.records)
@@ -157,7 +138,7 @@ export default class AdminStudentList extends Component {
     return (
       <div>
         <hr />
-        <h4>REGISTERED STUDENTS - ADMIN VIEW</h4>
+        <h4>System Admin - Uploaded Documents / Presentation Templates </h4>
         <hr />
         <br />
         <ReactDatatable

@@ -14,7 +14,6 @@ export default class StudentRegistration extends Component {
         this.onChangeStudentEmail = this.onChangeStudentEmail.bind(this);
         this.onChangeStudentPassword = this.onChangeStudentPassword.bind(this);
         this.onChangeToLogin = this.onChangeToLogin.bind(this);
-        this.onChangeImage = this.onChangeImage.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
 
         this.state = {
@@ -24,7 +23,7 @@ export default class StudentRegistration extends Component {
             lastName: '',
             email: '',
             password: '',
-            image:''
+            image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_BzGCRFUnQvDPPd8rrI9cHczEpj4ED5avR1pnKjAxkZ3yq_yoCrdXalvDvjLLEaaEMH0&usqp=CAU'
         }
 
     }
@@ -59,12 +58,6 @@ export default class StudentRegistration extends Component {
         })
     }
 
-    onChangeImage(e) {
-        this.setState({
-            image: e.target.value
-        })
-    }
-
     onChangeToLogin() {
         this.props.history.push('/student-login');
     }
@@ -95,7 +88,7 @@ export default class StudentRegistration extends Component {
             lastName: '',
             email: '',
             password: '',
-            image:''
+            image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_BzGCRFUnQvDPPd8rrI9cHczEpj4ED5avR1pnKjAxkZ3yq_yoCrdXalvDvjLLEaaEMH0&usqp=CAU'
         })
 
         //after registration success navigate to the login
@@ -174,17 +167,6 @@ export default class StudentRegistration extends Component {
                                     onChange={this.onChangeStudentPassword}
                                 />
                             </div>
-
-                            <div className="form-group">
-                                <label>Image: </label>
-                                <input type="text"
-                                    required
-                                    className="form-control"
-                                    value={this.state.image}
-                                    onChange={this.onChangeImage}
-                                />
-                            </div>
-
 
                             <button type="submit" className={styles.g_btn}>
                                 Sign up

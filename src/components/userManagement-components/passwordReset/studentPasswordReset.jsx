@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import styles from "./styles.module.css";
 
-export default function StudentPasswordReser() {
+export default function StudentPasswordReset() {
 
 	const [validUrl, setValidUrl] = useState(false);
 	const [password, setPassword] = useState("");
@@ -12,6 +12,7 @@ export default function StudentPasswordReser() {
 	const param = useParams();
 	const url = `http://localhost:5000/student/password-reset/${param.id}/${param.token}`;
 
+	//check valid URL or not
 	useEffect(() => {
 		const verifyUrl = async () => {
 			try {
@@ -24,31 +25,42 @@ export default function StudentPasswordReser() {
 		verifyUrl();
 	}, [param, url]);
 
-	const handleSubmit = async (e) => {
+
+	const onsubmit = async (e) => {
+
 		e.preventDefault();
+
 		try {
+
 			const { data } = await axios.post(url, { password });
 			setMsg(data.message);
 			setError("");
 			window.location = "/student-login";
-		} catch (error) {
-			if (
-				error.response &&
-				error.response.status >= 400 &&
-				error.response.status <= 500
-			) {
+
+		}
+		catch (error) {
+
+			if (error.response && error.response.status >= 400 && error.response.status <= 500) {
 				setError(error.response.data.message);
 				setMsg("");
 			}
+
 		}
 	};
 
+
 	return (
+
 		<Fragment>
+
 			{validUrl ? (
+
 				<div style={{ marginTop: "-100px", marginLeft: "-200px" }} className={styles.container}>
-					<form className={styles.form_container} onSubmit={handleSubmit}>
+
+					<form className={styles.form_container} onSubmit={onsubmit}>
+
 						<h1>Add New Password</h1>
+
 						<input
 							type="password"
 							placeholder="Password"
@@ -60,16 +72,24 @@ export default function StudentPasswordReser() {
 							required
 							className={styles.input}
 						/>
-						{error && <div className={styles.error_msg}>{error}</div>}
-						{msg && <div className={styles.success_msg}>{msg}</div>}
+
+						{/* display invalid password message */}
+						{error && <div className={styles.err_msg}>{error}</div>}
+						{/* display password reset success message */}
+						{msg && <div className={styles.suc_msg}>{msg}</div>}
+
 						<button type="submit" className={styles.g_btn}>
 							Submit
 						</button>
+
 					</form>
 				</div>
 			) : (
+
 				<h1>404 Not Found</h1>
+
 			)}
+
 		</Fragment>
 	)
 }

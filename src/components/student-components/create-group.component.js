@@ -126,7 +126,15 @@ export default class CreateGroup extends Component {
         }
 
         axios.post('http://localhost:5000/groups/add', group)
-            .then(res => console.log(res.data), alert("Successfully submitted the group"));
+            .then(res => {
+                console.log(res.data);
+                if (res.status == 400){
+                    alert('Group cannot be created');
+                } else {
+                    alert('Group created successfully');
+                }
+            }
+            );
 
         this.setState({
             groupname: '',

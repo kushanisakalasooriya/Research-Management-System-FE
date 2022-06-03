@@ -14,7 +14,6 @@ export default class EmployeeRegistration extends Component {
         this.onChangeEmployeePassword = this.onChangeEmployeePassword.bind(this);
         this.onChangeEmployeeType = this.onChangeEmployeeType.bind(this);
         this.onChangeToLogin = this.onChangeToLogin.bind(this);
-        this.onChangeImage = this.onChangeImage.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
 
         this.state = {
@@ -25,14 +24,15 @@ export default class EmployeeRegistration extends Component {
             email: '',
             empType: '',
             password: '',
-            image:''
+            image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_BzGCRFUnQvDPPd8rrI9cHczEpj4ED5avR1pnKjAxkZ3yq_yoCrdXalvDvjLLEaaEMH0&usqp=CAU',
+            researchField:'N/A'
         }
 
     }
 
     componentDidMount() {
         this.setState({
-            employees: ['Supervisor', 'co-Supervisor', 'panel member'],
+            employees: ['Supervisor', 'Co-Supervisor', 'Panel Member'],
             empType: 'Supervisor'
         });
     }
@@ -73,12 +73,6 @@ export default class EmployeeRegistration extends Component {
         })
     }
 
-    onChangeImage(e) {
-        this.setState({
-            image: e.target.value
-        })
-    }
-
     onChangeToLogin() {
         this.props.history.push('/employee-login');
     }
@@ -95,7 +89,8 @@ export default class EmployeeRegistration extends Component {
             email: this.state.email,
             empType: this.state.empType,
             password: this.state.password,
-            image: this.state.image
+            image: this.state.image,
+            researchField: this.state.researchField
         }
 
         console.log(empDetails);
@@ -110,7 +105,8 @@ export default class EmployeeRegistration extends Component {
             email: '',
             empType: '',
             password: '',
-            image:''
+            image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_BzGCRFUnQvDPPd8rrI9cHczEpj4ED5avR1pnKjAxkZ3yq_yoCrdXalvDvjLLEaaEMH0&usqp=CAU',
+            researchField:'N/A'
         })
 
         //after registration success navigate to the login
@@ -209,17 +205,6 @@ export default class EmployeeRegistration extends Component {
                                     onChange={this.onChangeEmployeePassword}
                                 />
                             </div>
-
-                            <div className="form-group">
-                                <label>Image: </label>
-                                <input type="text"
-                                    required
-                                    className="form-control"
-                                    value={this.state.image}
-                                    onChange={this.onChangeImage}
-                                />
-                            </div>
-
 
                             <button type="submit" className={styles.g_btn}>
                                 Sign up
