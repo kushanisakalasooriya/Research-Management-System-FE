@@ -46,7 +46,7 @@ export default class SupervisorHome extends Component {
                                 <Link to="/supervisor-chat"><button>Chat with Students</button></Link>
                             </div>
                             <div className="lReportBtn">
-                                <button onClick={this.onClickReportV}>Evaluate documents</button>
+                                <Link to="/mscheme-download"><button>Evaluate documents</button></Link>
                             </div>
                         </center>
 

@@ -125,7 +125,7 @@ export default class studentHome extends Component {
           this.state.flagcosup = "1";
         } else if (this.state.topics[i].state === "Rejected") {
           this.state.flagcosup = "2";
-        } else if (this.state.topics[i].state === "Pending"){
+        } else if (this.state.topics[i].state === "Pending") {
           this.state.flagcosup = "3";
         }
       }
@@ -141,9 +141,9 @@ export default class studentHome extends Component {
     } else if (this.state.flagcosup === "1") {
       alert("Your topic is already Accepted");
 
-    }else if(this.state.flagcosup === "3"){
+    } else if (this.state.flagcosup === "3") {
       alert("You already registered a topic !");
-    }else{
+    } else {
 
       // window.location = '/reg-topic'
       this.props.history.push("/reg-topic");
@@ -179,11 +179,11 @@ export default class studentHome extends Component {
     }
   }
 
-  mschemeDownload(){
+  mschemeDownload() {
     this.props.history.push('/mscheme-download');
   }
 
-  templateDownload(){
+  templateDownload() {
     this.props.history.push('/template-download');
   }
 
@@ -305,9 +305,9 @@ export default class studentHome extends Component {
             <div className="row justify-content-center">
               <div className="col-3 col-md-auto">
                 <Link to="/student-chat/"> < button
-                  style={{ width: "300px", margin: "10px" }}
+                  style={{ width: "500px", margin: "15px" }}
                   type="button"
-                  class="btn btn-success btn-info"
+                  class="btn btn-success btn-info btn-lg"
                 >
                   {" "}
                   Chat with Supervisor{" "}
