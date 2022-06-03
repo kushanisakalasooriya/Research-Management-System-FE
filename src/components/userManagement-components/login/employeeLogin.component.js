@@ -65,15 +65,27 @@ export default class EmployeeLogin extends Component {
 
           //Navigate to the employee related page
           if (res.data.user.empType === 'Supervisor') {
+            window.sessionStorage.setItem(
+              "navBarType",
+              ('3')
+            );
             this.props.history.push('/supervisor-home');
           }
           else if (res.data.user.empType === 'Co-Supervisor') {
+            window.sessionStorage.setItem(
+              "navBarType",
+              ('3')
+            );
             this.props.history.push('/co-supervisor-home');
           }
           else if (res.data.user.empType === 'Panel Member') {
             this.props.history.push('/panel-home');
           }
           else if (res.data.user.empType === 'Admin') {
+            window.sessionStorage.setItem(
+              "navBarType",
+              ('2')
+            );
             this.props.history.push('/admin-home');
           }
           // this.props.history.push(`/employee-profile/${res.data.user._id}`);
