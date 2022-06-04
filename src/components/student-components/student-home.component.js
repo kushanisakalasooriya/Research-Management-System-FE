@@ -323,27 +323,6 @@ export default class studentHome extends Component {
               </div>
             </div>
           </div>
-<<<<<<< HEAD
-          <div className="container">
-            <div className="row justify-content-center">
-              <div className="col-3 col-md-auto">
-                <Link to="/student-chat/">
-                  {" "}
-                  <button
-                    style={{ width: "500px", margin: "15px" }}
-                    type="button"
-                    class="btn btn-success btn-info btn-lg"
-                  >
-                    {" "}
-                    Chat with Supervisor{" "}
-                  </button>
-                </Link>
-                <br></br>
-              </div>
-            </div>
-          </div>
-=======
->>>>>>> 2cbd0391a7ce78c6d872df31f159fcd37da493ef
         </div>
       </div>
     );
