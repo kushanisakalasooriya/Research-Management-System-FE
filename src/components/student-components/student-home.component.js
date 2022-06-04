@@ -17,7 +17,11 @@ class Message extends React.Component {
 
 class Message2 extends React.Component {
   render() {
-    return <center><p style={{ color: "red" }}>Research topic is not accepted yet.</p></center>;
+    return (
+      <center>
+        <p style={{ color: "red" }}>Research topic is not accepted yet.</p>
+      </center>
+    );
   }
 }
 
@@ -63,13 +67,12 @@ export default class studentHome extends Component {
     await axios
       .post("http://localhost:5000/groups/loggedUser", student)
       .then((response) => {
-        if (response.status == 201){
-          
-      } else {
-        this.setState({ grp: response.data.user.groupname });
-      }
+        if (response.status == 201) {
+        } else {
+          this.setState({ grp: response.data.user.groupname });
+        }
         // if (response.data.user.groupname){
-        
+
         // }else {
         // alert('User does not have a group');
         // }
@@ -143,14 +146,12 @@ export default class studentHome extends Component {
   RegTopic() {
     if (this.state.flagcosup === "2") {
       alert("Your topic is Rejected.Register a new Topic.");
-      this.props.history.push('/reg-topic');
+      this.props.history.push("/reg-topic");
     } else if (this.state.flagcosup === "1") {
       alert("Your topic is already Accepted");
-
     } else if (this.state.flagcosup === "3") {
       alert("You already registered a topic !");
     } else {
-
       // window.location = '/reg-topic'
       this.props.history.push("/reg-topic");
     }
@@ -185,9 +186,8 @@ export default class studentHome extends Component {
     }
   }
 
-
-  templateDownload(){
-    this.props.history.push('/template-download');
+  templateDownload() {
+    this.props.history.push("/template-download");
   }
 
   render() {
@@ -205,7 +205,12 @@ export default class studentHome extends Component {
           {" "}
           <div style={{ marginBottom: "8px" }}>
             <img
-              style={{ width: "40px", height: "40px", float: "right", borderRadius: "50px" }}
+              style={{
+                width: "40px",
+                height: "40px",
+                float: "right",
+                borderRadius: "50px",
+              }}
               src={this.state.loggedUser.image}
             ></img>
           </div>
@@ -293,14 +298,17 @@ export default class studentHome extends Component {
           <div className="container">
             <div className="row justify-content-center">
               <div className="col-3 col-md-auto">
-                <Link to="/student-chat/"> < button
-                  style={{ width: "500px", margin: "15px" }}
-                  type="button"
-                  class="btn btn-success btn-info btn-lg"
-                >
+                <Link to="/student-chat/">
                   {" "}
-                  Chat with Supervisor{" "}
-                </button></Link>
+                  <button
+                    style={{ width: "500px", margin: "15px" }}
+                    type="button"
+                    class="btn btn-success btn-info btn-lg"
+                  >
+                    {" "}
+                    Chat with Supervisor{" "}
+                  </button>
+                </Link>
                 <br></br>
               </div>
             </div>
@@ -308,20 +316,23 @@ export default class studentHome extends Component {
           <div className="container">
             <div className="row justify-content-center">
               <div className="col-3 col-md-auto">
-                <Link to="/student-chat/"> < button
-                  style={{ width: "500px", margin: "15px" }}
-                  type="button"
-                  class="btn btn-success btn-info btn-lg"
-                >
+                <Link to="/student-chat/">
                   {" "}
-                  Chat with Supervisor{" "}
-                </button></Link>
+                  <button
+                    style={{ width: "500px", margin: "15px" }}
+                    type="button"
+                    class="btn btn-success btn-info btn-lg"
+                  >
+                    {" "}
+                    Chat with Supervisor{" "}
+                  </button>
+                </Link>
                 <br></br>
               </div>
             </div>
           </div>
         </div>
-      </div >
+      </div>
     );
   }
 }

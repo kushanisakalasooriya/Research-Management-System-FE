@@ -14,11 +14,12 @@ export default class Navbar extends Component {
 
   logOut() {
     sessionStorage.clear();
+    window.location='/student-login';
   }
 
-  render() {
-    if (this.state.flag === '1'){
-      return (
+  selectNavBar(){
+    if(this.state.flag === '1')
+      {return (
         <nav className="navbar navbar-dark bg-dark navbar-expand-lg">
           <Link to="/" className="navbar-brand">Research Project Management Tool</Link>
           <div className="collapse navbar-collapse">
@@ -43,14 +44,14 @@ export default class Navbar extends Component {
                 <Link to="/student-profile" className="nav-link"> <img style={{ width: "40px", height: "40px" }} src={profileIcon}></img></Link>
               </li> */}
               <li className="navbar-item">
-                <Link onClick={this.logOut.bind(this)} to="/student-login" className="nav-link"> logout</Link>
+                <Link onClick={this.logOut.bind(this)} className="nav-link"> logout</Link>
               </li>
             </ul>
           </div>
         </nav>
-      );
-    } else if (this.state.flag === '2'){
-      return (
+      );}
+    else if(this.state.flag === '2')
+      {return (
         <nav className="navbar navbar-dark bg-dark navbar-expand-lg">
           <Link to="/" className="navbar-brand">Research Project Management Tool</Link>
           <div className="collapse navbar-collapse">
@@ -62,37 +63,43 @@ export default class Navbar extends Component {
                 <Link to="/student-profile" className="nav-link"> <img style={{ width: "40px", height: "40px" }} ></img></Link>
               </li>
               <li className="navbar-item">
-                <Link onClick={this.logOut.bind(this)} to="/student-login" className="nav-link"> logout</Link>
+                <Link onClick={this.logOut.bind(this)}  className="nav-link"> logout</Link>
               </li>
             </ul>
           </div>
         </nav>
-      );
-    } else if (this.state.flag === '3') {
-      return (
-        <nav className="navbar navbar-dark bg-dark navbar-expand-lg">
-          <Link to="/" className="navbar-brand">Research Project Management Tool</Link>
-          <div className="collapse navbar-collapse">
-            <ul className="navbar-nav mr-auto">
-              <li className="navbar-item">
-                <Link to="/supervisor-home" className="nav-link">Supervisor</Link>
-              </li>
-              <li className="navbar-item">
-                <Link to="/co-supervisor-home" className="nav-link">Co-Supervisor</Link>
-              </li>
-              <li className="navbar-student-profile-item">
-                <Link to="/student-profile" className="nav-link"> <img style={{ width: "40px", height: "40px" }} ></img></Link>
-              </li>
-              <li className="navbar-item">
-                <Link onClick={this.logOut.bind(this)} to="/student-login" className="nav-link"> logout</Link>
-              </li>
-            </ul>
-          </div>
-        </nav>
-      );
-    } else {
-      return null;
-    }
-   
+      );}
+    else if(this.state.flag === '3')
+     {return (
+      <nav className="navbar navbar-dark bg-dark navbar-expand-lg">
+        <Link to="/" className="navbar-brand">Research Project Management Tool</Link>
+        <div className="collapse navbar-collapse">
+          <ul className="navbar-nav mr-auto">
+            <li className="navbar-item">
+              <Link to="/supervisor-home" className="nav-link">Supervisor</Link>
+            </li>
+            <li className="navbar-item">
+              <Link to="/co-supervisor-home" className="nav-link">Co-Supervisor</Link>
+            </li>
+            <li className="navbar-student-profile-item">
+              <Link to="/student-profile" className="nav-link"> <img style={{ width: "40px", height: "40px" }} ></img></Link>
+            </li>
+            <li className="navbar-item">
+              <Link onClick={this.logOut.bind(this)}  className="nav-link"> logout</Link>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    );}
+    else
+      return null
   }
+
+  render() {
+    const navbar = this.selectNavBar();
+    return( 
+    <div>
+      {navbar}
+    </div>
+    )}   
 }

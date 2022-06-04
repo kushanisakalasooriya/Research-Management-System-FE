@@ -69,8 +69,8 @@ export default class StudentLogin extends Component {
         if (res.data.status === 200) {
           // navigate to the student home page
           alert("logged in successfully");
-
-          this.props.history.push('/student-home');
+          
+          window.location='/student-home';
         } else {
           alert("Login Failed. Please re-check your credentials.");
         }
