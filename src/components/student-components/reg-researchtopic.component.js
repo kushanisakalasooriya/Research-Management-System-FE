@@ -105,6 +105,9 @@ export default class regResearchTopic extends Component {
       topic: "",
       supervisor: "",
     });
+
+    alert('Topic submitted')
+    this.props.history.push('/student-home');
   }
 
   render() {
@@ -135,14 +138,17 @@ export default class regResearchTopic extends Component {
 
     return (
       <div>
-        <div className="container" style={{ width: '800px' }}>
-          <div className="row justify-content-center">
-            <div className="col-3 col-md-auto">
-              <h3 style={{
-                width: '100%',
-                marginBottom: '40px'
-              }}> Register Research Topic</h3>
-              {/* {component} */}
+                <hr/>
+                <h3 style={{
+                  width:'100%',
+                marginBottom:'20px',
+                textAlign:'center'
+            }}> Register Research Topic</h3>
+            <hr/>
+        <div className="container" style={{width:'800px'}}>
+            <div className="row justify-content-center">
+              <div className="col-3 col-md-auto">
+        {/* {component} */}
 
               <form onSubmit={this.onSubmit}>
                 <div className="form-group">

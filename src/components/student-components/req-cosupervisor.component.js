@@ -72,19 +72,37 @@ export default class reqCoSupervisor extends Component {
 
     axios
       .post("http://localhost:5000/groups/update/cosupervisor", cosupervisor)
-      .then((res) => console.log(res.data));
+      .then((res) => {
+        // if ( res.status == '200'){
+          // window.location='/student-home'
+          alert('Success');
+          // this.props.history.push('/student-home');
+          // this.props.history.push('/student-home');
+        // }else {
+          alert('Error inserting')
+        // }
+      });
 
     this.setState({
       groupname: "",
       cosupervisor: "",
     });
+    alert('Done')
+    this.props.history.push('/student-home');
   }
 
   render() {
     return (
       <div>
-        <h4> Request a cosupervisor </h4>
-        <form onSubmit={this.onSubmit}>
+        <hr />
+        <h4 style={{ textAlign:'center'}}> Request a Co-Supervisor </h4>
+        <hr />
+        <br></br>
+        <div className="container">
+          <div className="row justify-content-center">
+            <div className="col-3 col-md-auto">
+              
+            <form onSubmit={this.onSubmit}>
           <div>
             <select
               className="browser-default custom-select"
@@ -92,7 +110,6 @@ export default class reqCoSupervisor extends Component {
               id="cosupervisor"
               onChange={this.onChangeCoSupervisor}
               style={{
-                width: "25%",
                 marginBottom: "20px",
               }}
             >
@@ -109,10 +126,19 @@ export default class reqCoSupervisor extends Component {
             </select>
           </div>
 
-          <div className="form-group">
-            <input type="submit" value="Submit" className="btn btn-primary" />
+          <div className="form-group text-center">
+            <input 
+            class="btn btn-outline-dark"
+            style={{width:'300px'}} type="submit" value="Submit" />
           </div>
         </form>
+
+            </div>
+          </div>
+        </div>
+
+        
+        
       </div>
     );
   }
