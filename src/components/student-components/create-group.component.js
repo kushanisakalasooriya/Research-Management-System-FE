@@ -29,7 +29,7 @@ export default class CreateGroup extends Component {
 
   componentDidMount() {
     axios
-      .get("http://localhost:5000/groups")
+      .get("https://mndexmgdhd.execute-api.us-east-2.amazonaws.com/groups")
       .then((response) => {
         this.setState({ groupMembers: response.data });
         for (var i = 0; i < this.state.groupMembers.length; i++) {
@@ -107,7 +107,7 @@ export default class CreateGroup extends Component {
         status: "Pending",
       };
 
-      await axios.post("http://localhost:5000/groups/add", group).then((res) => {
+      await axios.post("https://mndexmgdhd.execute-api.us-east-2.amazonaws.com/groups/add", group).then((res) => {
         // console.log(res.data);
         if (res.status == 201) {
           this.setState({
@@ -128,7 +128,7 @@ export default class CreateGroup extends Component {
       }
 
       await axios
-        .post("http://localhost:5000/supervisor/topic/add", topic)
+        .post("https://mndexmgdhd.execute-api.us-east-2.amazonaws.com/supervisor/topic/add", topic)
         .then((res) => {
           if (res.status == 201) {
             this.setState({

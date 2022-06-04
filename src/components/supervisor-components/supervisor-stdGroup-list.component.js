@@ -24,7 +24,7 @@ export default class SuperrvisorStdGroupList extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:5000/groups')
+        axios.get('https://mndexmgdhd.execute-api.us-east-2.amazonaws.com/groups')
             .then(response => {
                 this.setState({ groups: response.data })
 

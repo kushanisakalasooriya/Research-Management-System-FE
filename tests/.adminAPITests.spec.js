@@ -4,7 +4,7 @@ import "regenerator-runtime/runtime";
 describe("Sample test suit", () => {
   it("tests / API TEST/ GET specific student", async () => {
     await axios
-      .get(`http://localhost:5000/admin/getFile/629b768e67f6181abbf1bbab`)
+      .get(`https://mndexmgdhd.execute-api.us-east-2.amazonaws.com/admin/getFile/629b768e67f6181abbf1bbab`)
       .then((res) => {
         expect(res.data).toEqual({
           _id: "629b768e67f6181abbf1bbab",

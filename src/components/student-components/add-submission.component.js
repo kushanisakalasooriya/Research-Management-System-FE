@@ -20,7 +20,7 @@
 //       }
 
 //     componentDidMount() {
-//         axios.get('http://localhost:5000/admin/submissionType/')
+//         axios.get('https://mndexmgdhd.execute-api.us-east-2.amazonaws.com/admin/submissionType/')
 //           .then(response => {
 //             if (response.data.length > 0) {
 //               this.setState({
@@ -39,7 +39,7 @@
 //         await this.setState({
 //           submissionName: e.target.value
 //         })
-//         // await axios.get('http://localhost:5000/admin/submissionType/getSubmissionId/'+this.state.submissionName)
+//         // await axios.get('https://mndexmgdhd.execute-api.us-east-2.amazonaws.com/admin/submissionType/getSubmissionId/'+this.state.submissionName)
 //         //   .then(response => {
 //         //     if (response.data.length > 0) {
 //         //       this.setState({
@@ -76,7 +76,7 @@
     
 //         console.log(exercise);
     
-//         axios.post('http://localhost:5000/exercises/add', exercise)
+//         axios.post('https://mndexmgdhd.execute-api.us-east-2.amazonaws.com/exercises/add', exercise)
 //           .then(res => console.log(res.data));
     
 //         window.location = '/';

@@ -49,7 +49,7 @@ export default class StudentLogin extends Component {
 
     console.log(studentDetails);
 
-    axios.post('http://localhost:5000/student/login/', studentDetails)
+    axios.post('https://mndexmgdhd.execute-api.us-east-2.amazonaws.com/student/login/', studentDetails)
       .then((res) => {
         //create session for passing student details
         window.sessionStorage.setItem(

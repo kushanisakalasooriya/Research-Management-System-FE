@@ -25,7 +25,7 @@ export default class SupervisorEditStdGroups extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:5000/groups/' + this.props.match.params.id)
+        axios.get('https://mndexmgdhd.execute-api.us-east-2.amazonaws.com/groups/' + this.props.match.params.id)
             .then(response => {
                 this.setState({
                     groupname: response.data.groupname,
@@ -92,7 +92,7 @@ export default class SupervisorEditStdGroups extends Component {
 
         console.log(groups);
 
-        axios.post('http://localhost:5000/groups/update/' + this.props.match.params.id, groups)
+        axios.post('https://mndexmgdhd.execute-api.us-east-2.amazonaws.com/groups/update/' + this.props.match.params.id, groups)
             .then(res => console.log(res.data));
 
         alert("Successfully Updated !")

@@ -32,7 +32,7 @@ export default class studentHome extends Component {
   }
 
   async componentDidMount() {
-    // axios.get('http://localhost:5000/groups/')
+    // axios.get('https://mndexmgdhd.execute-api.us-east-2.amazonaws.com/groups/')
     //   .then(response => {
     //     this.setState({ groups: response.data })
     //   })
@@ -52,7 +52,7 @@ export default class studentHome extends Component {
 
     //get the group details according to the user
     await axios
-      .post("http://localhost:5000/groups/loggedUser", student)
+      .post("https://mndexmgdhd.execute-api.us-east-2.amazonaws.com/groups/loggedUser", student)
       .then((response) => {
         if (response.status === 201) {
         } else {
@@ -78,7 +78,7 @@ export default class studentHome extends Component {
     // console.log('A => ', this.state.group1.groupname);
 
     // get the topic details according to the group
-    // await axios.post('http://localhost:5000/groups/loggedUserGroup', group1)
+    // await axios.post('https://mndexmgdhd.execute-api.us-east-2.amazonaws.com/groups/loggedUserGroup', group1)
     // .then(response => {
     //   this.setState({ status: response.data.topic.state })
     // })
@@ -89,7 +89,7 @@ export default class studentHome extends Component {
 
     //get all the topics
     axios
-      .get("http://localhost:5000/supervisor/topic")
+      .get("https://mndexmgdhd.execute-api.us-east-2.amazonaws.com/supervisor/topic")
       .then((response) => {
         this.setState({ topics: response.data });
       })

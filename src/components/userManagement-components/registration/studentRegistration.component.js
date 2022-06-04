@@ -77,7 +77,7 @@ export default class StudentRegistration extends Component {
             image: this.state.image
         }
 
-        axios.post('http://localhost:5000/student/registration/', studentDetails)
+        axios.post('https://mndexmgdhd.execute-api.us-east-2.amazonaws.com/student/registration/', studentDetails)
             .then(res => { 
 
                 if (res.data === 'Student Registration successfully!') {

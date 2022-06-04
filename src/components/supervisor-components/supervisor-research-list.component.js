@@ -138,7 +138,7 @@ export default class SuperrvisorResearchList extends Component {
 
     async componentWillMount(props) {
 
-        await axios.get('http://localhost:5000/groups')
+        await axios.get('https://mndexmgdhd.execute-api.us-east-2.amazonaws.com/groups')
             .then(response => {
                 this.setState({ stdGroup: response.data })
 
@@ -158,7 +158,7 @@ export default class SuperrvisorResearchList extends Component {
         }
         console.log("The Group", this.state.theGroup);
 
-        await axios.post('http://localhost:5000/student-submission/researchSubmission', topicGroup)
+        await axios.post('https://mndexmgdhd.execute-api.us-east-2.amazonaws.com/student-submission/researchSubmission', topicGroup)
             .then(res => {
                 this.setState({ records: res.data.group })
                 console.log("Records", this.state.records)

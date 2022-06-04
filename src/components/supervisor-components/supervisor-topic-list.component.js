@@ -32,7 +32,7 @@ export default class SuperrvisorTopicList extends Component {
     }
 
     async componentDidMount() {
-        await axios.get('http://localhost:5000/groups')
+        await axios.get('https://mndexmgdhd.execute-api.us-east-2.amazonaws.com/groups')
             .then(response => {
                 this.setState({ stdGroup: response.data })
 
@@ -52,7 +52,7 @@ export default class SuperrvisorTopicList extends Component {
             theGroup: this.state.theGroup
         }
 
-        await axios.post('http://localhost:5000/supervisor/topic/researchTopics', topicGroup)
+        await axios.post('https://mndexmgdhd.execute-api.us-east-2.amazonaws.com/supervisor/topic/researchTopics', topicGroup)
             .then(response => {
                 this.setState({ researchTopics: response.data.group })
 

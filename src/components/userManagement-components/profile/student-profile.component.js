@@ -22,7 +22,7 @@ export default class StudentProfile extends Component {
 
 
     componentDidMount() {
-        axios.get('http://localhost:5000/student/registration/' + this.props.match.params.id)
+        axios.get('https://mndexmgdhd.execute-api.us-east-2.amazonaws.com/student/registration/' + this.props.match.params.id)
             .then(response => {
                 this.setState({
                     stdID: response.data.stdID,
@@ -57,7 +57,7 @@ export default class StudentProfile extends Component {
             "Are you sure want to delete your account?"
         )
         if (confirmBox === true) {
-            axios.delete('http://localhost:5000/student/registration/' + this.props.match.params.id)
+            axios.delete('https://mndexmgdhd.execute-api.us-east-2.amazonaws.com/student/registration/' + this.props.match.params.id)
                 .then(res => console.log(res.data));
             alert('Your account delete successfully!');
             this.props.history.push('/student-registration');

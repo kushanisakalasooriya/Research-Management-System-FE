@@ -47,7 +47,7 @@ export default class EmployeeLogin extends Component {
       password: this.state.password
     }
 
-    axios.post('http://localhost:5000/employee/login/', empDetails)
+    axios.post('https://mndexmgdhd.execute-api.us-east-2.amazonaws.com/employee/login/', empDetails)
       .then((res) => {
         //create session for passing employee details
         window.sessionStorage.setItem(
