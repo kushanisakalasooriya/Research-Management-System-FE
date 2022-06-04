@@ -158,8 +158,10 @@ export default class studentHome extends Component {
     if (this.state.flagcosup === "2") {
       alert("Your topic is Rejected.");
     } else if (this.state.flagcosup === "0") {
+      alert("Please Submit a Research Topic! ");
+    } else if(this.state.flagcosup === "3"){
       alert("Your topic is not yet accepted");
-    } else {
+    }else {
       // window.location = '/reg-topic'
       this.props.history.push("/stu-submission1");
     }
@@ -193,7 +195,9 @@ export default class studentHome extends Component {
                   style={{ width: "500px", margin: "15px", backgroundColor: "#BEA475" }}
                   onClick={this.RegGroup.bind(this)}
                   type="button"
+
                   class="btn col-16 btn-lg"
+
                 >
                   {" "}
                   Submit Student Group{" "}
