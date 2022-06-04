@@ -70,7 +70,8 @@ export default class StudentLogin extends Component {
           // navigate to the student home page
           alert("logged in successfully");
 
-          this.props.history.push('/student-home');
+          // this.props.history.push('/student-home');
+          window.location="/student-home";
         } else {
           alert("Login Failed. Please re-check your credentials.");
         }

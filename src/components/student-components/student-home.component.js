@@ -170,8 +170,10 @@ export default class studentHome extends Component {
     if (this.state.flagcosup === "2") {
       alert("Your topic is Rejected.");
     } else if (this.state.flagcosup === "0") {
+      alert("Please Submit a Research Topic! ");
+    } else if(this.state.flagcosup === "3"){
       alert("Your topic is not yet accepted");
-    } else {
+    }else {
       // window.location = '/reg-topic'
       this.props.history.push("/stu-submission1");
     }
@@ -217,7 +219,7 @@ export default class studentHome extends Component {
                   style={{ width: "500px", margin: "15px" }}
                   onClick={this.RegGroup.bind(this)}
                   type="button"
-                  class="btn btn-secondary col-16 btn-lg"
+                  class="btn btn-outline-dark col-16 btn-lg"
                 >
                   {" "}
                   Submit Student Group{" "}
@@ -284,21 +286,6 @@ export default class studentHome extends Component {
                   {" "}
                   Download Templates{" "}
                 </button>
-                <br></br>
-              </div>
-            </div>
-          </div>
-          <div className="container">
-            <div className="row justify-content-center">
-              <div className="col-3 col-md-auto">
-                <Link to="/student-chat/"> < button
-                  style={{ width: "500px", margin: "15px" }}
-                  type="button"
-                  class="btn btn-success btn-info btn-lg"
-                >
-                  {" "}
-                  Chat with Supervisor{" "}
-                </button></Link>
                 <br></br>
               </div>
             </div>

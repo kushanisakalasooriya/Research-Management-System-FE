@@ -14,6 +14,8 @@ export default class Navbar extends Component {
 
   logOut() {
     sessionStorage.clear();
+    // this.props.history.push("/student-login");
+    window.location="/student-login";
   }
 
   render() {
@@ -43,7 +45,7 @@ export default class Navbar extends Component {
                 <Link to="/student-profile" className="nav-link"> <img style={{ width: "40px", height: "40px" }} src={profileIcon}></img></Link>
               </li> */}
               <li className="navbar-item">
-                <Link onClick={this.logOut.bind(this)} to="/student-login" className="nav-link"> logout</Link>
+                <Link onClick={this.logOut.bind(this)} className="nav-link"> logout</Link>
               </li>
             </ul>
           </div>
@@ -62,7 +64,7 @@ export default class Navbar extends Component {
                 <Link to="/student-profile" className="nav-link"> <img style={{ width: "40px", height: "40px" }} ></img></Link>
               </li>
               <li className="navbar-item">
-                <Link onClick={this.logOut.bind(this)} to="/student-login" className="nav-link"> logout</Link>
+                <Link onClick={this.logOut.bind(this)} className="nav-link"> logout</Link>
               </li>
             </ul>
           </div>
@@ -84,7 +86,7 @@ export default class Navbar extends Component {
                 <Link to="/student-profile" className="nav-link"> <img style={{ width: "40px", height: "40px" }} ></img></Link>
               </li>
               <li className="navbar-item">
-                <Link onClick={this.logOut.bind(this)} to="/student-login" className="nav-link"> logout</Link>
+                <Link onClick={this.logOut.bind(this)} className="nav-link"> logout</Link>
               </li>
             </ul>
           </div>
