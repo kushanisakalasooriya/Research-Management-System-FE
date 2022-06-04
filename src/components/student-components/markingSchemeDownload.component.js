@@ -142,13 +142,15 @@ export default class MarkingSchemeDownload extends Component {
         <hr />
         <h4>Download Marking Schemes</h4>
         <hr />
-        <br />
-        <ReactDatatable
-          config={this.config}
-          records={this.state.records}
-          columns={this.columns}
-          extraButtons={this.extraButtons}
-        />
+        <div style={{ backgroundColor: "rgba(255, 255, 255, 0.8)", padding: "15px" }}>
+          <br />
+          <ReactDatatable
+            config={this.config}
+            records={this.state.records}
+            columns={this.columns}
+            extraButtons={this.extraButtons}
+          />
+        </div>
       </div>
     )
   }

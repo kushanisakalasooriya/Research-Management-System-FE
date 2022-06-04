@@ -88,7 +88,8 @@ function App() {
         width: '100%',
         height: '100vh',
         paddingLeft: "0px",
-        paddingRight: "0px"
+        paddingRight: "0px",
+        backgroundColor: "rgba(255, 255, 255, 0.5)",
       }}>
         <Router>
 

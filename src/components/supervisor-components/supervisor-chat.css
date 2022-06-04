@@ -1,5 +1,5 @@
 .card {
-    background: #0D1A20;
+    background: #0d1a20dd;
     transition: .5s;
     border: 0;
     margin-bottom: 30px;
@@ -161,7 +161,7 @@
 }
 
 .chat .chat-history .my-message {
-    background: #252D30
+    background: #252d30ed
 }
 
 .chat .chat-history .my-message:after {
@@ -179,7 +179,7 @@
 }
 
 .chat .chat-history .other-message {
-    background: #01AF9D;
+    background: #01af9eed;
     text-align: right;
     color: white;
 }
