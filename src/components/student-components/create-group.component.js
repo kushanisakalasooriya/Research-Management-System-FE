@@ -1,24 +1,12 @@
 import React, { Component } from "react";
 import axios from "axios";
 
-// const Student = props => (
-//     <tr>
-//         <td>{props.student.stdID}</td>
-//         <td>{props.student.studentfirstName} {props.student.studentlastName}</td>
-//         <td>
-//             <Link to={""}> Add </Link>
-//         </td>
-//     </tr>
-// )
-
 export default class CreateGroup extends Component {
   constructor(props) {
     super(props);
 
     this.onChangeGroupName = this.onChangeGroupName.bind(this);
     this.onChangeGroupLeader = this.onChangeGroupLeader.bind(this);
-    // this.onChangeSupervisor = this.onChangeSupervisor.bind(this);
-    // this.onChangeCoSupervisor = this.onChangeCoSupervisor.bind(this);
     this.onChangemember02 = this.onChangemember02.bind(this);
     this.onChangemember03 = this.onChangemember03.bind(this);
     this.onChangemember04 = this.onChangemember04.bind(this);
@@ -55,10 +43,8 @@ export default class CreateGroup extends Component {
       .catch((error) => {
         console.log(error);
       });
-
-    // console.log(this.state.groupMembers);
   }
-
+             
   onChangeGroupName(e) {
     this.setState({
       groupname: e.target.value,
@@ -91,12 +77,6 @@ export default class CreateGroup extends Component {
 
   async onSubmit(e) {
     e.preventDefault();
-
-    // console.log('aaa', this.state.groupMembers);
-    // console.log('bbb',this.state.grouped);
-    // console.log('ccc',this.state.grouped.includes(this.state.member02));
-    // console.log('ee', this.state.member02);
-    // console.log('dd', ['IT20274252', 'IT20231682', 'IT20205638'].includes(this.state.member02));
 
     if (this.state.grouped.includes(this.state.member02)) {
       alert(this.state.member02 + " is already registered for a group");
@@ -137,19 +117,23 @@ export default class CreateGroup extends Component {
           this.setState({
             result1: "0",
           });
-          // alert('Group created successfully');
-          // this.props.history.push('/student-home');
         }
       });
+            this.setState({
+                groupname: '',
+                groupleader: '',
+                member02: '',
+                member03: '',
+                member04: '',
+            })
 
-      const topic = {
-        groupname: this.state.groupname,
-        topic: null,
-        state: "N/A",
-      };
-      // console.log(topic);
+            const topic = {
+                groupname: this.state.groupname,
+                topic: 'N/A',
+                state: 'Pending'
+            }
 
-      await axios
+            await axios
         .post("http://localhost:5000/supervisor/topic/add", topic)
         .then((res) => {
           if (res.status == 201) {
@@ -163,24 +147,16 @@ export default class CreateGroup extends Component {
           }
         });
 
-        this.setState({
-          groupname: "",
-          groupleader: "",
-          member02: "",
-          member03: "",
-          member04: "",
-        });
-
-        console.log('res', this.state.result1)
-
-      if (this.state.result1 == "1" || this.state.result2 == "1") {
-        alert("Error adding");
-      } else {
-        alert("Group created successfully");
-        this.props.history.push("/student-home");
+        if (this.state.result1 == "1" || this.state.result2 == "1") {
+          alert("Error adding");
+        } else {
+          alert("Group created successfully");
+          this.props.history.push("/student-home");
+        }
+          this.props.history.push('/student-home');
       }
-    }
-  }
+}
+    
 
   render() {
     return (

@@ -104,9 +104,18 @@ export default class StudentChat extends Component {
         return (
 
             <div>
-                <h3>Student Chat</h3>
+                <div className="headingModsLand" style={{ marginBottom: "30px", marginTop: "20px" }}>
+                    <h3>
+                        Chat with Your supervisor
+                    </h3>
+                </div>
 
-                <b> {this.state.StudentId}</b> You Are Going to send message to Mr. <b> {this.state.resSupervisor}</b> <button onClick={this.onSubmit} className='btn btn-primary'> Chat</button>
+                <div className="headingModsLand" style={{ marginBottom: "30px", marginTop: "20px" }}>
+                    <h6>
+                        Hi <b> {this.state.StudentId}</b>, You can chat with your supervisor Mr. <b> {this.state.resSupervisor}</b>.
+                        <br /><br /><a href="#" className='linkMod' style={{ textDecoration: 'none' }} onClick={this.onSubmit}>Start Your Conversation </a>
+                    </h6>
+                </div>
 
                 <div>
                     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />

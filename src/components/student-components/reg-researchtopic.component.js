@@ -2,17 +2,6 @@ import React, { Component } from "react";
 import axios from "axios";
 // import { response } from 'express';
 
-class Message extends React.Component {
-  render() {
-    return (
-      <p style={{ color: "red" }}>
-        Seems you are currently not belongs to any group.First, Submit a group
-        according to register the research topic.
-      </p>
-    );
-  }
-}
-
 export default class regResearchTopic extends Component {
   constructor(props) {
     super(props);
@@ -31,7 +20,7 @@ export default class regResearchTopic extends Component {
       flag: "0",
       loggedUser: "",
       employees: [],
-      supervisors:[]
+      supervisors: []
     };
   }
 
@@ -52,8 +41,8 @@ export default class regResearchTopic extends Component {
         console.log(error);
       });
 
-      //get employees and filter supervisors
-      axios
+    //get employees and filter supervisors
+    axios
       .get("http://localhost:5000/employee/registration/")
       .then((response) => {
         this.setState({ employees: response.data });
@@ -61,8 +50,8 @@ export default class regResearchTopic extends Component {
           // console.log('i ', this.state.employees[i].empType)
           if (this.state.employees[i].empType === 'Supervisor') {
             this.state.supervisors.push(this.state.employees[i].firstName +
-               ' ' + this.state.employees[i].lastName + 
-               ' - ' + this.state.employees[i].researchField);
+              ' ' + this.state.employees[i].lastName +
+              ' - ' + this.state.employees[i].researchField);
           }
         }
         console.log('s', this.state.supervisors);
@@ -161,67 +150,67 @@ export default class regResearchTopic extends Component {
               <div className="col-3 col-md-auto">
         {/* {component} */}
 
-        <form onSubmit={this.onSubmit}>
-          <div className="form-group">
-            <label> Research Topic : </label>
-            <input
-              type="text"
-              //   disabled={isDisabled}
-              required
-              className="form-control"
-              value={this.state.topic}
-              onChange={this.onChangeResearchTopic}
-              style={{
-                marginBottom:'20px'
-            }}
-            />
-          </div>
+              <form onSubmit={this.onSubmit}>
+                <div className="form-group">
+                  <label> Research Topic : </label>
+                  <input
+                    type="text"
+                    //   disabled={isDisabled}
+                    required
+                    className="form-control"
+                    value={this.state.topic}
+                    onChange={this.onChangeResearchTopic}
+                    style={{
+                      marginBottom: '20px'
+                    }}
+                  />
+                </div>
 
-          <div>
-          <label> Supervisor : </label>
-            <select
-              className="browser-default custom-select"
-              aria-label="Default select example"
-              name="supervisor"
-              id="supervisor"
-              onChange={this.onChangeSupervisor}
-              style={{
-                marginBottom:'20px'
-            }}
-            ><option value="" selected>
-            Choose
-          </option>
-              
-              {
-                  this.state.supervisors.map(function (superv) {
-                    return <option
-                      key={superv}
-                      value={superv}>{superv}
-                    </option>;
-                  })
-                }
-              {/* <option value="" selected>
+                <div>
+                  <label> Supervisor : </label>
+                  <select
+                    className="browser-default custom-select"
+                    aria-label="Default select example"
+                    name="supervisor"
+                    id="supervisor"
+                    onChange={this.onChangeSupervisor}
+                    style={{
+                      marginBottom: '20px'
+                    }}
+                  ><option value="" selected>
+                      Choose
+                    </option>
+
+                    {
+                      this.state.supervisors.map(function (superv) {
+                        return <option
+                          key={superv}
+                          value={superv}>{superv}
+                        </option>;
+                      })
+                    }
+                    {/* <option value="" selected>
                 Choose
               </option> */}
-              {/* <option value="Janith">Janith - IOT</option>
+                    {/* <option value="Janith">Janith - IOT</option>
               <option value="Sahan">Sahan - AI </option>
               <option value="Poorna">Poorna - AI</option>
               <option value="Eranda">Eranda - WEB</option> */}
-            </select>
-          </div>
+                  </select>
+                </div>
 
-          <div className="form-group text-center">
-            <input
-            class="btn btn-outline-dark"
-              type="submit"
-              value="Submit topic"
-            />
-          </div>
-        </form>
-              </div>
+                <div className="form-group text-center">
+                  <input
+                    class="btn btn-outline-dark"
+                    type="submit"
+                    value="Submit topic"
+                  />
+                </div>
+              </form>
             </div>
           </div>
-        
+        </div>
+
       </div>
     );
   }

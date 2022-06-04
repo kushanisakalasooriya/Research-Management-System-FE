@@ -1,7 +1,5 @@
 .login_container {
-	width: 100%;
-	min-height: 100vh;
-	background-color: #f5f5f5;
+	padding-top: 50px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -60,18 +58,36 @@
 	text-align: center;
 }
 
-.right {
+.Stdright {
 	flex: 1;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	background-color: #484848be;
+	background-color: #251405;
 	border-top-right-radius: 10px;
 	border-bottom-right-radius: 10px;
 }
 
-.right h1 {
+.Stdright h1 {
+	margin-top: 0;
+	color: white;
+	font-size: 40px;
+	align-self: center;
+}
+
+.Empright {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	background-color: #BB8849;
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
+}
+
+.Empright h1 {
 	margin-top: 0;
 	color: white;
 	font-size: 40px;

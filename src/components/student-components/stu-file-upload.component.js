@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Dropzone from 'react-dropzone';
 import axios from 'axios';
-import { Form, Row, Col, Button } from 'react-bootstrap';
+import { Form, Row, Col } from 'react-bootstrap';
 
 const StuFileUpload = (props) => {
   const [file, setFile] = useState(null); // state for storing actual image
@@ -59,7 +59,7 @@ const StuFileUpload = (props) => {
     event.preventDefault();
 
     try {
-      const subName   = submissionName;
+      const subName = submissionName;
       const groupname = sessionStorage.getItem("group");
       const sub = subName.submissionName;
       // if (groupname.trim() !== '' && submissionName.trim() !== '') {
@@ -100,14 +100,14 @@ const StuFileUpload = (props) => {
     SetsubmissionName({
       submissionName: e.target.value
     })
-    await axios.get('http://localhost:5000/admin/submissionType/getSubmissionId/'+ e.target.value)
+    await axios.get('http://localhost:5000/admin/submissionType/getSubmissionId/' + e.target.value)
       .then(response => {
         if (response.data.length > 0) {
           // this.setState({
           //   description: response.data[0].description,
           //   deadline:response.data[0].deadline.substring(0,10)
           // })
-          setDeadline(response.data[0].deadline.substring(0,10));
+          setDeadline(response.data[0].deadline.substring(0, 10));
           setDescription(response.data[0].description);
         }
       })
@@ -116,11 +116,11 @@ const StuFileUpload = (props) => {
       })
   }
 
-  const onChangeDescription =  (e) => {
+  const onChangeDescription = (e) => {
     setDescription(e.target.value);
   }
 
-  const onChangeDeadline =  (date) => {
+  const onChangeDeadline = (date) => {
     setDeadline(date);
   }
 
@@ -174,7 +174,7 @@ const StuFileUpload = (props) => {
                     </option>;
                   })
                 }
-                
+
               </Form.Select>
             </Form.Group>
           </Col>
@@ -249,8 +249,8 @@ const StuFileUpload = (props) => {
         {/* <Button  style={{marginBottom:"20px", float:'right', width:'25%', color:'black'}} type="submit" className='btn btn-outline-dark'>
           Submit
         </Button> */}
-        <button style={{marginBottom:"20px", float:'right', width:'25%', color:'black'}} type="submit" className='btn btn-outline-dark'>
-            SUBMIT
+        <button style={{ marginBottom: "20px", float: 'right', width: '25%', color: 'black' }} type="submit" className='btn btn-outline-dark'>
+          SUBMIT
         </button>
       </Form>
     </React.Fragment>

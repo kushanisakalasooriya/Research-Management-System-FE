@@ -2,22 +2,13 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
-import profileIcon from "../userManagement-components/images/profileicon.png";
-
-class Message extends React.Component {
-  render() {
-    return (
-      <p style={{ color: "red" }}>
-        Seems you are currently not belongs to any group.First, Submit a group
-        according to register the research topic.
-      </p>
-    );
-  }
-}
-
 class Message2 extends React.Component {
   render() {
-    return <center><p style={{ color: "red" }}>Research topic is not accepted yet.</p></center>;
+    return (
+      <center>
+        <p style={{ color: "red" }}>Research topic is not accepted yet.</p>
+      </center>
+    );
   }
 }
 
@@ -63,13 +54,12 @@ export default class studentHome extends Component {
     await axios
       .post("http://localhost:5000/groups/loggedUser", student)
       .then((response) => {
-        if (response.status == 201){
-          
-      } else {
-        this.setState({ grp: response.data.user.groupname });
-      }
+        if (response.status === 201) {
+        } else {
+          this.setState({ grp: response.data.user.groupname });
+        }
         // if (response.data.user.groupname){
-        
+
         // }else {
         // alert('User does not have a group');
         // }
@@ -143,14 +133,12 @@ export default class studentHome extends Component {
   RegTopic() {
     if (this.state.flagcosup === "2") {
       alert("Your topic is Rejected.Register a new Topic.");
-      this.props.history.push('/reg-topic');
+      this.props.history.push("/reg-topic");
     } else if (this.state.flagcosup === "1") {
       alert("Your topic is already Accepted");
-
     } else if (this.state.flagcosup === "3") {
       alert("You already registered a topic !");
     } else {
-
       // window.location = '/reg-topic'
       this.props.history.push("/reg-topic");
     }
@@ -188,7 +176,7 @@ export default class studentHome extends Component {
   }
 
 
-  templateDownload(){
+  templateDownload() {
     this.props.history.push('/template-download');
   }
 
@@ -198,18 +186,6 @@ export default class studentHome extends Component {
         <center>
           <h2> STUDENT HOME </h2>{" "}
         </center>
-
-        {/* navigate to the student profile */}
-        <Link
-          to={"/student-profile/" + this.state.loggedUser._id}
-          className="nav-link"
-        >
-          {" "}
-          <img
-            style={{ width: "40px", height: "40px" }}
-            src={profileIcon}
-          ></img>
-        </Link>
 
         <div className="">
           <div className="container">
@@ -293,20 +269,23 @@ export default class studentHome extends Component {
           <div className="container">
             <div className="row justify-content-center">
               <div className="col-3 col-md-auto">
-                <Link to="/student-chat/"> < button
-                  style={{ width: "500px", margin: "15px" }}
-                  type="button"
-                  class="btn btn-success btn-info btn-lg"
-                >
+                <Link to="/student-chat/">
                   {" "}
-                  Chat with Supervisor{" "}
-                </button></Link>
+                  <button
+                    style={{ width: "500px", margin: "15px" }}
+                    type="button"
+                    class="btn btn-success btn-info btn-lg"
+                  >
+                    {" "}
+                    Chat with Supervisor{" "}
+                  </button>
+                </Link>
                 <br></br>
               </div>
             </div>
           </div>
         </div>
-      </div >
+      </div>
     );
   }
 }
