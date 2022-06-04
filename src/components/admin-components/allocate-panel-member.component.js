@@ -41,7 +41,7 @@ export default class AllocatePanelMember extends Component {
           });
           var i = 0;
           for (i = 0; i < this.state.employees.length; i++) {
-            if (this.state.employees[i].empType === "panel member") {
+            if (this.state.employees[i].empType === "Panel Member") {
               this.state.panelMembers.push(
                 this.state.employees[i].firstName +
                   " " +
