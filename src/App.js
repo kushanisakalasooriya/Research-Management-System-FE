@@ -84,40 +84,43 @@ import TemplateDownload from "./components/student-components/templateDownload.c
 
 function App() {
   // console.log('app.js =>', JSON.parse(sessionStorage.getItem("loggeduser"))._id );
-  const [flag, setFlag] = useState('');
+  // const [flag, setFlag] = useState('');
+  // const [test , setTest] = useState('');
   // const [nav, setNav] = useState('');
-  let nav;
+  // let nav;
 
   // setFlag(JSON.parse(sessionStorage.getItem("loggeduser")));
 
-  useEffect(() => {
-    setFlag(sessionStorage.getItem("navBarType"));
-    console.log('abcd1234 =>',flag);
-    // navBarSetter();
+  // useEffect(() => {
+  //   setFlag(sessionStorage.getItem("navBarType"));
+  //   console.log('abcd1234 =>',flag);
+  //   // navBarSetter();
     
-  },[]);
+  // },[]);
 
-  console.log('flagprint =>',flag);
+  // console.log('flagprint =>',flag);
   
-  const navBarSetter = () => {
-    console.log('abc',flag);
-    if ( flag === "1") {
-      // setNav({
-        nav = <Navbar/>
-      // });
-    } else if (flag === '2'){
-      // setNav({
-        nav = <NavbarAdmin/>
-      // });
-    } else if  (flag === '3'){
-      // setNav({
-        nav = <NavbarSupervisor/>
-      // });
-    } else {
-      nav = null;
-    }
-  }
-  navBarSetter();
+  // const navBarSetter = () => {
+  //   console.log('abc',flag);
+  //   if ( flag === "1") {
+  //     // setNav({
+  //       return <Navbar/>
+  //     // });
+  //   } else if (flag === '2'){
+  //     // setNav({
+  //       return <NavbarAdmin/>
+  //     // });
+  //   } else if  (flag === '3'){
+  //     // setNav({
+  //       return <NavbarSupervisor/>
+  //     // });
+  //   } else {
+  //     return null;
+  //   }
+    
+  // }
+  // navBarSetter();
+  // setTest('a');
 
   // let con =  <NavbarSupervisor/>
 
@@ -235,6 +238,7 @@ function App() {
           </div>
           {/* <FooterComponent /> */}
         </Router>
+
 
       </div>
     </div>
