@@ -26,7 +26,7 @@ import AllocatePanelMember from "./components/admin-components/allocate-panel-me
 
 import AddSubmission from "./components/admin-components/add-submission.component";
 
-//supervisour routes
+//supervisor routes
 import SupervisorHome from './components/supervisor-components/supervisor-home.component';
 import SupervisorTopicList from './components/supervisor-components/supervisor-topic-list.component';
 import SupervisorEditTopics from './components/supervisor-components/supervisor-topic-edit.component';

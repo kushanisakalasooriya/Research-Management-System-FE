@@ -23,7 +23,8 @@ export default class StudentRegistration extends Component {
             lastName: '',
             email: '',
             password: '',
-            image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_BzGCRFUnQvDPPd8rrI9cHczEpj4ED5avR1pnKjAxkZ3yq_yoCrdXalvDvjLLEaaEMH0&usqp=CAU'
+            image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_BzGCRFUnQvDPPd8rrI9cHczEpj4ED5avR1pnKjAxkZ3yq_yoCrdXalvDvjLLEaaEMH0&usqp=CAU',
+            msg: ''
         }
 
     }
@@ -63,7 +64,6 @@ export default class StudentRegistration extends Component {
     }
 
 
-
     onSubmit(e) {
         e.preventDefault();
 
@@ -80,21 +80,64 @@ export default class StudentRegistration extends Component {
         console.log(studentDetails);
 
         axios.post('http://localhost:5000/student/registration/', studentDetails)
-            .then(res => alert(res.data));
+            .then(res => { 
 
-        this.setState({
-            stdID: '',
-            firstName: '',
-            lastName: '',
-            email: '',
-            password: '',
-            image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_BzGCRFUnQvDPPd8rrI9cHczEpj4ED5avR1pnKjAxkZ3yq_yoCrdXalvDvjLLEaaEMH0&usqp=CAU'
-        })
+                if (res.data === 'Student Registration successfully!') {
+                    alert(res.data);
+                    this.setState({
+                        stdID: '',
+                        firstName: '',
+                        lastName: '',
+                        email: '',
+                        password: '',
+                        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_BzGCRFUnQvDPPd8rrI9cHczEpj4ED5avR1pnKjAxkZ3yq_yoCrdXalvDvjLLEaaEMH0&usqp=CAU'
+                    })
+            
+            
+                    //after registration success navigate to the login
+                    this.props.history.push('/student-login')
+                }
+                else{
+                    alert(res.data);
+                }
 
-        //after registration success navigate to the login
-        this.props.history.push('/student-login')
+            }
+            );
 
     }
+
+    // onSubmit(e) {
+    //     e.preventDefault();
+
+
+    //     const studentDetails = {
+    //         stdID: this.state.stdID,
+    //         firstName: this.state.firstName,
+    //         lastName: this.state.lastName,
+    //         email: this.state.email,
+    //         password: this.state.password,
+    //         image: this.state.image
+    //     }
+
+    //     console.log(studentDetails);
+
+    //     axios.post('http://localhost:5000/student/registration/', studentDetails)
+    //         .then(res => alert(res.data));
+
+    //     this.setState({
+    //         stdID: '',
+    //         firstName: '',
+    //         lastName: '',
+    //         email: '',
+    //         password: '',
+    //         image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_BzGCRFUnQvDPPd8rrI9cHczEpj4ED5avR1pnKjAxkZ3yq_yoCrdXalvDvjLLEaaEMH0&usqp=CAU'
+    //     })
+
+
+    //         //after registration success navigate to the login
+    //         this.props.history.push('/student-login')
+
+    // }
 
 
 
