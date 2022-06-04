@@ -56,6 +56,10 @@ export default class StudentLogin extends Component {
           "loggeduser",
           JSON.stringify(res.data.user)
         );
+        window.sessionStorage.setItem(
+          "navBarType",
+          ('1')
+        );
 
         this.setState({
           email: "",
