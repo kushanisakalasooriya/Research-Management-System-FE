@@ -175,17 +175,19 @@ export default class SuperrvisorResearchList extends Component {
     }
     render() {
         return (
-            <div>
+            <div >
                 <br />
                 <h4>Download Research Papers </h4>
                 <hr />
-                <br />
-                <ReactDatatable
-                    config={this.config}
-                    records={this.state.records}
-                    columns={this.columns}
-                    extraButtons={this.extraButtons}
-                />
+                <div style={{ backgroundColor: "rgba(255, 255, 255, 0.8)", padding: "15px" }}>
+                    <br />
+                    <ReactDatatable
+                        config={this.config}
+                        records={this.state.records}
+                        columns={this.columns}
+                        extraButtons={this.extraButtons}
+                    />
+                </div>
             </div>
         )
     }
