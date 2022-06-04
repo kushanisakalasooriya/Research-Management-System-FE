@@ -68,6 +68,10 @@ export default class studentHome extends Component {
       .post("http://localhost:5000/groups/loggedUser", student)
       .then((response) => {
         if (response.status == 201) {
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2cbd0391a7ce78c6d872df31f159fcd37da493ef
         } else {
           this.setState({ grp: response.data.user.groupname });
         }
@@ -186,8 +190,14 @@ export default class studentHome extends Component {
     }
   }
 
+<<<<<<< HEAD
   templateDownload() {
     this.props.history.push("/template-download");
+=======
+
+  templateDownload() {
+    this.props.history.push('/template-download');
+>>>>>>> 2cbd0391a7ce78c6d872df31f159fcd37da493ef
   }
 
   render() {
@@ -313,6 +323,7 @@ export default class studentHome extends Component {
               </div>
             </div>
           </div>
+<<<<<<< HEAD
           <div className="container">
             <div className="row justify-content-center">
               <div className="col-3 col-md-auto">
@@ -331,6 +342,8 @@ export default class studentHome extends Component {
               </div>
             </div>
           </div>
+=======
+>>>>>>> 2cbd0391a7ce78c6d872df31f159fcd37da493ef
         </div>
       </div>
     );

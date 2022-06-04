@@ -146,7 +146,7 @@ function App() {
           <br />
           <div style={{ padding: "20px" }}>
             {/* home page */}
-            <Route path="/home" exact component={HomePage} />
+            <Route path="/" exact component={HomePage} />
 
             {/* admin paths */}
             <Route path="/admin-file-upload" component={AdminDocUpload} />
