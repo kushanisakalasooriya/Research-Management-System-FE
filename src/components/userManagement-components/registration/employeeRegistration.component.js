@@ -25,7 +25,7 @@ export default class EmployeeRegistration extends Component {
             empType: '',
             password: '',
             image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_BzGCRFUnQvDPPd8rrI9cHczEpj4ED5avR1pnKjAxkZ3yq_yoCrdXalvDvjLLEaaEMH0&usqp=CAU',
-            researchField:'N/A'
+            researchField: 'N/A'
         }
 
     }
@@ -77,10 +77,8 @@ export default class EmployeeRegistration extends Component {
         this.props.history.push('/employee-login');
     }
 
-
     onSubmit(e) {
         e.preventDefault();
-
 
         const empDetails = {
             empID: this.state.empID,
@@ -96,24 +94,67 @@ export default class EmployeeRegistration extends Component {
         console.log(empDetails);
 
         axios.post('http://localhost:5000/employee/registration/', empDetails)
-            .then(res => alert(res.data));
+            .then(res => { 
 
-        this.setState({
-            empID: '',
-            firstName: '',
-            lastName: '',
-            email: '',
-            empType: '',
-            password: '',
-            image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_BzGCRFUnQvDPPd8rrI9cHczEpj4ED5avR1pnKjAxkZ3yq_yoCrdXalvDvjLLEaaEMH0&usqp=CAU',
-            researchField:'N/A'
-        })
+                if (res.data === 'Employee Registration successfully!'){
+                    alert(res.data);
 
-        //after registration success navigate to the login
-        this.props.history.push('/employee-login');
+                    this.setState({
+                        empID: '',
+                        firstName: '',
+                        lastName: '',
+                        email: '',
+                        empType: '',
+                        password: '',
+                        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_BzGCRFUnQvDPPd8rrI9cHczEpj4ED5avR1pnKjAxkZ3yq_yoCrdXalvDvjLLEaaEMH0&usqp=CAU',
+                        researchField: 'N/A'
+                    })
+            
+                    //after registration success navigate to the login
+                    this.props.history.push('/employee-login')
 
-
+                }
+                else{
+                    alert(res.data);
+                }
+                
+            });
     }
+
+    // onSubmit(e) {
+    //     e.preventDefault();
+
+
+    //     const empDetails = {
+    //         empID: this.state.empID,
+    //         firstName: this.state.firstName,
+    //         lastName: this.state.lastName,
+    //         email: this.state.email,
+    //         empType: this.state.empType,
+    //         password: this.state.password,
+    //         image: this.state.image,
+    //         researchField: this.state.researchField
+    //     }
+
+    //     console.log(empDetails);
+
+    //     axios.post('http://localhost:5000/employee/registration/', empDetails)
+    //         .then(res => alert(res.data));
+
+    //     this.setState({
+    //         empID: '',
+    //         firstName: '',
+    //         lastName: '',
+    //         email: '',
+    //         empType: '',
+    //         password: '',
+    //         image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_BzGCRFUnQvDPPd8rrI9cHczEpj4ED5avR1pnKjAxkZ3yq_yoCrdXalvDvjLLEaaEMH0&usqp=CAU',
+    //         researchField:'N/A'
+    //     })
+
+    //     //after registration success navigate to the login
+    //     this.props.history.push('/employee-login')
+    // }
 
 
 

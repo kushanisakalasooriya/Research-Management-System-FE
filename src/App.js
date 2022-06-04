@@ -29,7 +29,7 @@ import AllocatePanelMember from "./components/admin-components/allocate-panel-me
 
 import AddSubmission from "./components/admin-components/add-submission.component";
 
-//supervisour routes
+//supervisor routes
 import SupervisorHome from './components/supervisor-components/supervisor-home.component';
 import SupervisorTopicList from './components/supervisor-components/supervisor-topic-list.component';
 import SupervisorEditTopics from './components/supervisor-components/supervisor-topic-edit.component';
@@ -49,11 +49,11 @@ import CoSupervisorEditGroups from "./components/co-supervisor-components/co-sup
 import PanelHome from "./components/panel-member-component/panel-home.component";
 
 //userManagement routes
-import userManagementHome from "./components/userManagement-components/userManagement-home.component";
-import StudentDetailsList from "./components/userManagement-components/student-list.component";
-import AddStudentDetails from "./components/userManagement-components/create-student.component";
-import AddEmployeeDetails from "./components/userManagement-components/create-staff.component";
-import EmployeeDetailsList from "./components/userManagement-components/employee-list.component";
+// import userManagementHome from "./components/userManagement-components/userManagement-home.component";
+// import StudentDetailsList from "./components/userManagement-components/student-list.component";
+// import AddStudentDetails from "./components/userManagement-components/create-student.component";
+// import AddEmployeeDetails from "./components/userManagement-components/create-staff.component";
+// import EmployeeDetailsList from "./components/userManagement-components/employee-list.component";
 import StudentRegistration from "./components/userManagement-components/registration/studentRegistration.component";
 import StudentLogin from "./components/userManagement-components/login/studentLogin.component";
 import EmployeeRegistration from "./components/userManagement-components/registration/employeeRegistration.component";
@@ -156,12 +156,7 @@ function App() {
         <Route path="/panel-home" component={PanelHome} />
 
         {/* userManagement paths */}
-        <Route path="/user-management-home" component={userManagementHome} />
-        <Route path="/student-details" component={StudentDetailsList} />
-        <Route path="/add-student-details" component={AddStudentDetails} />
         <Route path="/update-student-details/:id" component={UpdateStudentDetails} />
-        <Route path="/employee-details" component={EmployeeDetailsList} />
-        <Route path="/add-employee-details" component={AddEmployeeDetails} />
         <Route path="/update-employee-details/:id" component={UpdateEmployeeDetails} />
         <Route path="/update-panelMember-details/:id" component={UpdatePanelMemberDetails} />
         <Route path="/student-profile/:id" component={StudentProfile} />
