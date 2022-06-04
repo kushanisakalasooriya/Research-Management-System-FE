@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, BrowserRouter } from "react-router-dom";
 
 export default class AdminHome extends Component {
   render() {
     return (
+      <BrowserRouter>
       <div style={{ marginTop: "20px" }}>
         <center>
           <h2>ADMIN HOME</h2>
@@ -92,6 +93,7 @@ export default class AdminHome extends Component {
           </Link>
         </center>
       </div>
+      </BrowserRouter>
     );
   }
 }

@@ -140,7 +140,7 @@ export default class AdminStudentList extends Component {
   }
 
   componentWillMount(props) {
-    axios.get(`${API_URL}/student/registration`)
+    axios.get(`${API_URL}/student/registration/`)
       .then(res => {
         this.setState({ records: res.data });
         console.log(this.state.records)
