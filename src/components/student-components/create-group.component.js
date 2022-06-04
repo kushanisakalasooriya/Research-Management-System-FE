@@ -119,17 +119,11 @@ export default class CreateGroup extends Component {
           });
         }
       });
-            this.setState({
-                groupname: '',
-                groupleader: '',
-                member02: '',
-                member03: '',
-                member04: '',
-            })
+            
 
             const topic = {
                 groupname: this.state.groupname,
-                topic: 'N/A',
+                topic: null,
                 state: 'Pending'
             }
 
@@ -155,6 +149,13 @@ export default class CreateGroup extends Component {
         }
           this.props.history.push('/student-home');
       }
+      this.setState({
+        groupname: '',
+        groupleader: '',
+        member02: '',
+        member03: '',
+        member04: '',
+    })
 }
     
 

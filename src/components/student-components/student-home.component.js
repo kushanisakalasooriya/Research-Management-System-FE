@@ -192,7 +192,7 @@ export default class studentHome extends Component {
             <div className="row justify-content-center">
               <div className="col-3 col-md-auto">
                 <button
-                  style={{ width: "500px", margin: "15px", backgroundColor: "#BEA475" }}
+                  style={{ width: "500px", margin: "15px", backgroundColor: "  #a1a0a0  " }}
                   onClick={this.RegGroup.bind(this)}
                   type="button"
 
@@ -209,7 +209,7 @@ export default class studentHome extends Component {
             <div className="row justify-content-center">
               <div className="col-3 col-md-auto">
                 <button
-                  style={{ width: "500px", margin: "15px", backgroundColor: "#F1C9AB" }}
+                  style={{ width: "500px", margin: "15px", backgroundColor: " #93c0e1 " }}
                   onClick={this.RegTopic.bind(this)}
                   type="button"
                   class="btn  btn-lg"
@@ -225,7 +225,7 @@ export default class studentHome extends Component {
             <div className="row justify-content-center">
               <div className="col-3 col-md-auto">
                 <button
-                  style={{ width: "500px", margin: "15px", backgroundColor: "#BEA475" }}
+                  style={{ width: "500px", margin: "15px", backgroundColor: " #a1a0a0 " }}
                   type="button"
                   onClick={this.ReqCosup.bind(this)}
                   class="btn btn-lg"
@@ -241,7 +241,7 @@ export default class studentHome extends Component {
             <div className="row justify-content-center">
               <div className="col-3 col-md-auto">
                 <button
-                  style={{ width: "500px", margin: "15px", backgroundColor: "#F1C9AB" }}
+                  style={{ width: "500px", margin: "15px", backgroundColor: " #93c0e1 " }}
                   onClick={this.submitDoc.bind(this)}
                   type="button"
                   class="btn btn-lg"
@@ -256,7 +256,7 @@ export default class studentHome extends Component {
             <div className="row justify-content-center">
               <div className="col-3 col-md-auto">
                 <button
-                  style={{ width: "500px", margin: "15px", backgroundColor: "#BEA475" }}
+                  style={{ width: "500px", margin: "15px", backgroundColor: " #a1a0a0 " }}
                   onClick={this.templateDownload.bind(this)}
                   type="button"
                   class="btn btn-lg"
@@ -274,7 +274,7 @@ export default class studentHome extends Component {
                 <Link to="/student-chat/">
                   {" "}
                   <button
-                    style={{ width: "500px", margin: "15px", backgroundColor: "#F1C9AB" }}
+                    style={{ width: "500px", margin: "15px", backgroundColor: " #93c0e1 " }}
                     type="button"
                     class="btn btn-lg"
                   >

@@ -12,7 +12,7 @@ export default class AdminHome extends Component {
           <Link to="/admin-file-upload">
             <button
               type="button"
-              style={{ marginRight: "50px", width: "40%", backgroundColor: "#A79885" }}
+              style={{ marginRight: "50px", width: "40%", backgroundColor: "#a1a0a0 " }}
               class="btn btn-lg"
             >
               File Upload
@@ -21,7 +21,7 @@ export default class AdminHome extends Component {
           <Link to="/admin-file-download">
             <button
               type="button"
-              style={{ width: "40%", backgroundColor: "#A79885" }}
+              style={{ width: "40%", backgroundColor: "#a1a0a0 " }}
               class="btn btn-lg"
             >
               Download Files
@@ -30,7 +30,7 @@ export default class AdminHome extends Component {
           <Link to="/admin-add-new-submission-type">
             <button
               type="button"
-              style={{ marginRight: "50px", width: "40%", marginTop: "30px", backgroundColor: "#F1C9AB" }}
+              style={{ marginRight: "50px", width: "40%", marginTop: "30px", backgroundColor: "#93c0e1" }}
               class="btn  btn-lg"
             >
               Add Submission Type
@@ -39,7 +39,7 @@ export default class AdminHome extends Component {
           <Link to="/admin-submission-type-list">
             <button
               type="button"
-              style={{ width: "40%", marginTop: "30px", backgroundColor: "#F1C9AB" }}
+              style={{ width: "40%", marginTop: "30px", backgroundColor: "#93c0e1" }}
               class="btn btn-lg"
             >
               View Submission Types
@@ -48,7 +48,7 @@ export default class AdminHome extends Component {
           <Link to="/admin-marking-upload">
             <button
               type="button"
-              style={{ marginRight: "50px", width: "40%", marginTop: "30px", backgroundColor: "#D9974E" }}
+              style={{ marginRight: "50px", width: "40%", marginTop: "30px", backgroundColor: "#a1a0a0 " }}
               class="btn btn-lg"
             >
               Add Marking Scheme
@@ -57,7 +57,7 @@ export default class AdminHome extends Component {
           <Link to="/admin-marking-download">
             <button
               type="button"
-              style={{ width: "40%", marginTop: "30px", backgroundColor: "#D9974E" }}
+              style={{ width: "40%", marginTop: "30px", backgroundColor: "#a1a0a0 " }}
               class="btn btn-lg"
             >
               View Marking Schemes
@@ -66,7 +66,7 @@ export default class AdminHome extends Component {
           <Link to="/admin-all-students">
             <button
               type="button"
-              style={{ marginRight: "50px", width: "40%", marginTop: "30px", backgroundColor: "#C08D4E" }}
+              style={{ marginRight: "50px", width: "40%", marginTop: "30px", backgroundColor: "#93c0e1" }}
               class="btn btn-lg"
             >
               View Students
@@ -75,7 +75,7 @@ export default class AdminHome extends Component {
           <Link to="/admin-all-employees">
             <button
               type="button"
-              style={{ width: "40%", marginTop: "30px", backgroundColor: "#C08D4E" }}
+              style={{ width: "40%", marginTop: "30px", backgroundColor: "#93c0e1" }}
               class="btn btn-lg"
             >
               View Employees
@@ -84,7 +84,7 @@ export default class AdminHome extends Component {
           <Link to="/admin-group-list">
             <button
               type="button"
-              style={{ marginTop: "30px", width: "85%", backgroundColor: "#6A6740", color: "white" }}
+              style={{ marginTop: "30px", width: "85%", backgroundColor: "#a1a0a0 ", color: "white" }}
               class="btn btn-lg"
             >
               Allocate Panel Members
