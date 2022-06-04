@@ -13,7 +13,9 @@ export default class SuperrvisorResearchList extends Component {
             data: '',
             stdGroup: [],
             theGroup: [],
-            supervisorName: JSON.parse(sessionStorage.getItem("loggeduser")).firstName,
+            supervisorName: JSON.parse(sessionStorage.getItem("loggeduser")).firstName + " " +
+                JSON.parse(sessionStorage.getItem("loggeduser")).lastName + " - " +
+                JSON.parse(sessionStorage.getItem("loggeduser")).researchField,
         }
         console.log('Supervisor Name', this.state.supervisorName);
         this.columns = [
@@ -151,7 +153,6 @@ export default class SuperrvisorResearchList extends Component {
             .catch((error) => {
                 console.log(error);
             })
-
         const topicGroup = {
             theGroup: this.state.theGroup
         }
