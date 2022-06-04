@@ -86,56 +86,52 @@ export default class SupervisorMessage extends Component {
     render() {
         return (
             <div>
+                <div className="headingModsLand" style={{ marginBottom: "30px", marginTop: "20px" }}> <h3>  Chat with Students</h3> </div>
+
+                <Link to='/supervisor-chat' style={{ textDecoration: 'none', color: '#056055', paddingLeft: '15px' }}><i class="fa fa-arrow-left fa-mn" aria-hidden="true"></i><b> Go Back</b></Link>
 
                 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 
-                <div class="container">
-                    <div class="row clearfix">
-                        <div class="col-lg-12">
-                            <div class="card chat-app">
+                <div style={{ paddingTop: '10px' }} className="container">
+                    <div className="row clearfix">
+                        <div className="col-lg-12">
+                            <div className="card chat-app">
 
-                                <div id="plist" class="people-list">
-                                    <div class="input-group">
-
-                                    </div>
-
-                                </div>
-
-                                <div class="chat">
-                                    <div class="chat-header clearfix">
-                                        <div class="row">
-                                            <div class="col-lg-6">
+                                <div className="chat">
+                                    <div className="chat-header clearfix">
+                                        <div className="row">
+                                            <div className="col-lg-6">
                                                 <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="avatar" />
-                                                <div class="chat-about">
-                                                    <h6 class="m-b-0">{this.state.studentName}</h6>
+                                                <div className="chat-about">
+                                                    <h6 className="m-b-0">{this.state.studentName}</h6>
                                                 </div>
                                             </div>
 
                                         </div>
                                     </div>
-                                    <div class="chat-history">
-                                        <ul class="m-b-0">
+                                    <div className="chat-history">
+                                        <ul className="m-b-0">
 
-                                            <li class="clearfix">
+                                            <li className="clearfix">
 
-                                                <div class="message my-message">{this.state.studentMsg}</div>
+                                                <div className="message my-message">{this.state.studentMsg}</div>
                                             </li>
 
-                                            <li class="clearfix">
-                                                <div class="message-data text-right">
-                                                    <span class="message-data-time">{this.state.supervisorName}</span>
+                                            <li className="clearfix">
+                                                <div className="message-data text-right">
+                                                    <span className="message-data-time">{this.state.supervisorName}</span>
                                                     <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="avatar" />
                                                 </div>
-                                                <div class="message other-message float-right"> {this.state.supervisorMsg}</div>
+                                                <div className="message other-message float-right"> {this.state.supervisorMsg}</div>
                                             </li>
                                         </ul>
                                     </div>
 
-                                    <div class="chat-message clearfix">
-                                        <div class="input-group mb-0">
+                                    <div className="chat-message clearfix">
+                                        <div className="input-group mb-0">
 
-                                            <input type="text" class="form-control" placeholder="Enter text here..." onChange={this.onChangeSupervisorMsg} />
-                                            <button onClick={this.onSubmit} >Send Message</button>
+                                            <input type="text" className="form-control" placeholder="Enter text here..." onChange={this.onChangeSupervisorMsg} />
+                                            <button onClick={this.onSubmit} className="MsgSendBtn"><i className="fa fa-paper-plane" ></i></button>
                                         </div>
                                     </div>
                                 </div>
@@ -144,7 +140,7 @@ export default class SupervisorMessage extends Component {
                     </div>
                 </div>
 
-            </div>
+            </div >
 
 
         )
