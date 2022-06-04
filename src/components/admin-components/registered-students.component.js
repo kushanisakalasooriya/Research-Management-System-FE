@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react';
 import ReactDatatable from '@ashvin27/react-datatable';
-import download from 'downloadjs';
 import axios from 'axios';
 import { API_URL } from '../../utils/constants';
 

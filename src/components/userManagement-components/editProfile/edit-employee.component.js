@@ -23,7 +23,7 @@ export default class UpdateEmployeeDetails extends Component {
             password: '',
             empType: '',
             image: '',
-            researchField:''
+            researchField: ''
         }
     }
 
@@ -106,7 +106,7 @@ export default class UpdateEmployeeDetails extends Component {
             email: '',
             researchField: ''
         })
-        
+
         this.props.history.push(`/employee-profile/${this.props.match.params.id}`);
     }
 
@@ -118,67 +118,70 @@ export default class UpdateEmployeeDetails extends Component {
         return (
             <div style={{ marginLeft: "-200px" }} className={styles.container}>
 
-                <br />
-                <form className={styles.form_container} onSubmit={this.onSubmit}>
-                    <h3>Update Employee Details</h3>
-                    <div className="form-group">
-                        <label>Employee Type: </label>
-                        <input type="text"
-                            className="form-control"
-                            value={this.state.empType}
-                        />
-                    </div>
+                <form className={styles.EmpProfileform_container} onSubmit={this.onSubmit}>
+                    <h3 style={{ marginTop: "10px", marginBottom: "20px" }}>Update Employee Details</h3>
+                    <div class="row">
+                        <div class="col" >
+                            <div className="form-group">
+                                <label>Employee Type: </label>
+                                <input type="text"
+                                    className="form-control"
+                                    value={this.state.empType}
+                                />
+                            </div>
 
-                    <div className="form-group">
-                        <label>Employee ID: </label>
-                        <input type="text"
-                            required
-                            className="form-control"
-                            value={this.state.empID}
-                            onChange={this.onChangeEmployeeID}
-                        />
-                    </div>
+                            <div className="form-group">
+                                <label>Employee ID: </label>
+                                <input type="text"
+                                    required
+                                    className="form-control"
+                                    value={this.state.empID}
+                                    onChange={this.onChangeEmployeeID}
+                                />
+                            </div>
 
-                    <div className="form-group">
-                        <label>Employee first Name: </label>
-                        <input type="text"
-                            required
-                            className="form-control"
-                            value={this.state.firstName}
-                            onChange={this.onChangeEmployeefirstName}
-                        />
-                    </div>
+                            <div className="form-group">
+                                <label>Employee first Name: </label>
+                                <input type="text"
+                                    required
+                                    className="form-control"
+                                    value={this.state.firstName}
+                                    onChange={this.onChangeEmployeefirstName}
+                                />
+                            </div>
+                        </div>
+                        <div class="col" >
+                            <div className="form-group">
+                                <label>Employee last Name: </label>
+                                <input type="text"
+                                    required
+                                    className="form-control"
+                                    value={this.state.lastName}
+                                    onChange={this.onChangeEmployeelastName}
+                                />
+                            </div>
 
-                    <div className="form-group">
-                        <label>Employee last Name: </label>
-                        <input type="text"
-                            required
-                            className="form-control"
-                            value={this.state.lastName}
-                            onChange={this.onChangeEmployeelastName}
-                        />
-                    </div>
+                            <div className="form-group">
+                                <label>Research Field: </label>
+                                <input type="text"
+                                    required
+                                    className="form-control"
+                                    value={this.state.researchField}
+                                    onChange={this.onChangeEmployeeResearchField}
+                                />
+                            </div>
 
-                    <div className="form-group">
-                        <label>Research Field: </label>
-                        <input type="text"
-                            required
-                            className="form-control"
-                            value={this.state.researchField}
-                            onChange={this.onChangeEmployeeResearchField}
-                        />
+                            <div className="form-group">
+                                <label>Profile photo: </label>
+                                <input type="text"
+                                    required
+                                    className="form-control"
+                                    value={this.state.image}
+                                    onChange={this.onChangeEmployeeImage}
+                                />
+                            </div>
+                        </div>
                     </div>
-
-                    <div className="form-group">
-                        <label>Profile photo: </label>
-                        <input type="text"
-                            required
-                            className="form-control"
-                            value={this.state.image}
-                            onChange={this.onChangeEmployeeImage}
-                        />
-                    </div>
-
                     <div className="form-group">
                         <input type="submit" value="Update Details" className="btn btn-primary" />
                         <button className="btn btn-danger" onClick={this.cancel.bind(this)} style={{ marginLeft: "10px" }}> Cancel </button>

@@ -1,24 +1,12 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-// const Student = props => (
-//     <tr>
-//         <td>{props.student.stdID}</td>
-//         <td>{props.student.studentfirstName} {props.student.studentlastName}</td>
-//         <td>
-//             <Link to={""}> Add </Link>
-//         </td>
-//     </tr>
-// )
-
 export default class CreateGroup extends Component {
     constructor(props) {
         super(props);
 
         this.onChangeGroupName = this.onChangeGroupName.bind(this);
         this.onChangeGroupLeader = this.onChangeGroupLeader.bind(this);
-        // this.onChangeSupervisor = this.onChangeSupervisor.bind(this);
-        // this.onChangeCoSupervisor = this.onChangeCoSupervisor.bind(this);
         this.onChangemember02 = this.onChangemember02.bind(this);
         this.onChangemember03 = this.onChangemember03.bind(this);
         this.onChangemember04 = this.onChangemember04.bind(this);
@@ -32,26 +20,26 @@ export default class CreateGroup extends Component {
             member04: '',
             supervisor: '',
             cosupervisor: '',
-            groupMembers:[],
-            grouped:[],
+            groupMembers: [],
+            grouped: [],
         }
     }
 
     componentDidMount() {
         axios.get('http://localhost:5000/groups')
-        .then(response => {
-            this.setState({ groupMembers: response.data})
-            for (var i = 0; i < this.state.groupMembers.length; i++) {
-                // console.log('i ', this.state.groups[i].status)
-                this.state.grouped.push(this.state.groupMembers[i].groupleader);
-                this.state.grouped.push(this.state.groupMembers[i].member02);
-                this.state.grouped.push(this.state.groupMembers[i].member03);
-                this.state.grouped.push(this.state.groupMembers[i].member04);
-              }
-        })
-        .catch((error) => {
-            console.log(error);
-        })
+            .then(response => {
+                this.setState({ groupMembers: response.data })
+                for (var i = 0; i < this.state.groupMembers.length; i++) {
+                    // console.log('i ', this.state.groups[i].status)
+                    this.state.grouped.push(this.state.groupMembers[i].groupleader);
+                    this.state.grouped.push(this.state.groupMembers[i].member02);
+                    this.state.grouped.push(this.state.groupMembers[i].member03);
+                    this.state.grouped.push(this.state.groupMembers[i].member04);
+                }
+            })
+            .catch((error) => {
+                console.log(error);
+            })
 
         // console.log(this.state.groupMembers);
     }
@@ -96,18 +84,18 @@ export default class CreateGroup extends Component {
         // console.log('dd', ['IT20274252', 'IT20231682', 'IT20205638'].includes(this.state.member02));
 
 
-        if ( this.state.grouped.includes(this.state.member02)){
-            alert( this.state.member02 + ' is already registered');
+        if (this.state.grouped.includes(this.state.member02)) {
+            alert(this.state.member02 + ' is already registered');
             this.setState({
                 member02: '',
             })
-        } else if(this.state.grouped.includes(this.state.member03)){
-            alert( this.state.member03 + ' is already registered');
+        } else if (this.state.grouped.includes(this.state.member03)) {
+            alert(this.state.member03 + ' is already registered');
             this.setState({
                 member03: '',
             })
-        }else if (this.state.grouped.includes(this.state.member04)){
-            alert( this.state.member04 + ' is already registered');
+        } else if (this.state.grouped.includes(this.state.member04)) {
+            alert(this.state.member04 + ' is already registered');
             this.setState({
                 member04: '',
             })
@@ -128,14 +116,14 @@ export default class CreateGroup extends Component {
             axios.post('http://localhost:5000/groups/add', group)
                 .then(res => {
                     console.log(res.data);
-                    if (res.status == 400){
+                    if (res.status === 400) {
                         alert('Group cannot be created');
                     } else {
                         alert('Group created successfully');
                     }
                 }
                 );
-    
+
             this.setState({
                 groupname: '',
                 groupleader: '',
@@ -150,10 +138,10 @@ export default class CreateGroup extends Component {
                 state: 'Pending'
             }
             // console.log(topic);
-    
+
             axios.post('http://localhost:5000/supervisor/topic/add', topic)
                 .then(res => console.log(res.data));
-    
+
             this.props.history.push('/student-home');
         }
     }
@@ -213,8 +201,8 @@ export default class CreateGroup extends Component {
                     </div>
 
                     <div className="form-group">
-                        <input style={{marginBottom:"20px", float:'right', width:'25%', color:'dark grey'}} type="submit" className='btn btn-outline-dark' value="Create Group" />
-                        
+                        <input style={{ marginBottom: "20px", float: 'right', width: '25%', color: 'dark grey' }} type="submit" className='btn btn-outline-dark' value="Create Group" />
+
                     </div>
                 </form>
             </div>

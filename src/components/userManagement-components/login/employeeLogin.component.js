@@ -69,14 +69,14 @@ export default class EmployeeLogin extends Component {
               "navBarType",
               ('3')
             );
-            this.props.history.push('/supervisor-home');
+            window.location = '/supervisor-home';
           }
           else if (res.data.user.empType === 'Co-Supervisor') {
             window.sessionStorage.setItem(
               "navBarType",
               ('3')
             );
-            this.props.history.push('/co-supervisor-home');
+            window.location = '/co-supervisor-home';
           }
           else if (res.data.user.empType === 'Panel Member') {
             this.props.history.push('/panel-home');
@@ -86,7 +86,7 @@ export default class EmployeeLogin extends Component {
               "navBarType",
               ('2')
             );
-            this.props.history.push('/admin-home');
+            window.location = '/admin-home';
           }
           // this.props.history.push(`/employee-profile/${res.data.user._id}`);
 

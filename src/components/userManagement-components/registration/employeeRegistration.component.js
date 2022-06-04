@@ -120,8 +120,8 @@ export default class EmployeeRegistration extends Component {
     render() {
         return (
 
-            <div className={styles.signup_container}>
-                <div className={styles.signup_form_container}>
+            <div className={styles.Empsignup_container}>
+                <div className={styles.Empsignup_form_container}>
                     <div className={styles.empleft}>
 
                         <h1>Welcome</h1>
@@ -133,80 +133,83 @@ export default class EmployeeRegistration extends Component {
                     <div className={styles.right}>
                         <form className={styles.form_container} onSubmit={this.onSubmit}>
 
-                            <h1>Create Account</h1>
+                            <h2 style={{ marginTop: "-80px", marginBottom: "50px" }}>Create Employee Account</h2>
+                            <div class="row">
+                                <div class="col">
+                                    <div className="form-group">
+                                        <label>Employee Type: </label>
+                                        <select ref="userInput"
+                                            required
+                                            className="form-control"
+                                            value={this.state.empType}
+                                            onChange={this.onChangeEmployeeType}>
+                                            {
+                                                this.state.employees.map(function (user) {
+                                                    return <option
+                                                        key={user}
+                                                        value={user}>
+                                                        {user}
+                                                    </option>;
+                                                })
+                                            }
+                                        </select>
+                                    </div>
 
-                            <div className="form-group">
-                                <label>Employee Type: </label>
-                                <select ref="userInput"
-                                    required
-                                    className="form-control"
-                                    value={this.state.empType}
-                                    onChange={this.onChangeEmployeeType}>
-                                    {
-                                        this.state.employees.map(function (user) {
-                                            return <option
-                                                key={user}
-                                                value={user}>
-                                                {user}
-                                            </option>;
-                                        })
-                                    }
-                                </select>
+                                    <div className="form-group">
+                                        <label>Employee ID: </label>
+                                        <input type="text"
+                                            required
+                                            className="form-control"
+                                            value={this.state.empID}
+                                            onChange={this.onChangeStaffID}
+                                        />
+                                    </div>
+
+                                    <div className="form-group">
+                                        <label>Employee first Name: </label>
+                                        <input type="text"
+                                            required
+                                            className="form-control"
+                                            value={this.state.firstName}
+                                            onChange={this.onChangeEmployeefirstName}
+                                        />
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div className="form-group">
+                                        <label>Employee last Name: </label>
+                                        <input type="text"
+                                            required
+                                            className="form-control"
+                                            value={this.state.lastName}
+                                            onChange={this.onChangeEmployeelastName}
+                                        />
+                                    </div>
+
+                                    <div className="form-group">
+                                        <label>Employee Email: </label>
+                                        <input type="email"
+                                            required
+                                            className="form-control"
+                                            value={this.state.email}
+                                            onChange={this.onChangeEmployeeEmail}
+                                        />
+                                    </div>
+
+                                    <div className="form-group">
+                                        <label>Password: </label>
+                                        <input type="password"
+                                            required
+                                            pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$"
+                                            title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
+                                            className="form-control"
+                                            value={this.state.password}
+                                            onChange={this.onChangeEmployeePassword}
+                                        />
+                                    </div>
+                                </div>
                             </div>
-
-                            <div className="form-group">
-                                <label>Employee ID: </label>
-                                <input type="text"
-                                    required
-                                    className="form-control"
-                                    value={this.state.empID}
-                                    onChange={this.onChangeStaffID}
-                                />
-                            </div>
-
-                            <div className="form-group">
-                                <label>Employee first Name: </label>
-                                <input type="text"
-                                    required
-                                    className="form-control"
-                                    value={this.state.firstName}
-                                    onChange={this.onChangeEmployeefirstName}
-                                />
-                            </div>
-
-                            <div className="form-group">
-                                <label>Employee last Name: </label>
-                                <input type="text"
-                                    required
-                                    className="form-control"
-                                    value={this.state.lastName}
-                                    onChange={this.onChangeEmployeelastName}
-                                />
-                            </div>
-
-                            <div className="form-group">
-                                <label>Employee Email: </label>
-                                <input type="email"
-                                    required
-                                    className="form-control"
-                                    value={this.state.email}
-                                    onChange={this.onChangeEmployeeEmail}
-                                />
-                            </div>
-
-                            <div className="form-group">
-                                <label>Password: </label>
-                                <input type="password"
-                                    required
-                                    pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$"
-                                    title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
-                                    className="form-control"
-                                    value={this.state.password}
-                                    onChange={this.onChangeEmployeePassword}
-                                />
-                            </div>
-
-                            <button type="submit" className={styles.g_btn}>
+                            <button type="submit" className={styles.g_btn} style={{ marginTop: "30px" }}>
                                 Sign up
                             </button>
                         </form>

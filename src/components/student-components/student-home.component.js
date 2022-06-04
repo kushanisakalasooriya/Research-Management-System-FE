@@ -2,19 +2,6 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
-import profileIcon from "../userManagement-components/images/profileicon.png";
-
-class Message extends React.Component {
-  render() {
-    return (
-      <p style={{ color: "red" }}>
-        Seems you are currently not belongs to any group.First, Submit a group
-        according to register the research topic.
-      </p>
-    );
-  }
-}
-
 class Message2 extends React.Component {
   render() {
     return (
@@ -67,7 +54,7 @@ export default class studentHome extends Component {
     await axios
       .post("http://localhost:5000/groups/loggedUser", student)
       .then((response) => {
-        if (response.status == 201) {
+        if (response.status === 201) {
         } else {
           this.setState({ grp: response.data.user.groupname });
         }
@@ -198,25 +185,6 @@ export default class studentHome extends Component {
           <h2> STUDENT HOME </h2>{" "}
         </center>
 
-        {/* navigate to the student profile */}
-        <Link
-          to={"/student-profile/" + this.state.loggedUser._id}
-          className="nav-link"
-        >
-          {" "}
-          <div style={{ marginBottom: "8px" }}>
-            <img
-              style={{
-                width: "40px",
-                height: "40px",
-                float: "right",
-                borderRadius: "50px",
-              }}
-              src={this.state.loggedUser.image}
-            ></img>
-          </div>
-        </Link>
-        <br />
         <div className="">
           <div className="container">
             <div className="row justify-content-center">

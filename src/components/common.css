@@ -166,3 +166,11 @@
         font-weight: 600
     }
 }
+
+.navBarImg {
+    padding-left: 10px;
+}
+
+.navBarLogout {
+    padding-left: 550px;
+}

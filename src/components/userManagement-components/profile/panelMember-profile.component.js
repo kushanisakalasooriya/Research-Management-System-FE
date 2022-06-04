@@ -2,11 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import styles from "./styles.module.css";
 
-const empdetails = window.sessionStorage.getItem("loggeduser")
-
-
 export default class PanelMemberProfile extends Component {
-  
+
     constructor(props) {
         super(props);
 
@@ -20,7 +17,7 @@ export default class PanelMemberProfile extends Component {
             lastName: '',
             empType: '',
             image: '',
-            
+
 
 
         }
@@ -56,13 +53,13 @@ export default class PanelMemberProfile extends Component {
 
     editEmployeeDetails() {
         //if empType is Panel Member
-        if(this.state.empType === 'Panel Member'){
+        if (this.state.empType === 'Panel Member') {
             this.props.history.push(`/update-panelMember-details/${this.props.match.params.id}`);
         }
-        else{
+        else {
             this.props.history.push(`/update-employee-details/${this.props.match.params.id}`);
         }
-        
+
     }
 
     deleteEmployeeDetails(id) {
@@ -91,7 +88,7 @@ export default class PanelMemberProfile extends Component {
                     <div className="form-group">
                         <h3>Profile</h3>
                         <label>Profile photo:</label>
-                        <div><img style={{ width: "200px", height: "200px" }} src={this.state.image}></img></div>
+                        <div><img style={{ width: "200px", height: "200px" }} src={this.state.image} alt=""></img></div>
                     </div>
 
                     <div className="form-group">
