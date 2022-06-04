@@ -101,8 +101,8 @@ export default class StudentRegistration extends Component {
     render() {
         return (
 
-            <div className={styles.signup_container}>
-                <div className={styles.signup_form_container}>
+            <div className={styles.Stdsignup_container}>
+                <div className={styles.Stdsignup_form_container}>
                     <div className={styles.stdleft}>
 
                         <h1>Welcome</h1>
@@ -114,61 +114,64 @@ export default class StudentRegistration extends Component {
                     <div className={styles.right}>
                         <form className={styles.form_container} onSubmit={this.onSubmit}>
 
-                            <h1>Create Account</h1>
+                            <h2 style={{ marginTop: "-50px", marginBottom: "50px" }}>Create Student Account</h2>
+                            <div class="row">
+                                <div class="col">
+                                    <div className="form-group">
+                                        <label>Student ID: </label>
+                                        <input type="text"
+                                            required
+                                            className="form-control"
+                                            value={this.state.stdID}
+                                            onChange={this.onChangeStudentID}
+                                        />
+                                    </div>
 
-                            <div className="form-group">
-                                <label>Student ID: </label>
-                                <input type="text"
-                                    required
-                                    className="form-control"
-                                    value={this.state.stdID}
-                                    onChange={this.onChangeStudentID}
-                                />
+                                    <div className="form-group">
+                                        <label>Student first Name: </label>
+                                        <input type="text"
+                                            required
+                                            className="form-control"
+                                            value={this.state.firstName}
+                                            onChange={this.onChangeStudentfirstName}
+                                        />
+                                    </div>
+
+                                    <div className="form-group">
+                                        <label>Student last Name: </label>
+                                        <input type="text"
+                                            required
+                                            className="form-control"
+                                            value={this.state.lastName}
+                                            onChange={this.onChangeStudentlastName}
+                                        />
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div className="form-group">
+                                        <label>Student Email: </label>
+                                        <input type="email"
+                                            required
+                                            className="form-control"
+                                            value={this.state.email}
+                                            onChange={this.onChangeStudentEmail}
+                                        />
+                                    </div>
+
+                                    <div className="form-group">
+                                        <label>Password: </label>
+                                        <input type="password"
+                                            required
+                                            pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$"
+                                            title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
+                                            className="form-control"
+                                            value={this.state.password}
+                                            onChange={this.onChangeStudentPassword}
+                                        />
+                                    </div>
+                                </div>
                             </div>
-
-                            <div className="form-group">
-                                <label>Student first Name: </label>
-                                <input type="text"
-                                    required
-                                    className="form-control"
-                                    value={this.state.firstName}
-                                    onChange={this.onChangeStudentfirstName}
-                                />
-                            </div>
-
-                            <div className="form-group">
-                                <label>Student last Name: </label>
-                                <input type="text"
-                                    required
-                                    className="form-control"
-                                    value={this.state.lastName}
-                                    onChange={this.onChangeStudentlastName}
-                                />
-                            </div>
-
-                            <div className="form-group">
-                                <label>Student Email: </label>
-                                <input type="email"
-                                    required
-                                    className="form-control"
-                                    value={this.state.email}
-                                    onChange={this.onChangeStudentEmail}
-                                />
-                            </div>
-
-                            <div className="form-group">
-                                <label>Password: </label>
-                                <input type="password"
-                                    required
-                                    pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$"
-                                    title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
-                                    className="form-control"
-                                    value={this.state.password}
-                                    onChange={this.onChangeStudentPassword}
-                                />
-                            </div>
-
-                            <button type="submit" className={styles.g_btn}>
+                            <button style={{ marginTop: "20px" }} type="submit" className={styles.g_btn}>
                                 Sign up
                             </button>
                         </form>

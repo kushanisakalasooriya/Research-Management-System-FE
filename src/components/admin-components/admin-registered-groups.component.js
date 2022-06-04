@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react';
 import ReactDatatable from '@ashvin27/react-datatable';
-import download from 'downloadjs';
 import axios from 'axios';
 import { API_URL } from '../../utils/constants';
 
@@ -118,7 +117,7 @@ export default class AdminGroupList extends Component {
   allocatePanelMember(record) {
     this.props.history.push("/admin-allocate-panel-member/" + record._id);
   }
-  
+
   componentWillMount(props) {
     axios.get(`${API_URL}/groups`)
       .then(res => {

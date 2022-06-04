@@ -23,7 +23,7 @@ export default class HomePage extends Component {
         <div class="row">
 
           <div class="col">
-            <img style={{ width: "700px", height: "500px" }} src="https://images.unsplash.com/photo-1562564055-71e051d33c19?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"></img>
+            <img style={{ width: "700px", height: "500px" }} src="https://images.unsplash.com/photo-1562564055-71e051d33c19?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" alt=""></img>
           </div>
 
           <div class="col">
