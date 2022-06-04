@@ -25,10 +25,23 @@ export default class SupervisorHome extends Component {
     render() {
         return (
             <div>
+
                 <header className="section " style={{ marginBottom: '20px' }}>
                     <section className="full-width ">
 
-                        <div className="headingModsLand" style={{ marginBottom: "30px", marginTop: "20px" }}> <h1>  Supervisor Home  </h1> </div>
+                        <div className="headingModsLand" style={{ marginBottom: "30px", marginTop: "20px" }}> <h2>  Supervisor Home  </h2> </div>
+
+                        <Link
+                            to={"/employee-profile/" + this.state.user._id}
+                            className="nav-link"
+                        >
+                            <div style={{ marginBottom: "40px" }}>
+                                <img
+                                    style={{ width: "40px", height: "40px", float: "right", borderRadius: "50px" }}
+                                    src={this.state.user.image}
+                                ></img>
+                            </div>
+                        </Link>
 
                         <center>
                             <div className="laddBtn">

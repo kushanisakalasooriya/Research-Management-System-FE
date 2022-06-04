@@ -7,7 +7,7 @@ import Navbar from "./components/navbar.component";
 import NavbarSupervisor from "./components/navbarSupervisor.component";
 import NavbarAdmin from "./components/navbarAdmin.component";
 import HomePage from "./components/homePage.component";
-import FooterComponent from "./components/FooterComponent";
+// import FooterComponent from "./components/FooterComponent";
 
 //admin routes
 import AdminDocUpload from "./components/admin-components/admin-file-upload.component";
@@ -95,11 +95,11 @@ function App() {
   //   setFlag(sessionStorage.getItem("navBarType"));
   //   console.log('abcd1234 =>',flag);
   //   // navBarSetter();
-    
+
   // },[]);
 
   // console.log('flagprint =>',flag);
-  
+
   // const navBarSetter = () => {
   //   console.log('abc',flag);
   //   if ( flag === "1") {
@@ -117,7 +117,7 @@ function App() {
   //   } else {
   //     return null;
   //   }
-    
+
   // }
   // navBarSetter();
   // setTest('a');
@@ -137,12 +137,14 @@ function App() {
         backgroundColor: 'white',
         width: '100%',
         height: '100vh',
+        paddingLeft: "0px",
+        paddingRight: "0px"
       }}>
         <Router>
 
           <Navbar />
           <br />
-          <div>
+          <div style={{ padding: "20px" }}>
             {/* home page */}
             <Route path="/home" exact component={HomePage} />
 
