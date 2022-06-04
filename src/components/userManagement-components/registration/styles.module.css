@@ -64,7 +64,7 @@
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	background-color: #251405;
+	background-color: #484848be;
 	border-top-left-radius: 10px;
 	border-bottom-left-radius: 10px;
 }
@@ -82,7 +82,7 @@
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	background-color: #BB8849;
+	background-color: #484848be;
 	border-top-left-radius: 10px;
 	border-bottom-left-radius: 10px;
 }

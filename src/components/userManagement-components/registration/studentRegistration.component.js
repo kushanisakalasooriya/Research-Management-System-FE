@@ -77,8 +77,6 @@ export default class StudentRegistration extends Component {
             image: this.state.image
         }
 
-        console.log(studentDetails);
-
         axios.post('http://localhost:5000/student/registration/', studentDetails)
             .then(res => { 
 
@@ -105,40 +103,6 @@ export default class StudentRegistration extends Component {
             );
 
     }
-
-    // onSubmit(e) {
-    //     e.preventDefault();
-
-
-    //     const studentDetails = {
-    //         stdID: this.state.stdID,
-    //         firstName: this.state.firstName,
-    //         lastName: this.state.lastName,
-    //         email: this.state.email,
-    //         password: this.state.password,
-    //         image: this.state.image
-    //     }
-
-    //     console.log(studentDetails);
-
-    //     axios.post('http://localhost:5000/student/registration/', studentDetails)
-    //         .then(res => alert(res.data));
-
-    //     this.setState({
-    //         stdID: '',
-    //         firstName: '',
-    //         lastName: '',
-    //         email: '',
-    //         password: '',
-    //         image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_BzGCRFUnQvDPPd8rrI9cHczEpj4ED5avR1pnKjAxkZ3yq_yoCrdXalvDvjLLEaaEMH0&usqp=CAU'
-    //     })
-
-
-    //         //after registration success navigate to the login
-    //         this.props.history.push('/student-login')
-
-    // }
-
 
 
     render() {
