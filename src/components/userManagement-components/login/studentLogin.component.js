@@ -117,7 +117,7 @@ export default class StudentLogin extends Component {
             </form>
           </div>
 
-          <div className={styles.right}>
+          <div className={styles.Stdright}>
             <h1 style={{ textAlign: "center" }}>Create new Account</h1>
 
             <button

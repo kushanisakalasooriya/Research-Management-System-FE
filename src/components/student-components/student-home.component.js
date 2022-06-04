@@ -63,13 +63,13 @@ export default class studentHome extends Component {
     await axios
       .post("http://localhost:5000/groups/loggedUser", student)
       .then((response) => {
-        if (response.status == 201){
-          
-      } else {
-        this.setState({ grp: response.data.user.groupname });
-      }
+        if (response.status == 201) {
+
+        } else {
+          this.setState({ grp: response.data.user.groupname });
+        }
         // if (response.data.user.groupname){
-        
+
         // }else {
         // alert('User does not have a group');
         // }
@@ -186,7 +186,7 @@ export default class studentHome extends Component {
   }
 
 
-  templateDownload(){
+  templateDownload() {
     this.props.history.push('/template-download');
   }
 
@@ -286,21 +286,6 @@ export default class studentHome extends Component {
                   {" "}
                   Download Templates{" "}
                 </button>
-                <br></br>
-              </div>
-            </div>
-          </div>
-          <div className="container">
-            <div className="row justify-content-center">
-              <div className="col-3 col-md-auto">
-                <Link to="/student-chat/"> < button
-                  style={{ width: "500px", margin: "15px" }}
-                  type="button"
-                  class="btn btn-success btn-info btn-lg"
-                >
-                  {" "}
-                  Chat with Supervisor{" "}
-                </button></Link>
                 <br></br>
               </div>
             </div>
