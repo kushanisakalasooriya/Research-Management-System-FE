@@ -82,7 +82,7 @@ export default class SuperrvisorTopicList extends Component {
             <div>
                 <div className="headingModsLand" style={{ marginBottom: "30px", marginTop: "20px" }}> <h3> Research topics</h3> </div>
 
-                <table className="table table-bordered table-light">
+                <table className="table table-bordered table-light" style={{ backgroundColor: "rgba(255, 255, 255, 0.7)" }}>
                     <thead className="table-dark">
                         <tr>
                             <th>Topic</th>
