@@ -44,7 +44,7 @@ export default class CreateGroup extends Component {
         console.log(error);
       });
   }
-             
+
   onChangeGroupName(e) {
     this.setState({
       groupname: e.target.value,
@@ -119,15 +119,15 @@ export default class CreateGroup extends Component {
           });
         }
       });
-            
 
-            const topic = {
-                groupname: this.state.groupname,
-                topic: null,
-                state: 'Pending'
-            }
 
-            await axios
+      const topic = {
+        groupname: this.state.groupname,
+        topic: '',
+        state: ''
+      }
+
+      await axios
         .post("http://localhost:5000/supervisor/topic/add", topic)
         .then((res) => {
           if (res.status == 201) {
@@ -141,23 +141,23 @@ export default class CreateGroup extends Component {
           }
         });
 
-        if (this.state.result1 == "1" || this.state.result2 == "1") {
-          alert("Error adding");
-        } else {
-          alert("Group created successfully");
-          this.props.history.push("/student-home");
-        }
-          this.props.history.push('/student-home');
+      if (this.state.result1 == "1" || this.state.result2 == "1") {
+        alert("Error adding");
+      } else {
+        alert("Group created successfully");
+        this.props.history.push("/student-home");
       }
-      this.setState({
-        groupname: '',
-        groupleader: '',
-        member02: '',
-        member03: '',
-        member04: '',
+      this.props.history.push('/student-home');
+    }
+    this.setState({
+      groupname: '',
+      groupleader: '',
+      member02: '',
+      member03: '',
+      member04: '',
     })
-}
-    
+  }
+
 
   render() {
     return (
