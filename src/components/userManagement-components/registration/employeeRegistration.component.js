@@ -25,7 +25,7 @@ export default class EmployeeRegistration extends Component {
             empType: '',
             password: '',
             image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_BzGCRFUnQvDPPd8rrI9cHczEpj4ED5avR1pnKjAxkZ3yq_yoCrdXalvDvjLLEaaEMH0&usqp=CAU',
-            researchField:'N/A'
+            researchField: 'N/A'
         }
 
     }
@@ -106,7 +106,7 @@ export default class EmployeeRegistration extends Component {
             empType: '',
             password: '',
             image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_BzGCRFUnQvDPPd8rrI9cHczEpj4ED5avR1pnKjAxkZ3yq_yoCrdXalvDvjLLEaaEMH0&usqp=CAU',
-            researchField:'N/A'
+            researchField: 'N/A'
         })
 
         //after registration success navigate to the login
@@ -122,7 +122,7 @@ export default class EmployeeRegistration extends Component {
 
             <div className={styles.signup_container}>
                 <div className={styles.signup_form_container}>
-                    <div className={styles.left}>
+                    <div className={styles.empleft}>
 
                         <h1>Welcome</h1>
 

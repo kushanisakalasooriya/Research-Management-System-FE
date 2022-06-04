@@ -137,7 +137,7 @@ export default class EmployeeLogin extends Component {
             </form>
           </div>
 
-          <div className={styles.right}>
+          <div className={styles.Empright}>
             <h1 style={{ textAlign: "center" }}>Create new Account</h1>
 
             <button

@@ -103,7 +103,7 @@ export default class StudentRegistration extends Component {
 
             <div className={styles.signup_container}>
                 <div className={styles.signup_form_container}>
-                    <div className={styles.left}>
+                    <div className={styles.stdleft}>
 
                         <h1>Welcome</h1>
 
