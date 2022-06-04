@@ -190,10 +190,10 @@ export default class studentHome extends Component {
             <div className="row justify-content-center">
               <div className="col-3 col-md-auto">
                 <button
-                  style={{ width: "500px", margin: "15px" }}
+                  style={{ width: "500px", margin: "15px", backgroundColor: "#BEA475" }}
                   onClick={this.RegGroup.bind(this)}
                   type="button"
-                  class="btn btn-secondary col-16 btn-lg"
+                  class="btn col-16 btn-lg"
                 >
                   {" "}
                   Submit Student Group{" "}
@@ -205,10 +205,10 @@ export default class studentHome extends Component {
             <div className="row justify-content-center">
               <div className="col-3 col-md-auto">
                 <button
-                  style={{ width: "500px", margin: "15px" }}
+                  style={{ width: "500px", margin: "15px", backgroundColor: "#F1C9AB" }}
                   onClick={this.RegTopic.bind(this)}
                   type="button"
-                  class="btn btn-success btn-lg"
+                  class="btn  btn-lg"
                 >
                   {" "}
                   Register Research Topic{" "}
@@ -221,10 +221,10 @@ export default class studentHome extends Component {
             <div className="row justify-content-center">
               <div className="col-3 col-md-auto">
                 <button
-                  style={{ width: "500px", margin: "15px" }}
+                  style={{ width: "500px", margin: "15px", backgroundColor: "#BEA475" }}
                   type="button"
                   onClick={this.ReqCosup.bind(this)}
-                  class="btn btn-danger btn-lg"
+                  class="btn btn-lg"
                 >
                   {" "}
                   Request Co-Supervisor{" "}
@@ -237,10 +237,10 @@ export default class studentHome extends Component {
             <div className="row justify-content-center">
               <div className="col-3 col-md-auto">
                 <button
-                  style={{ width: "500px", margin: "15px" }}
+                  style={{ width: "500px", margin: "15px", backgroundColor: "#F1C9AB" }}
                   onClick={this.submitDoc.bind(this)}
                   type="button"
-                  class="btn btn-warning btn-lg"
+                  class="btn btn-lg"
                 >
                   {" "}
                   Submit Documents{" "}
@@ -252,10 +252,10 @@ export default class studentHome extends Component {
             <div className="row justify-content-center">
               <div className="col-3 col-md-auto">
                 <button
-                  style={{ width: "500px", margin: "15px" }}
+                  style={{ width: "500px", margin: "15px", backgroundColor: "#BEA475" }}
                   onClick={this.templateDownload.bind(this)}
                   type="button"
-                  class="btn btn-success btn-info btn-lg"
+                  class="btn btn-lg"
                 >
                   {" "}
                   Download Templates{" "}
@@ -270,9 +270,9 @@ export default class studentHome extends Component {
                 <Link to="/student-chat/">
                   {" "}
                   <button
-                    style={{ width: "500px", margin: "15px" }}
+                    style={{ width: "500px", margin: "15px", backgroundColor: "#F1C9AB" }}
                     type="button"
-                    class="btn btn-success btn-info btn-lg"
+                    class="btn btn-lg"
                   >
                     {" "}
                     Chat with Supervisor{" "}
