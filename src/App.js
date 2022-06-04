@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 //common routes
 import Navbar from "./components/navbar.component";
 import HomePage from "./components/homePage.component";
-import FooterComponent from "./components/FooterComponent";
+// import FooterComponent from "./components/FooterComponent";
 //admin routes
 import AdminDocUpload from "./components/admin-components/admin-file-upload.component";
 import AdminHome from "./components/admin-components/admin-home.component";
@@ -94,12 +94,14 @@ function App() {
         backgroundColor: 'white',
         width: '100%',
         height: '100vh',
+        paddingLeft: "0px",
+        paddingRight: "0px"
       }}>
         <Router>
 
           <Navbar />
           <br />
-          <div>
+          <div style={{ padding: "20px" }}>
             {/* home page */}
             <Route path="/home" exact component={HomePage} />
 

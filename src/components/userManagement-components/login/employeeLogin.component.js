@@ -93,7 +93,7 @@ export default class EmployeeLogin extends Component {
         <div className={styles.login_form_container}>
           <div className={styles.left}>
             <form className={styles.form_container} onSubmit={this.onSubmit}>
-              <h1>Login to Your Account</h1>
+              <h1 style={{ textTransform: 'uppercase' }}>Employee Login</h1>
 
               <div className="form-group">
                 <label>Employee Email: </label>

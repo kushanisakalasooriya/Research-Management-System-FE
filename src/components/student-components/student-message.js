@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import "react-datepicker/dist/react-datepicker.css";
 import './student-chat.css';
+import { Link } from 'react-router-dom';
 export default class StudentMessage extends Component {
     constructor(props) {
         super(props);
@@ -20,6 +21,7 @@ export default class StudentMessage extends Component {
             oneChat: [],
             StudentId: JSON.parse(sessionStorage.getItem("loggeduser")).firstName,
             StudentRegNo: JSON.parse(sessionStorage.getItem("loggeduser")).stdID,
+            StudentImg: JSON.parse(sessionStorage.getItem("loggeduser")).image,
         }
     }
 
@@ -103,6 +105,8 @@ export default class StudentMessage extends Component {
         return (
             <div>
                 <div className="headingModsLand" style={{ marginBottom: "30px", marginTop: "20px" }}> <h3>  Chat with Your supervisor</h3> </div>
+                <Link to='/student-chat' style={{ textDecoration: 'none', color: '#056055', paddingLeft: '150px' }}><i class="fa fa-arrow-left fa-mn" aria-hidden="true"></i><b> Go Back</b></Link>
+
                 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 
                 <div class="container">
@@ -133,7 +137,7 @@ export default class StudentMessage extends Component {
                                             <li class="clearfix">
                                                 <div class="message-data text-right">
                                                     <span class="message-data-time">{this.state.StudentId}</span>
-                                                    <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="avatar" />
+                                                    <img src={this.state.StudentImg} alt="avatar" />
                                                 </div>
                                                 <div class="message other-message float-right"> {this.state.studentMsg}</div>
                                             </li>

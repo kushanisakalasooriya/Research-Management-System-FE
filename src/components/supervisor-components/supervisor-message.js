@@ -18,6 +18,7 @@ export default class SupervisorMessage extends Component {
             chats: [],
             oneChat: [],
             check: false,
+            supervisorImg: JSON.parse(sessionStorage.getItem("loggeduser")).image,
         }
     }
 
@@ -38,16 +39,6 @@ export default class SupervisorMessage extends Component {
         axios.get('http://localhost:5000/chat')
             .then(response => {
                 this.setState({ chats: response.data })
-
-
-                var i = 0;
-                for (i = 0; i < this.state.chats.length; i++) {
-                    if (this.state.chats[i].supervisorName == "Jagath") {
-                        this.state.oneChat.push(this.state.chats[i]);
-                    }
-                }
-
-                this.setState({ group: response.data })
 
             })
             .catch((error) => {
@@ -88,7 +79,7 @@ export default class SupervisorMessage extends Component {
             <div>
                 <div className="headingModsLand" style={{ marginBottom: "30px", marginTop: "20px" }}> <h3>  Chat with Students</h3> </div>
 
-                <Link to='/supervisor-chat' style={{ textDecoration: 'none', color: '#056055', paddingLeft: '15px' }}><i class="fa fa-arrow-left fa-mn" aria-hidden="true"></i><b> Go Back</b></Link>
+                <Link to='/supervisor-chat' style={{ textDecoration: 'none', color: '#056055', paddingLeft: '150px' }}><i class="fa fa-arrow-left fa-mn" aria-hidden="true"></i><b> Go Back</b></Link>
 
                 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 
@@ -120,7 +111,7 @@ export default class SupervisorMessage extends Component {
                                             <li className="clearfix">
                                                 <div className="message-data text-right">
                                                     <span className="message-data-time">{this.state.supervisorName}</span>
-                                                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="avatar" />
+                                                    <img src={this.state.supervisorImg} alt="avatar" />
                                                 </div>
                                                 <div className="message other-message float-right"> {this.state.supervisorMsg}</div>
                                             </li>

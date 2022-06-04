@@ -200,12 +200,14 @@ export default class studentHome extends Component {
           className="nav-link"
         >
           {" "}
-          <img
-            style={{ width: "40px", height: "40px" }}
-            src={profileIcon}
-          ></img>
+          <div style={{ marginBottom: "8px" }}>
+            <img
+              style={{ width: "40px", height: "40px", float: "right", borderRadius: "50px" }}
+              src={this.state.loggedUser.image}
+            ></img>
+          </div>
         </Link>
-
+        <br />
         <div className="">
           <div className="container">
             <div className="row justify-content-center">

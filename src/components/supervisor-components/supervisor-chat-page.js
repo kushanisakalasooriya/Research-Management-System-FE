@@ -99,7 +99,7 @@ export default class SupervisorChatPage extends Component {
                         chat =>
                             <div key={chat._id}>
                                 <div class="Notifycard">
-                                    <Link to={"/supervisor-chatGo/edit/" + chat._id} style={{ textDecoration: 'none' }}><div className="Notifycontainer"><i className="fa fa-bell" style={{ paddingRight: '20px' }}></i>
+                                    <Link to={"/supervisor-chatGo/edit/" + chat._id} style={{ textDecoration: 'none' }}><div className="Notifycontainer"><i className="fa fa-bell " style={{ paddingRight: '20px' }}></i>
                                         You have a new message from <b>{chat.studentName}</b> !!
                                     </div></Link>
                                 </div><br />
