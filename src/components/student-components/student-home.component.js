@@ -2,22 +2,13 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
-import profileIcon from "../userManagement-components/images/profileicon.png";
-
-class Message extends React.Component {
-  render() {
-    return (
-      <p style={{ color: "red" }}>
-        Seems you are currently not belongs to any group.First, Submit a group
-        according to register the research topic.
-      </p>
-    );
-  }
-}
-
 class Message2 extends React.Component {
   render() {
-    return <p style={{ color: "red" }}>Research topic is not accepted yet.</p>;
+    return (
+      <center>
+        <p style={{ color: "red" }}>Research topic is not accepted yet.</p>
+      </center>
+    );
   }
 }
 
@@ -28,7 +19,7 @@ export default class studentHome extends Component {
     this.state = {
       // groups: [],
       topics: [],
-      stdid: "Thar",
+      // stdid: "",
       grp: "",
       status: "",
       flag: "0",
@@ -56,14 +47,19 @@ export default class studentHome extends Component {
       stdID: this.state.loggedUser.stdID,
     };
 
-    console.log("aaa", student.stdID);
+    // console.log("aaa", student.stdID);
+    // console.log("bbb", this.state.loggedUser._id);
 
     //get the group details according to the user
     await axios
       .post("http://localhost:5000/groups/loggedUser", student)
       .then((response) => {
+        if (response.status === 201) {
+        } else {
+          this.setState({ grp: response.data.user.groupname });
+        }
         // if (response.data.user.groupname){
-        this.setState({ grp: response.data.user.groupname });
+
         // }else {
         // alert('User does not have a group');
         // }
@@ -125,6 +121,8 @@ export default class studentHome extends Component {
           this.state.flagcosup = "1";
         } else if (this.state.topics[i].state === "Rejected") {
           this.state.flagcosup = "2";
+        } else if (this.state.topics[i].state === "Pending") {
+          this.state.flagcosup = "3";
         }
       }
     }
@@ -135,10 +133,12 @@ export default class studentHome extends Component {
   RegTopic() {
     if (this.state.flagcosup === "2") {
       alert("Your topic is Rejected.Register a new Topic.");
-      this.props.history.push('/reg-topic');
-    } else if (this.state.flagcosup === "1"){
+      this.props.history.push("/reg-topic");
+    } else if (this.state.flagcosup === "1") {
       alert("Your topic is already Accepted");
-    }else {
+    } else if (this.state.flagcosup === "3") {
+      alert("You already registered a topic !");
+    } else {
       // window.location = '/reg-topic'
       this.props.history.push("/reg-topic");
     }
@@ -157,7 +157,9 @@ export default class studentHome extends Component {
   submitDoc() {
     if (this.state.flagcosup === "2") {
       alert("Your topic is Rejected.");
-    } else if (this.state.flagcosup === "0"){
+    } else if (this.state.flagcosup === "0") {
+      alert("Please Submit a Research Topic! ");
+    } else if(this.state.flagcosup === "3"){
       alert("Your topic is not yet accepted");
     }else {
       // window.location = '/reg-topic'
@@ -173,6 +175,11 @@ export default class studentHome extends Component {
     }
   }
 
+
+  templateDownload() {
+    this.props.history.push('/template-download');
+  }
+
   render() {
     return (
       <div className="container">
@@ -180,30 +187,18 @@ export default class studentHome extends Component {
           <h2> STUDENT HOME </h2>{" "}
         </center>
 
-        {/* navigate to the student profile */}
-        <Link
-          to={"/student-profile/" + this.state.loggedUser._id}
-          className="nav-link"
-        >
-          {" "}
-          <img
-            style={{ width: "40px", height: "40px" }}
-            src={profileIcon}
-          ></img>
-        </Link>
-
         <div className="">
           <div className="container">
             <div className="row justify-content-center">
               <div className="col-3 col-md-auto">
                 <button
-                  style={{ width: "300px", margin: "10px" }}
+                  style={{ width: "500px", margin: "15px" }}
                   onClick={this.RegGroup.bind(this)}
                   type="button"
-                  class="btn btn-secondary col-16"
+                  class="btn btn-outline-dark col-16 btn-lg"
                 >
                   {" "}
-                  Submit the student group{" "}
+                  Submit Student Group{" "}
                 </button>
               </div>
             </div>
@@ -212,13 +207,13 @@ export default class studentHome extends Component {
             <div className="row justify-content-center">
               <div className="col-3 col-md-auto">
                 <button
-                  style={{ width: "300px", margin: "10px" }}
+                  style={{ width: "500px", margin: "15px" }}
                   onClick={this.RegTopic.bind(this)}
                   type="button"
-                  class="btn btn-success "
+                  class="btn btn-success btn-lg"
                 >
                   {" "}
-                  Register the research topic{" "}
+                  Register Research Topic{" "}
                 </button>
                 {this.state.component}
               </div>
@@ -228,10 +223,10 @@ export default class studentHome extends Component {
             <div className="row justify-content-center">
               <div className="col-3 col-md-auto">
                 <button
-                  style={{ width: "300px", margin: "10px" }}
+                  style={{ width: "500px", margin: "15px" }}
                   type="button"
                   onClick={this.ReqCosup.bind(this)}
-                  class="btn btn-danger"
+                  class="btn btn-danger btn-lg"
                 >
                   {" "}
                   Request Co-Supervisor{" "}
@@ -244,13 +239,13 @@ export default class studentHome extends Component {
             <div className="row justify-content-center">
               <div className="col-3 col-md-auto">
                 <button
-                  style={{ width: "300px", margin: "10px" }}
+                  style={{ width: "500px", margin: "15px" }}
                   onClick={this.submitDoc.bind(this)}
                   type="button"
-                  class="btn btn-warning"
+                  class="btn btn-warning btn-lg"
                 >
                   {" "}
-                  Submit documents{" "}
+                  Submit Documents{" "}
                 </button>
               </div>
             </div>
@@ -259,12 +254,13 @@ export default class studentHome extends Component {
             <div className="row justify-content-center">
               <div className="col-3 col-md-auto">
                 <button
-                  style={{ width: "300px", margin: "10px" }}
+                  style={{ width: "500px", margin: "15px" }}
+                  onClick={this.templateDownload.bind(this)}
                   type="button"
-                  class="btn btn-success btn-info"
+                  class="btn btn-success btn-info btn-lg"
                 >
                   {" "}
-                  Download templates{" "}
+                  Download Templates{" "}
                 </button>
                 <br></br>
               </div>
@@ -273,14 +269,17 @@ export default class studentHome extends Component {
           <div className="container">
             <div className="row justify-content-center">
               <div className="col-3 col-md-auto">
-                <button
-                  style={{ width: "300px", margin: "10px" }}
-                  type="button"
-                  class="btn btn-success btn-info"
-                >
+                <Link to="/student-chat/">
                   {" "}
-                  Download Marking Schemes{" "}
-                </button>
+                  <button
+                    style={{ width: "500px", margin: "15px" }}
+                    type="button"
+                    class="btn btn-success btn-info btn-lg"
+                  >
+                    {" "}
+                    Chat with Supervisor{" "}
+                  </button>
+                </Link>
                 <br></br>
               </div>
             </div>

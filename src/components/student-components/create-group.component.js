@@ -1,247 +1,235 @@
-import React, { Component } from 'react';
-import axios from 'axios';
-
-// const Student = props => (
-//     <tr>
-//         <td>{props.student.stdID}</td>
-//         <td>{props.student.studentfirstName} {props.student.studentlastName}</td>
-//         <td>
-//             <Link to={""}> Add </Link>
-//         </td>
-//     </tr>
-// )
+import React, { Component } from "react";
+import axios from "axios";
 
 export default class CreateGroup extends Component {
-    constructor(props) {
-        super(props);
+  constructor(props) {
+    super(props);
 
-        this.onChangeGroupName = this.onChangeGroupName.bind(this);
-        this.onChangeGroupLeader = this.onChangeGroupLeader.bind(this);
-        // this.onChangeSupervisor = this.onChangeSupervisor.bind(this);
-        // this.onChangeCoSupervisor = this.onChangeCoSupervisor.bind(this);
-        this.onChangemember02 = this.onChangemember02.bind(this);
-        this.onChangemember03 = this.onChangemember03.bind(this);
-        this.onChangemember04 = this.onChangemember04.bind(this);
-        this.onSubmit = this.onSubmit.bind(this);
+    this.onChangeGroupName = this.onChangeGroupName.bind(this);
+    this.onChangeGroupLeader = this.onChangeGroupLeader.bind(this);
+    this.onChangemember02 = this.onChangemember02.bind(this);
+    this.onChangemember03 = this.onChangemember03.bind(this);
+    this.onChangemember04 = this.onChangemember04.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
 
-        this.state = {
-            groupname: '',
-            groupleader: '',
-            member02: '',
-            member03: '',
-            member04: '',
-            supervisor: '',
-            cosupervisor: '',
-            students:[],
-            nogroupstudents:[],
+    this.state = {
+      groupname: "",
+      groupleader: JSON.parse(sessionStorage.getItem("loggeduser")).stdID,
+      member02: "",
+      member03: "",
+      member04: "",
+      supervisor: "",
+      cosupervisor: "",
+      groupMembers: [],
+      grouped: [],
+      result1: "",
+      result2: "",
+    };
+  }
+
+  componentDidMount() {
+    axios
+      .get("http://localhost:5000/groups")
+      .then((response) => {
+        this.setState({ groupMembers: response.data });
+        for (var i = 0; i < this.state.groupMembers.length; i++) {
+          // console.log('i ', this.state.groups[i].status)
+          this.state.grouped.push(this.state.groupMembers[i].groupleader);
+          this.state.grouped.push(this.state.groupMembers[i].member02);
+          this.state.grouped.push(this.state.groupMembers[i].member03);
+          this.state.grouped.push(this.state.groupMembers[i].member04);
         }
-    }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+             
+  onChangeGroupName(e) {
+    this.setState({
+      groupname: e.target.value,
+    });
+  }
 
-    componentDidMount() {
-        // axios.get('http://localhost:5000/studentDetails')
-        // .then(response => {
-        //     this.setState({ students: response.data})
-        // })
-        // .catch((error) => {
-        //     console.log(error);
-        // })
+  onChangeGroupLeader(e) {
+    this.setState({
+      groupleader: e.target.value,
+    });
+  }
 
-        // console.log(this.state.students);
-    }
+  onChangemember02(e) {
+    this.setState({
+      member02: e.target.value,
+    });
+  }
 
-    // studentDetailsList() {
-    //     console.log(this.state.students);
-    //     console.log("this.state.students");
-    //     var i = 0;
-    //     for (i=0 ; i < this.state.students.length ; i++){
-    //         console.log(this.state.students[i]);
-    //         if(this.state.students[i].studentGrpID == null){
-    //             this.state.nogroupstudents.push(this.state.students[i]);
-    //         }
-    //     }
-    //     console.log(this.state.students);
-    //     console.log(this.state.nogroupstudents);
+  onChangemember03(e) {
+    this.setState({
+      member03: e.target.value,
+    });
+  }
 
-    //     return this.state.nogroupstudents.map(currentstudentdetails => {
-    //         return <Student student = {currentstudentdetails} key={currentstudentdetails._id}/>;
-    //     })
-    // }
+  onChangemember04(e) {
+    this.setState({
+      member04: e.target.value,
+    });
+  }
 
-    onChangeGroupName(e) {
-        this.setState({
-            groupname: e.target.value
-        });
-    }
+  async onSubmit(e) {
+    e.preventDefault();
 
-    onChangeGroupLeader(e) {
-        this.setState({
-            groupleader: e.target.value
-        });
-    }
+    if (this.state.grouped.includes(this.state.member02)) {
+      alert(this.state.member02 + " is already registered for a group");
+      this.setState({
+        member02: "",
+      });
+    } else if (this.state.grouped.includes(this.state.member03)) {
+      alert(this.state.member03 + " is already registered for a group");
+      this.setState({
+        member03: "",
+      });
+    } else if (this.state.grouped.includes(this.state.member04)) {
+      alert(this.state.member04 + " is already registered for a group");
+      this.setState({
+        member04: "",
+      });
+    } else {
+      const group = {
+        groupname: this.state.groupname,
+        groupleader: this.state.groupleader,
+        member02: this.state.member02,
+        member03: this.state.member03,
+        member04: this.state.member04,
+        supervisor: "N/A",
+        cosupervisor: "N/A",
+        panelMember: "N/A",
+        topic: "N/A",
+        status: "Pending",
+      };
 
-    onChangemember02(e) {
-        this.setState({
-            member02: e.target.value
-        });
-    }
-
-    onChangemember03(e) {
-        this.setState({
-            member03: e.target.value
-        });
-    }
-
-    onChangemember04(e) {
-        this.setState({
-            member04: e.target.value
-        });
-    }
-
-    // onChangeSupervisor(e) {
-    //     this.setState({
-    //         supervisor: e.target.value
-    //     });
-    // }
-
-    // onChangeCoSupervisor(e) {
-    //     this.setState({
-    //         cosupervisor: e.target.value
-    //     });
-    // }
-
-    onSubmit(e) {
-        e.preventDefault();
-
-        const group = {
-            groupname: this.state.groupname,
-            groupleader: this.state.groupleader,
-            member02: this.state.member02,
-            member03: this.state.member03,
-            member04: this.state.member04,
-            supervisor: 'N/A',
-            cosupervisor: 'N/A',
-            panelMember: 'N/A',
-            topic: 'N/A',
-            status: 'Pending'
+      await axios.post("http://localhost:5000/groups/add", group).then((res) => {
+        // console.log(res.data);
+        if (res.status == 201) {
+          this.setState({
+            result1: "1",
+          });
+        } else {
+          this.setState({
+            result1: "0",
+          });
         }
+      });
+            this.setState({
+                groupname: '',
+                groupleader: '',
+                member02: '',
+                member03: '',
+                member04: '',
+            })
 
-        axios.post('http://localhost:5000/groups/add', group)
-            .then(res => console.log(res.data), alert("Successfully submitted the group"));
+            const topic = {
+                groupname: this.state.groupname,
+                topic: 'N/A',
+                state: 'Pending'
+            }
 
-        this.setState({
-            groupname: '',
-            groupleader: '',
-            member02: '',
-            member03: '',
-            member04: '',
-        })
+            await axios
+        .post("http://localhost:5000/supervisor/topic/add", topic)
+        .then((res) => {
+          if (res.status == 201) {
+            this.setState({
+              result2: "1",
+            });
+          } else {
+            this.setState({
+              result2: "0",
+            });
+          }
+        });
 
-        const topic = {
-            groupname: this.state.groupname,
-            topic: '',
-            state: 'Pending'
+        if (this.state.result1 == "1" || this.state.result2 == "1") {
+          alert("Error adding");
+        } else {
+          alert("Group created successfully");
+          this.props.history.push("/student-home");
         }
-        console.log(topic);
+          this.props.history.push('/student-home');
+      }
+}
+    
 
-        axios.post('http://localhost:5000/supervisor/topic/add', topic)
-            .then(res => console.log(res.data));
+  render() {
+    return (
+      <div>
+        <h3>Submit Project Group </h3>
+        <form onSubmit={this.onSubmit}>
+          <div className="form-group">
+            <label>Group Name: </label>
+            <input
+              type="text"
+              required
+              className="form-control"
+              value={this.state.groupname}
+              onChange={this.onChangeGroupName}
+            />
+          </div>
+          <div className="form-group">
+            <label>Group Leader (Student ID number) : </label>
+            <input
+              type="text"
+              readOnly
+              required
+              className="form-control"
+              value={this.state.groupleader}
+              onChange={this.onChangeGroupLeader}
+            />
+          </div>
+          <div className="form-group">
+            <label> Member 02 (Student ID number) : </label>
+            <input
+              type="text"
+              required
+              className="form-control"
+              value={this.state.member02}
+              onChange={this.onChangemember02}
+            />
+          </div>
+          <div className="form-group">
+            <label>Member 03 (Student ID number) : </label>
+            <input
+              type="text"
+              required
+              className="form-control"
+              value={this.state.member03}
+              onChange={this.onChangemember03}
+            />
+          </div>
+          <div className="form-group">
+            <label>Member 04 (Student ID number) : </label>
+            <input
+              type="text"
+              required
+              className="form-control"
+              value={this.state.member04}
+              onChange={this.onChangemember04}
+            />
+          </div>
 
-        this.props.history.push('/student-home');
-
-    }
-
-
-    render() {
-        return (
-            <div>
-
-                {/* <h3>All Student Details</h3>
-
-                <table className='table'>
-                    <thead className='thead-light'>
-                        <tr>
-                            <th>Student ID</th>
-                            <th>Student Name</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        {this.studentDetailsList()}
-                    </tbody>
-                </table> */}
-
-                <h3>Submit Project Group </h3>
-                <form onSubmit={this.onSubmit}>
-                    <div className="form-group">
-                        <label>Group Name: </label>
-                        <input type="text"
-                            required
-                            className="form-control"
-                            value={this.state.groupname}
-                            onChange={this.onChangeGroupName}
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label>Group Leader: </label>
-                        <input type="text"
-                            required
-                            className="form-control"
-                            value={this.state.groupleader}
-                            onChange={this.onChangeGroupLeader}
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label> Member 02: </label>
-                        <input type="text"
-                            required
-                            className="form-control"
-                            value={this.state.member02}
-                            onChange={this.onChangemember02}
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label>Member 03: </label>
-                        <input type="text"
-                            required
-                            className="form-control"
-                            value={this.state.member03}
-                            onChange={this.onChangemember03}
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label>Member 04: </label>
-                        <input type="text"
-                            required
-                            className="form-control"
-                            value={this.state.member04}
-                            onChange={this.onChangemember04}
-                        />
-                    </div>
-                    {/* <div className="form-group">
-                        <label> Supervisor: </label>
-                        <input
-                            type="text"
-                            className="form-control"
-                            value={this.state.supervisor}
-                            onChange={this.onChangeSupervisor}
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label> Co-Supervisor: </label>
-                        <input
-                            type="text"
-                            className="form-control"
-                            value={this.state.cosupervisor}
-                            onChange={this.onChangeCoSupervisor}
-                        />
-                    </div> */}
-
-                    <div className="form-group">
-                        <input type="submit" value="Create Group" className="btn btn-primary" />
-                    </div>
-                </form>
-            </div>
-        )
-    }
+          <div className="form-group">
+            <input
+              style={{
+                marginBottom: "20px",
+                float: "right",
+                width: "25%",
+                color: "dark grey",
+              }}
+              type="submit"
+              className="btn btn-outline-dark"
+              value="Create Group"
+            />
+          </div>
+        </form>
+      </div>
+    );
+  }
 }

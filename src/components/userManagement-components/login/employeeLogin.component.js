@@ -65,16 +65,30 @@ export default class EmployeeLogin extends Component {
 
           //Navigate to the employee related page
           if (res.data.user.empType === 'Supervisor') {
-            this.props.history.push('/supervisor-home');
+            window.sessionStorage.setItem(
+              "navBarType",
+              ('3')
+            );
+            window.location = '/supervisor-home';
           }
           else if (res.data.user.empType === 'Co-Supervisor') {
-            this.props.history.push('/co-supervisor-home');
+            window.sessionStorage.setItem(
+              "navBarType",
+              ('3')
+            );
+            window.location = '/co-supervisor-home';
           }
           else if (res.data.user.empType === 'Panel Member') {
             this.props.history.push('/panel-home');
           }
           else if (res.data.user.empType === 'Admin') {
-            this.props.history.push('/admin-home');
+            window.sessionStorage.setItem(
+              "navBarType",
+              ('2')
+            );
+
+            window.location = '/admin-home';
+
           }
           // this.props.history.push(`/employee-profile/${res.data.user._id}`);
 
@@ -93,7 +107,7 @@ export default class EmployeeLogin extends Component {
         <div className={styles.login_form_container}>
           <div className={styles.left}>
             <form className={styles.form_container} onSubmit={this.onSubmit}>
-              <h1>Login to Your Account</h1>
+              <h1 style={{ textTransform: 'uppercase' }}>Employee Login</h1>
 
               <div className="form-group">
                 <label>Employee Email: </label>
@@ -125,7 +139,7 @@ export default class EmployeeLogin extends Component {
             </form>
           </div>
 
-          <div className={styles.right}>
+          <div className={styles.Empright}>
             <h1 style={{ textAlign: "center" }}>Create new Account</h1>
 
             <button

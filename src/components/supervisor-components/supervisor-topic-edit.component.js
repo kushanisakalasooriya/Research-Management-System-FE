@@ -1,37 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import "react-datepicker/dist/react-datepicker.css";
-// import './supervisor-edit-mod.css';
-
-// POP UP window
-// class Popup extends React.Component {
-//     render() {
-//         return (
-//             <div className='popup'>
-//                 <div className='popup_inner'>
-
-//                     <h3>{this.props.texttopic}</h3> <br />
-//                     Group Name : {this.props.textgroup} <br />
-//                     State : {this.props.textState} <br />
-
-//                     <div>
-//                         <select name="state" id="state"
-//                             onChange={this.props.stateChange}>
-//                             <option value="" selected>Choose</option>
-//                             <option value="Pending">Pending</option>
-//                             <option value="Accepted">Accepted</option>
-//                             <option value="Rejected">Rejected</option>
-//                         </select>
-//                     </div>
-//                     <button onClick={this.props.closePopup}>Back</button>
-//                     <button onClick={this.props.submit}>Submit</button>
-//                 </div>
-
-//             </div>
-//         );
-//     }
-// }
-
 export default class SupervisorEditTopics extends Component {
     constructor(props) {
         super(props);
@@ -46,14 +14,8 @@ export default class SupervisorEditTopics extends Component {
             groupName: '',
             state: '',
             csState: '',
-            // showPopup: false
         }
     }
-    // togglePopup() {
-    //     this.setState({
-    //         showPopup: !this.state.showPopup
-    //     });
-    // }
 
     componentDidMount() {
         axios.get('http://localhost:5000/supervisor/topic/' + this.props.match.params.id)
@@ -112,14 +74,14 @@ export default class SupervisorEditTopics extends Component {
             <div>
                 <center>
                     <hr></hr>
-                    <h3>Edit Topic State</h3>
+                    <div className="headingModsLand" style={{ marginBottom: "30px", marginTop: "20px" }}> <h3> Accept Topic </h3> </div>
                     <form onSubmit={this.onSubmit}>
-                        <div className="form-group">
-                            <label>Topic : </label> {this.state.topic}
+                        {/* <div className="form-group">
+                            <label >Topic : </label> {this.state.topic}
                         </div>
                         <div className="form-group">
                             <label>Group Name : </label> {this.state.groupName}
-                        </div>
+                        </div> */}
                         <div className="form-group">
                             <label>State : </label> {this.state.state}
                         </div>
@@ -127,8 +89,7 @@ export default class SupervisorEditTopics extends Component {
                         <div>
                             <select name="state" id="state"
                                 onChange={this.onChangeState}>
-                                <option value="" selected>Choose</option>
-                                <option value="Pending">Pending</option>
+                                <option value="Pending" selected>Pending</option>
                                 <option value="Accepted">Accepted</option>
                                 <option value="Rejected">Rejected</option>
                             </select>
@@ -139,19 +100,6 @@ export default class SupervisorEditTopics extends Component {
                         </div>
                     </form>
 
-                    {/* POP UP window */}
-                    {/* <button onClick={this.togglePopup.bind(this)}>Edit Topic State</button>
-                {this.state.showPopup ?
-                    <Popup
-                        texttopic={this.state.topic}
-                        textgroup={this.state.groupName}
-                        textState={this.state.state}
-                        closePopup={this.togglePopup.bind(this)}
-                        submit={this.onSubmit.bind(this)}
-                        stateChange={this.onChangeState.bind(this)}
-                    />
-                    : null
-                } */}
                 </center>
             </div>
         )

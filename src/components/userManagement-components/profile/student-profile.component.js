@@ -65,54 +65,50 @@ export default class StudentProfile extends Component {
 
     }
 
-
-
     render() {
         return (
             <div>
-                <div style={{ marginLeft: "-200px" }} className={styles.container}>
-                    <div>
-                        <br />
-                        <form className={styles.form_container} onSubmit={this.editStudentDetails}>
-                            <h3>Profile</h3>
-                            <div className="form-group">
-                                <label>Profile photo:</label>
-                                <div><img style={{ width: "200px", height: "200px" }} src={this.state.image}></img></div>
-                            </div>
 
-                            <div className="form-group">
-                                <label>Student ID: </label>
-                                <input type="text"
-                                    className="form-control"
-                                    value={this.state.stdID}
-                                />
-                            </div>
+                <div className="headingModsLand" style={{ marginBottom: "30px", marginTop: "20px" }}> <h2>  Student Profile </h2> </div>
 
-                            <div className="form-group">
-                                <label>Student first Name: </label>
-                                <input type="text"
-                                    className="form-control"
-                                    value={this.state.firstName}
-                                />
-                            </div>
+                <div style={{ marginLeft: "-200px" }} className={styles.emp_container}>
 
-                            <div className="form-group">
-                                <label>Student last Name: </label>
-                                <input type="text"
-                                    className="form-control"
-                                    value={this.state.lastName}
-                                />
+                    <br />
+                    <form className={styles.emp_form_container} onSubmit={this.editStudentDetails} >
+                        <h3>{this.state.firstName} {this.state.lastName}</h3>
+                        <div class="row">
+                            <div class="col" style={{ marginTop: "30px" }}>
+                                <div className="form-group">
+                                    <div><img style={{ width: "220px", height: "220px" }} src={this.state.image} alt=""></img></div>
+                                </div>
                             </div>
+                            <div class="col" style={{ marginTop: "50px", marginLeft: "30px" }}>
+                                <div className="form-group">
+                                    <label>Student ID: </label>
+                                    <input type="text"
+                                        className="form-control"
+                                        value={this.state.stdID}
+                                    />
+                                </div>
 
-                            <div className="form-group">
-                                <input type="submit" value="Update" className="btn btn-primary" />
-                                <button style={{ marginLeft: "10px" }} className="btn btn-danger" type='button' onClick={this.deleteStudentDetails}> Delete</button>
-                                <button style={{ marginLeft: "10px" }} className="btn btn-success" type='button' onClick={this.stuentLogout}> Logout</button>
+                                <div className="form-group">
+                                    <label>Email: </label>
+                                    <input type="text"
+                                        className="form-control"
+                                        value={this.state.email}
+                                    />
+                                </div>
 
                             </div>
-                        </form>
+                        </div>
+                        <div className="form-group">
+                            <input type="submit" value="Update" className="btn btn-primary" />
+                            <button style={{ marginLeft: "10px" }} className="btn btn-danger" type='button' onClick={this.deleteStudentDetails}> Delete</button>
+                            <button style={{ marginLeft: "10px" }} className="btn btn-danger" type='button' onClick={this.stuentLogout}> Logout</button>
+                        </div>
 
-                    </div>
+                    </form>
+
                 </div>
             </div>
         )

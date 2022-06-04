@@ -1,3 +1,72 @@
+/* Home page CSS */
+.homeStdBtn button {
+    padding: 0.5rem;
+    background-color: #251405;
+    border: none;
+    transition: 0.2s;
+    margin-bottom: 10px;
+    margin-top: 5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-weight: 650;
+    border-radius: 5px;
+    font-size: 14px;
+    color: aliceblue;
+    width: 200px;
+    height: 50px;
+}
+
+.homeStdBtn button:hover {
+    background: #452a12;
+    transform: scale(1.01);
+
+}
+
+.homeEmpBtn button {
+    padding: 0.5rem;
+    background-color: #BB8849;
+    border: none;
+    transition: 0.2s;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-weight: 650;
+    border-radius: 5px;
+    font-size: 14px;
+    color: aliceblue;
+    width: 200px;
+    height: 50px;
+}
+
+.homeEmpBtn button:hover {
+    background: #ce9e63;
+    transform: scale(1.01);
+
+}
+
+.stdPara {
+    text-align: justify;
+    text-justify: inter-word;
+    margin-left: -10px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.empPara {
+    text-align: justify;
+    text-justify: inter-word;
+    margin-left: -10px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+
+.homeTopic h2 {
+    text-align: center;
+    text-transform: uppercase;
+    padding-bottom: 5px;
+    font-weight: bold;
+    color: #D7944C;
+
+}
+
 /*Adding Button*/
 .laddBtn button {
     padding: 0.5rem;
@@ -78,6 +147,28 @@
     text-align: center;
     text-transform: uppercase;
     padding-bottom: 5px;
+
+}
+
+.headingModsLand h2 {
+    text-align: center;
+    text-transform: uppercase;
+    padding-bottom: 5px;
+
+}
+
+.headingModsLand h3 {
+    text-align: center;
+    text-transform: uppercase;
+    padding-bottom: 5px;
+
+}
+
+.headingModsLand h5 {
+    text-align: center;
+    text-transform: uppercase;
+    padding-bottom: 5px;
+    color: red;
 
 }
 

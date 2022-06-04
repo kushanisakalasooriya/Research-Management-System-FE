@@ -21,7 +21,7 @@ export default class AdminHome extends Component {
           <Link to="/admin-file-download">
             <button
               type="button"
-              style={{ marginRight: "50px", width: "40%" }}
+              style={{ width: "40%" }}
               class="btn btn-info btn-lg"
             >
               Download Files
@@ -39,7 +39,7 @@ export default class AdminHome extends Component {
           <Link to="/admin-submission-type-list">
             <button
               type="button"
-              style={{ marginRight: "50px", width: "40%", marginTop: "30px" }}
+              style={{ width: "40%", marginTop: "30px" }}
               class="btn btn-success btn-lg"
             >
               View Submission Types
@@ -57,7 +57,7 @@ export default class AdminHome extends Component {
           <Link to="/admin-marking-download">
             <button
               type="button"
-              style={{ marginRight: "50px", width: "40%", marginTop: "30px" }}
+              style={{width: "40%", marginTop: "30px" }}
               class="btn btn-primary btn-lg"
             >
               View Marking Schemes
@@ -75,7 +75,7 @@ export default class AdminHome extends Component {
           <Link to="/admin-all-employees">
             <button
               type="button"
-              style={{ marginRight: "50px", width: "40%", marginTop: "30px" }}
+              style={{ width: "40%", marginTop: "30px" }}
               class="btn btn-danger btn-lg"
             >
               View Employees
@@ -84,7 +84,7 @@ export default class AdminHome extends Component {
           <Link to="/admin-group-list">
             <button
               type="button"
-              style={{ marginRight: "50px", marginTop: "30px", width: "85%" }}
+              style={{ marginTop: "30px", width: "85%" }}
               class="btn btn-warning btn-lg"
             >
               Allocate Panel Members

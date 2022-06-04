@@ -56,6 +56,10 @@ export default class StudentLogin extends Component {
           "loggeduser",
           JSON.stringify(res.data.user)
         );
+        window.sessionStorage.setItem(
+          "navBarType",
+          ('1')
+        );
 
         this.setState({
           email: "",
@@ -65,8 +69,8 @@ export default class StudentLogin extends Component {
         if (res.data.status === 200) {
           // navigate to the student home page
           alert("logged in successfully");
-
-          this.props.history.push('/student-home');
+          
+          window.location='/student-home';
         } else {
           alert("Login Failed. Please re-check your credentials.");
         }
@@ -81,7 +85,7 @@ export default class StudentLogin extends Component {
         <div className={styles.login_form_container}>
           <div className={styles.left}>
             <form className={styles.form_container} onSubmit={this.onSubmit}>
-              <h1>Login to Your Account</h1>
+              <h1 style={{ textTransform: 'uppercase' }}>Student Login</h1>
 
               <div className="form-group">
                 <label>Student Email: </label>
@@ -113,7 +117,7 @@ export default class StudentLogin extends Component {
             </form>
           </div>
 
-          <div className={styles.right}>
+          <div className={styles.Stdright}>
             <h1 style={{ textAlign: "center" }}>Create new Account</h1>
 
             <button

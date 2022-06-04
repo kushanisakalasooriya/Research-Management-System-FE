@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Dropzone from 'react-dropzone';
 import axios from 'axios';
-import { Form, Row, Col, Button } from 'react-bootstrap';
+import { Form, Row, Col } from 'react-bootstrap';
 
 const StuFileUpload = (props) => {
   const [file, setFile] = useState(null); // state for storing actual image
@@ -14,6 +14,8 @@ const StuFileUpload = (props) => {
   const [errorMsg, setErrorMsg] = useState('');
   const [isPreviewAvailable, setIsPreviewAvailable] = useState(false); // state to show preview only for images
   const dropRef = useRef(); // React ref for managing the hover state of droppable area
+  const [deadline, setDeadline] = useState('');
+  const [description, setDescription] = useState('');
 
   useEffect(() => {
     axios.get('http://localhost:5000/admin/submissionType/')
@@ -57,7 +59,7 @@ const StuFileUpload = (props) => {
     event.preventDefault();
 
     try {
-      const subName   = submissionName;
+      const subName = submissionName;
       const groupname = sessionStorage.getItem("group");
       const sub = subName.submissionName;
       // if (groupname.trim() !== '' && submissionName.trim() !== '') {
@@ -85,10 +87,41 @@ const StuFileUpload = (props) => {
     }
   };
 
-  const onChangeSubmissionName = (e) => {
+  // const onChangeSubmissionName = (e) => {
+  //    SetsubmissionName({
+  //     submissionName: e.target.value
+  //   })
+
+  //   console.log('1', submissionName);
+  //   console.log('2', e.target.value);
+  // }
+
+  const onChangeSubmissionName = async (e) => {
     SetsubmissionName({
       submissionName: e.target.value
     })
+    await axios.get('http://localhost:5000/admin/submissionType/getSubmissionId/' + e.target.value)
+      .then(response => {
+        if (response.data.length > 0) {
+          // this.setState({
+          //   description: response.data[0].description,
+          //   deadline:response.data[0].deadline.substring(0,10)
+          // })
+          setDeadline(response.data[0].deadline.substring(0, 10));
+          setDescription(response.data[0].description);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+  }
+
+  const onChangeDescription = (e) => {
+    setDescription(e.target.value);
+  }
+
+  const onChangeDeadline = (date) => {
+    setDeadline(date);
   }
 
   const handleInputChange = (event) => {
@@ -129,7 +162,7 @@ const StuFileUpload = (props) => {
               <Form.Select aria-label='Default select example'
                 required
                 className="form-control"
-                value={data.submissionName}
+                value={submissionName}
                 onChange={onChangeSubmissionName}
               // onChange={(e) => setState({submissionName: e.target.value})}
               >
@@ -141,37 +174,37 @@ const StuFileUpload = (props) => {
                     </option>;
                   })
                 }
-                
+
               </Form.Select>
             </Form.Group>
           </Col>
         </Row>
         <Row>
           <Col>
-            <Form.Group controlId="groupname">
+            <Form.Group controlId="decsription">
               <Form.Label> Description </Form.Label>
               <Form.Control
                 type="text"
-                name="a"
+                name="description"
                 required
                 readOnly
-                // value={'defg'}
-                // onChange={}
+                value={description}
+                onChange={onChangeDescription}
               />
             </Form.Group>
           </Col>
         </Row>
         <Row>
           <Col>
-            <Form.Group controlId="groupname">
+            <Form.Group controlId="deadline">
               <Form.Label> Deadline </Form.Label>
               <Form.Control
                 type="text"
-                name="a"
+                name="deadline"
                 required
                 readOnly
-                // value={''}
-                // onChange={}
+                value={deadline}
+                onChange={onChangeDeadline}
               />
             </Form.Group>
           </Col>
@@ -213,9 +246,12 @@ const StuFileUpload = (props) => {
           )}
         </div>
         <br />
-        <Button variant="primary" type="submit">
+        {/* <Button  style={{marginBottom:"20px", float:'right', width:'25%', color:'black'}} type="submit" className='btn btn-outline-dark'>
           Submit
-        </Button>
+        </Button> */}
+        <button style={{ marginBottom: "20px", float: 'right', width: '25%', color: 'black' }} type="submit" className='btn btn-outline-dark'>
+          SUBMIT
+        </button>
       </Form>
     </React.Fragment>
   );

@@ -1,84 +1,145 @@
-import React, { Component } from 'react';
-import axios from 'axios';
+import React, { Component } from "react";
+import axios from "axios";
 
 export default class reqCoSupervisor extends Component {
-    constructor(props) {
-        super(props);
+  constructor(props) {
+    super(props);
 
-        this.onChangeCoSupervisor = this.onChangeCoSupervisor.bind(this);
-        this.onSubmit = this.onSubmit.bind(this);
+    this.onChangeCoSupervisor = this.onChangeCoSupervisor.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
 
-        this.state = {
-            groupname: '',
-            cosupervisor: '',
-            groups: [],
-            loggedUser: []
+    this.state = {
+      groupname: "",
+      cosupervisor: "",
+      groups: [],
+      loggedUser: [],
+      employees: [],
+      supervisors: [],
+    };
+  }
+
+  componentDidMount() {
+    this.setState({
+      loggedUser: JSON.parse(sessionStorage.getItem("loggeduser")),
+      groupname: sessionStorage.getItem("group"),
+    });
+
+    //get employees and filter cosupervisors
+    axios
+      .get("http://localhost:5000/employee/registration/")
+      .then((response) => {
+        this.setState({ employees: response.data });
+        for (var i = 0; i < this.state.employees.length; i++) {
+          // console.log('i ', this.state.employees[i].empType)
+          if (this.state.employees[i].empType === "Co-Supervisor") {
+            this.state.supervisors.push(
+              this.state.employees[i].firstName +
+                " " +
+                this.state.employees[i].lastName
+            );
+          }
         }
-    }
+        // console.log('s', this.state.supervisors);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
 
-    componentDidMount() {
+    axios
+      .get("http://localhost:5000/groups/")
+      .then((response) => {
+        this.setState({ groups: response.data });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
 
-        this.setState({
-            loggedUser: JSON.parse(sessionStorage.getItem("loggeduser")),
-            groupname: sessionStorage.getItem("group")
-        })
+  onChangeCoSupervisor(e) {
+    this.setState({
+      cosupervisor: e.target.value,
+    });
+  }
 
-        axios.get('http://localhost:5000/groups/')
-            .then(response => {
-                this.setState({ groups: response.data })
-            })
-            .catch((error) => {
-                console.log(error);
-            })
+  onSubmit(e) {
+    e.preventDefault();
 
-    }
+    const cosupervisor = {
+      groupname: this.state.groupname,
+      cosupervisor: this.state.cosupervisor,
+    };
+    console.log(cosupervisor);
 
-    onChangeCoSupervisor(e) {
-        this.setState({
-            cosupervisor: e.target.value
-        });
-    }
+    axios
+      .post("http://localhost:5000/groups/update/cosupervisor", cosupervisor)
+      .then((res) => {
+        // if ( res.status == '200'){
+          // window.location='/student-home'
+          alert('Success');
+          // this.props.history.push('/student-home');
+          // this.props.history.push('/student-home');
+        // }else {
+          alert('Error inserting')
+        // }
+      });
 
-    onSubmit(e) {
-        e.preventDefault();
+    this.setState({
+      groupname: "",
+      cosupervisor: "",
+    });
+    alert('Done')
+    this.props.history.push('/student-home');
+  }
 
-        const cosupervisor = {
-            groupname: this.state.groupname,
-            cosupervisor: this.state.cosupervisor,
-        }
-        console.log(cosupervisor);
+  render() {
+    return (
+      <div>
+        <hr />
+        <h4 style={{ textAlign:'center'}}> Request a Co-Supervisor </h4>
+        <hr />
+        <br></br>
+        <div className="container">
+          <div className="row justify-content-center">
+            <div className="col-3 col-md-auto">
+              
+            <form onSubmit={this.onSubmit}>
+          <div>
+            <select
+              className="browser-default custom-select"
+              name="cosupervisor"
+              id="cosupervisor"
+              onChange={this.onChangeCoSupervisor}
+              style={{
+                marginBottom: "20px",
+              }}
+            >
+              <option value="" selected>
+                Choose
+              </option>
+              {this.state.supervisors.map(function (superv) {
+                return (
+                  <option key={superv} value={superv}>
+                    {superv}
+                  </option>
+                );
+              })}
+            </select>
+          </div>
 
-        axios.post('http://localhost:5000/groups/update/cosupervisor', cosupervisor)
-            .then(res => console.log(res.data));
+          <div className="form-group text-center">
+            <input 
+            class="btn btn-outline-dark"
+            style={{width:'300px'}} type="submit" value="Submit" />
+          </div>
+        </form>
 
-        this.setState({
-            groupname: '',
-            cosupervisor: ''
-        })
-    }
-
-    render() {
-        return (
-            <div>
-                <h3> Request a cosupervisor </h3>
-                <form onSubmit={this.onSubmit}>
-
-                    <div>
-                        <select name="cosupervisor" id="cosupervisor"
-                            onChange={this.onChangeCoSupervisor}>
-                            <option value="" selected>Choose</option>
-                            <option value="Amal">Amal</option>
-                            <option value="Kasun">Kasun</option>
-                            <option value="Nimal">Nimal</option>
-                            <option value="Supun">Supun</option>
-                        </select>
-                    </div>
-
-                    <div className="form-group">
-                        <input type="submit" value="Submit topic" className="btn btn-primary" />
-                    </div>
-                </form>
             </div>
-        )
-    }
+          </div>
+        </div>
+
+        
+        
+      </div>
+    );
+  }
 }

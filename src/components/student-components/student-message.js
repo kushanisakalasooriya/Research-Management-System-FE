@@ -1,33 +1,56 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import "react-datepicker/dist/react-datepicker.css";
+import './student-chat.css';
 import { Link } from 'react-router-dom';
-
 export default class StudentMessage extends Component {
     constructor(props) {
         super(props);
 
-        // this.onChangeSupervisorMsg = this.onChangeSupervisorMsg.bind(this);
         this.onChangeStudentMsg = this.onChangeStudentMsg.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
 
         this.state = {
-            supervisorName: '',
             studentName: '',
             studentMsg: '',
             supervisorMsg: '',
             chats: [],
+            stdGroup: [],
+            theSupervisor: '',
+            resSupervisor: '',
             oneChat: [],
-            check: false,
+            StudentId: JSON.parse(sessionStorage.getItem("loggeduser")).firstName,
+            StudentRegNo: JSON.parse(sessionStorage.getItem("loggeduser")).stdID,
+            StudentImg: JSON.parse(sessionStorage.getItem("loggeduser")).image,
         }
     }
 
-    componentDidMount() {
-        axios.get('http://localhost:5000/chat/' + this.props.match.params.id)
+    async componentDidMount() {
+
+        await axios.get('http://localhost:5000/groups')
+            .then(response => {
+                this.setState({ stdGroup: response.data })
+
+                var i = 0;
+                for (i = 0; i < this.state.stdGroup.length; i++) {
+                    if (this.state.stdGroup[i].groupleader === this.state.StudentRegNo) {
+                        this.state.theSupervisor = this.state.stdGroup[i].supervisor;
+                        //slice
+                        this.state.resSupervisor = this.state.theSupervisor.substring(0, 6);
+                    }
+                }
+                this.setState({ topic: response.data })
+
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+
+        await axios.get('http://localhost:5000/chat/' + this.props.match.params.id)
             .then(response => {
                 this.setState({
                     supervisorName: response.data.supervisorName,
-                    studentName: response.data.studentName,
+                    studentName: response.data.StudentId,
                     studentMsg: response.data.studentMsg,
                     supervisorMsg: response.data.supervisorMsg,
                 })
@@ -36,13 +59,13 @@ export default class StudentMessage extends Component {
                 console.log(error);
             })
 
-        axios.get('http://localhost:5000/chat')
+        await axios.get('http://localhost:5000/chat')
             .then(response => {
                 this.setState({ chats: response.data })
 
                 var i = 0;
                 for (i = 0; i < this.state.chats.length; i++) {
-                    if (this.state.chats[i].studentName == "Ruwanga") {
+                    if (this.state.chats[i].studentName === this.state.StudentId) {
                         this.state.oneChat.push(this.state.chats[i]);
                     }
                 }
@@ -55,31 +78,21 @@ export default class StudentMessage extends Component {
             })
     }
 
-    // onChangeSupervisorMsg(e) {
-    //     this.setState({
-    //         supervisorMsg: e.target.value
-    //     })
-
-    // }
-
     onChangeStudentMsg(e) {
         this.setState({
             studentMsg: e.target.value
         })
     }
 
-    onSubmit(e) {
+    async onSubmit(e) {
         e.preventDefault();
 
         const chats = {
-            supervisorName: this.state.supervisorName,
-            studentName: this.state.studentName,
+            supervisorName: this.state.resSupervisor,
+            studentName: this.state.StudentId,
             studentMsg: this.state.studentMsg,
             supervisorMsg: '',
         }
-
-
-        console.log(chats);
 
         axios.post('http://localhost:5000/chat/update/' + this.props.match.params.id, chats)
             .then(res => console.log(res.data));
@@ -91,20 +104,15 @@ export default class StudentMessage extends Component {
     render() {
         return (
             <div>
+                <div className="headingModsLand" style={{ marginBottom: "30px", marginTop: "20px" }}> <h3>  Chat with Your supervisor</h3> </div>
+                <Link to='/student-chat' style={{ textDecoration: 'none', color: '#056055', paddingLeft: '150px' }}><i class="fa fa-arrow-left fa-mn" aria-hidden="true"></i><b> Go Back</b></Link>
 
                 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 
                 <div class="container">
                     <div class="row clearfix">
                         <div class="col-lg-12">
-                            <div class="card chat-app">
-
-                                <div id="plist" class="people-list">
-                                    <div class="input-group">
-
-                                    </div>
-
-                                </div>
+                            <div class="card2 chat-app2" style={{ marginTop: "30px" }}>
 
                                 <div class="chat">
                                     <div class="chat-header clearfix">
@@ -112,7 +120,7 @@ export default class StudentMessage extends Component {
                                             <div class="col-lg-6">
                                                 <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="avatar" />
                                                 <div class="chat-about">
-                                                    <h6 class="m-b-0">{this.state.supervisorName}</h6>
+                                                    <h6 class="m-b-0">{this.state.resSupervisor}</h6>
                                                 </div>
                                             </div>
 
@@ -128,8 +136,8 @@ export default class StudentMessage extends Component {
 
                                             <li class="clearfix">
                                                 <div class="message-data text-right">
-                                                    <span class="message-data-time">{this.state.studentName}</span>
-                                                    <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="avatar" />
+                                                    <span class="message-data-time">{this.state.StudentId}</span>
+                                                    <img src={this.state.StudentImg} alt="avatar" />
                                                 </div>
                                                 <div class="message other-message float-right"> {this.state.studentMsg}</div>
                                             </li>
@@ -140,7 +148,7 @@ export default class StudentMessage extends Component {
                                         <div class="input-group mb-0">
 
                                             <input type="text" class="form-control" placeholder="Enter text here..." onChange={this.onChangeStudentMsg} />
-                                            <button onClick={this.onSubmit} >Send Message</button>
+                                            <button onClick={this.onSubmit} className="MsgSendBtn"><i className="fa fa-paper-plane" ></i></button>
                                         </div>
                                     </div>
                                 </div>

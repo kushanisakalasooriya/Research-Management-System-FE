@@ -1,9 +1,10 @@
 import React, { Component, Fragment } from 'react';
 import ReactDatatable from '@ashvin27/react-datatable';
+import download from 'downloadjs';
 import axios from 'axios';
 import { API_URL } from '../../utils/constants';
 
-export default class AdminEmployeeList extends Component {
+export default class MarkingSchemeDownload extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -13,43 +14,22 @@ export default class AdminEmployeeList extends Component {
     }
     this.columns = [
       {
-        key: "empID",
-        text: "Employee ID",
+        key: "title",
+        text: "File Name",
         className: "name",
         align: "left",
         sortable: true,
       },
       {
-        key: "firstName",
-        text: "First Name",
-        className: "name",
-        align: "left",
-        sortable: true
-      },
-      {
-        key: "lastName",
-        text: "Last Name",
-        className: "name",
-        align: "left",
-        sortable: true
-      },
-      {
-        key: "email",
-        text: "Email",
-        className: "name",
-        align: "left",
-        sortable: true
-      },
-      {
-        key: "empType",
-        text: "Employee Type",
-        className: "name",
+        key: "description",
+        text: "Content Description",
+        className: "address",
         align: "left",
         sortable: true
       },
       {
         key: "action",
-        text: "Update",
+        text: "Download",
         className: "action",
         width: 100,
         align: "left",
@@ -58,30 +38,9 @@ export default class AdminEmployeeList extends Component {
           return (
             <Fragment>
               <button
-                className="btn btn-primary btn-sm"
-                onClick={() => this.editRecord(record)}
-                style={{ marginRight: '5px' }}>
-                Update
-              </button>
-            </Fragment>
-          );
-        }
-      },
-      {
-        key: "action",
-        text: "Delete",
-        className: "action",
-        width: 100,
-        align: "left",
-        sortable: false,
-        cell: record => {
-          return (
-            <Fragment>
-              <button
-                name="Delete"
-                className="btn btn-danger btn-sm"
-                onClick={() => this.deleteRecord(record)}>
-                Delete
+                className="btn btn-info btn-sm"
+                onClick={() => this.downloadFile(record)}>
+                Download
               </button>
             </Fragment>
           );
@@ -128,12 +87,12 @@ export default class AdminEmployeeList extends Component {
     ]
   }
   editRecord(record) {
-    this.props.history.push("/admin-update-employee/" + record._id);
+    this.props.history.push("/admin-marking-edit/" + record._id);
   }
 
   deleteRecord(record) {
     try {
-      axios.delete(`http://localhost:5000/employee/registration/${record._id}`)
+      axios.delete(`${API_URL}/admin/marking/file-delete/${record._id}`)
         .then(response => { console.log(response.data) });
       window.location.reload(true);
     } catch (error) {
@@ -145,8 +104,26 @@ export default class AdminEmployeeList extends Component {
     }
   }
 
+  async downloadFile(record) {
+    try {
+      const result = await axios.get(`${API_URL}/admin/marking/download/${record._id}`, {
+        responseType: 'blob'
+      });
+      const split = record.file_path.split('/');
+      const filename = split[split.length - 1];
+      this.state.errorMsg = '';
+      return download(result.data, filename, record.mimetype);
+    } catch (error) {
+      if (error.response && error.response.status === 400) {
+        alert('Error while downloading file. Try again later');
+      } else if (error.response && error.response.status === 404) {
+        alert('File does not exists. Sorry for the inconvenience.');
+      }
+    }
+  }
+
   componentWillMount(props) {
-    axios.get(`${API_URL}/employee/registration`)
+    axios.get(`${API_URL}/admin/marking/getAllFiles`)
       .then(res => {
         this.setState({ records: res.data });
         console.log(this.state.records)
@@ -163,7 +140,7 @@ export default class AdminEmployeeList extends Component {
     return (
       <div>
         <hr />
-        <h4>REGISTERED EMPLOYEES - ADMIN VIEW</h4>
+        <h4>Download Marking Schemes</h4>
         <hr />
         <br />
         <ReactDatatable
