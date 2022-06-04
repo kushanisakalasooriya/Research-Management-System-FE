@@ -2,19 +2,6 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
-import profileIcon from "../userManagement-components/images/profileicon.png";
-
-class Message extends React.Component {
-  render() {
-    return (
-      <p style={{ color: "red" }}>
-        Seems you are currently not belongs to any group.First, Submit a group
-        according to register the research topic.
-      </p>
-    );
-  }
-}
-
 class Message2 extends React.Component {
   render() {
     return (
@@ -67,7 +54,7 @@ export default class studentHome extends Component {
     await axios
       .post("http://localhost:5000/groups/loggedUser", student)
       .then((response) => {
-        if (response.status == 201) {
+        if (response.status === 201) {
         } else {
           this.setState({ grp: response.data.user.groupname });
         }
@@ -171,8 +158,10 @@ export default class studentHome extends Component {
     if (this.state.flagcosup === "2") {
       alert("Your topic is Rejected.");
     } else if (this.state.flagcosup === "0") {
+      alert("Please Submit a Research Topic! ");
+    } else if(this.state.flagcosup === "3"){
       alert("Your topic is not yet accepted");
-    } else {
+    }else {
       // window.location = '/reg-topic'
       this.props.history.push("/stu-submission1");
     }
@@ -198,34 +187,17 @@ export default class studentHome extends Component {
           <h2> STUDENT HOME </h2>{" "}
         </center>
 
-        {/* navigate to the student profile */}
-        <Link
-          to={"/student-profile/" + this.state.loggedUser._id}
-          className="nav-link"
-        >
-          {" "}
-          <div style={{ marginBottom: "8px" }}>
-            <img
-              style={{
-                width: "40px",
-                height: "40px",
-                float: "right",
-                borderRadius: "50px",
-              }}
-              src={this.state.loggedUser.image}
-            ></img>
-          </div>
-        </Link>
-        <br />
         <div className="">
           <div className="container">
             <div className="row justify-content-center">
               <div className="col-3 col-md-auto">
                 <button
-                  style={{ width: "500px", margin: "15px" }}
+                  style={{ width: "500px", margin: "15px", backgroundColor: "  #a1a0a0  " }}
                   onClick={this.RegGroup.bind(this)}
                   type="button"
-                  class="btn btn-secondary col-16 btn-lg"
+
+                  class="btn col-16 btn-lg"
+
                 >
                   {" "}
                   Submit Student Group{" "}
@@ -237,10 +209,10 @@ export default class studentHome extends Component {
             <div className="row justify-content-center">
               <div className="col-3 col-md-auto">
                 <button
-                  style={{ width: "500px", margin: "15px" }}
+                  style={{ width: "500px", margin: "15px", backgroundColor: " #93c0e1 " }}
                   onClick={this.RegTopic.bind(this)}
                   type="button"
-                  class="btn btn-success btn-lg"
+                  class="btn  btn-lg"
                 >
                   {" "}
                   Register Research Topic{" "}
@@ -253,10 +225,10 @@ export default class studentHome extends Component {
             <div className="row justify-content-center">
               <div className="col-3 col-md-auto">
                 <button
-                  style={{ width: "500px", margin: "15px" }}
+                  style={{ width: "500px", margin: "15px", backgroundColor: " #a1a0a0 " }}
                   type="button"
                   onClick={this.ReqCosup.bind(this)}
-                  class="btn btn-danger btn-lg"
+                  class="btn btn-lg"
                 >
                   {" "}
                   Request Co-Supervisor{" "}
@@ -269,10 +241,10 @@ export default class studentHome extends Component {
             <div className="row justify-content-center">
               <div className="col-3 col-md-auto">
                 <button
-                  style={{ width: "500px", margin: "15px" }}
+                  style={{ width: "500px", margin: "15px", backgroundColor: " #93c0e1 " }}
                   onClick={this.submitDoc.bind(this)}
                   type="button"
-                  class="btn btn-warning btn-lg"
+                  class="btn btn-lg"
                 >
                   {" "}
                   Submit Documents{" "}
@@ -284,10 +256,10 @@ export default class studentHome extends Component {
             <div className="row justify-content-center">
               <div className="col-3 col-md-auto">
                 <button
-                  style={{ width: "500px", margin: "15px" }}
+                  style={{ width: "500px", margin: "15px", backgroundColor: " #a1a0a0 " }}
                   onClick={this.templateDownload.bind(this)}
                   type="button"
-                  class="btn btn-success btn-info btn-lg"
+                  class="btn btn-lg"
                 >
                   {" "}
                   Download Templates{" "}
@@ -302,9 +274,9 @@ export default class studentHome extends Component {
                 <Link to="/student-chat/">
                   {" "}
                   <button
-                    style={{ width: "500px", margin: "15px" }}
+                    style={{ width: "500px", margin: "15px", backgroundColor: " #93c0e1 " }}
                     type="button"
-                    class="btn btn-success btn-info btn-lg"
+                    class="btn btn-lg"
                   >
                     {" "}
                     Chat with Supervisor{" "}

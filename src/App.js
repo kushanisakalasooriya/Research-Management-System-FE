@@ -1,13 +1,10 @@
-import React, { useState, useRef, useEffect } from "react";
+import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
 //common routes
 import Navbar from "./components/navbar.component";
-import NavbarSupervisor from "./components/navbarSupervisor.component";
-import NavbarAdmin from "./components/navbarAdmin.component";
 import HomePage from "./components/homePage.component";
-// import FooterComponent from "./components/FooterComponent";
 
 //admin routes
 import AdminDocUpload from "./components/admin-components/admin-file-upload.component";
@@ -29,7 +26,7 @@ import AllocatePanelMember from "./components/admin-components/allocate-panel-me
 
 import AddSubmission from "./components/admin-components/add-submission.component";
 
-//supervisour routes
+//supervisor routes
 import SupervisorHome from './components/supervisor-components/supervisor-home.component';
 import SupervisorTopicList from './components/supervisor-components/supervisor-topic-list.component';
 import SupervisorEditTopics from './components/supervisor-components/supervisor-topic-edit.component';
@@ -49,11 +46,6 @@ import CoSupervisorEditGroups from "./components/co-supervisor-components/co-sup
 import PanelHome from "./components/panel-member-component/panel-home.component";
 
 //userManagement routes
-import userManagementHome from "./components/userManagement-components/userManagement-home.component";
-import StudentDetailsList from "./components/userManagement-components/student-list.component";
-import AddStudentDetails from "./components/userManagement-components/create-student.component";
-import AddEmployeeDetails from "./components/userManagement-components/create-staff.component";
-import EmployeeDetailsList from "./components/userManagement-components/employee-list.component";
 import StudentRegistration from "./components/userManagement-components/registration/studentRegistration.component";
 import StudentLogin from "./components/userManagement-components/login/studentLogin.component";
 import EmployeeRegistration from "./components/userManagement-components/registration/employeeRegistration.component";
@@ -77,57 +69,15 @@ import regResearchTopic from './components/student-components/reg-researchtopic.
 import reqCoSupervisor from './components/student-components/req-cosupervisor.component';
 import StudentChat from './components/student-components/student-chat.component';
 import StudentMessage from './components/student-components/student-message';
-// import addSubmission from './components/student-components/add-submission.component';
 import StuFileUpload from './components/student-components/stu-file-upload.component';
 import MarkingSchemeDownload from "./components/student-components/markingSchemeDownload.component";
 import TemplateDownload from "./components/student-components/templateDownload.component";
 
 function App() {
-  // console.log('app.js =>', JSON.parse(sessionStorage.getItem("loggeduser"))._id );
-  // const [flag, setFlag] = useState('');
-  // const [test , setTest] = useState('');
-  // const [nav, setNav] = useState('');
-  // let nav;
-
-  // setFlag(JSON.parse(sessionStorage.getItem("loggeduser")));
-
-  // useEffect(() => {
-  //   setFlag(sessionStorage.getItem("navBarType"));
-  //   console.log('abcd1234 =>',flag);
-  //   // navBarSetter();
-
-  // },[]);
-
-  // console.log('flagprint =>',flag);
-
-  // const navBarSetter = () => {
-  //   console.log('abc',flag);
-  //   if ( flag === "1") {
-  //     // setNav({
-  //       return <Navbar/>
-  //     // });
-  //   } else if (flag === '2'){
-  //     // setNav({
-  //       return <NavbarAdmin/>
-  //     // });
-  //   } else if  (flag === '3'){
-  //     // setNav({
-  //       return <NavbarSupervisor/>
-  //     // });
-  //   } else {
-  //     return null;
-  //   }
-
-  // }
-  // navBarSetter();
-  // setTest('a');
-
-  // let con =  <NavbarSupervisor/>
-
   return (
 
     <div className="bg-image" style={{
-      backgroundImage: `url("https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=822&q=80")`,
+      backgroundImage: `url("https://images.unsplash.com/photo-1495975832350-f46e82f0ceb6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80")`,
       backgroundSize: 'cover',
       backgroundRepeat: 'no-repeat',
       height: '100vh',
@@ -138,7 +88,8 @@ function App() {
         width: '100%',
         height: '100vh',
         paddingLeft: "0px",
-        paddingRight: "0px"
+        paddingRight: "0px",
+        backgroundColor: "rgba(255, 255, 255, 0.5)",
       }}>
         <Router>
 
@@ -206,12 +157,7 @@ function App() {
             <Route path="/panel-home" component={PanelHome} />
 
             {/* userManagement paths */}
-            <Route path="/user-management-home" component={userManagementHome} />
-            <Route path="/student-details" component={StudentDetailsList} />
-            <Route path="/add-student-details" component={AddStudentDetails} />
             <Route path="/update-student-details/:id" component={UpdateStudentDetails} />
-            <Route path="/employee-details" component={EmployeeDetailsList} />
-            <Route path="/add-employee-details" component={AddEmployeeDetails} />
             <Route path="/update-employee-details/:id" component={UpdateEmployeeDetails} />
             <Route path="/update-panelMember-details/:id" component={UpdatePanelMemberDetails} />
             <Route path="/student-profile/:id" component={StudentProfile} />
@@ -233,12 +179,10 @@ function App() {
             <Route path="/req-cosupervisor" component={reqCoSupervisor} />
             <Route path="/student-chat" component={StudentChat} />
             <Route path="/student-chatGo/edit/:id" component={StudentMessage} />
-            {/* <Route path="/stu-submission" component={addSubmission} /> */}
             <Route path="/stu-submission1" component={StuFileUpload} />
             <Route path="/template-download" component={TemplateDownload} />
             <Route path="/mscheme-download" component={MarkingSchemeDownload} />
           </div>
-          {/* <FooterComponent /> */}
         </Router>
 
 

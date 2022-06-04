@@ -16,13 +16,55 @@
 		0px 3px 4px 0px rgb(0 0 0 / 14%), 0px 1px 8px 0px rgb(0 0 0 / 12%);
 }
 
+
+
+.Empsignup_container {
+	width: 100%;
+	min-height: 70vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.Empsignup_form_container {
+	width: 1030px;
+	height: 580px;
+	display: flex;
+	border-radius: 10px;
+	box-shadow: 0px 3px 3px -2px rgb(0 0 0 / 20%),
+		0px 3px 4px 0px rgb(0 0 0 / 14%), 0px 1px 8px 0px rgb(0 0 0 / 12%);
+}
+
+
+
+
+.Stdsignup_container {
+	width: 100%;
+	min-height: 70vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.Stdsignup_form_container {
+	width: 1030px;
+	height: 580px;
+	display: flex;
+	border-radius: 10px;
+	box-shadow: 0px 3px 3px -2px rgb(0 0 0 / 20%),
+		0px 3px 4px 0px rgb(0 0 0 / 14%), 0px 1px 8px 0px rgb(0 0 0 / 12%);
+}
+
+
+
+
 .stdleft {
 	flex: 1;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	background-color: #251405;
+	background-color: #484848be;
 	border-top-left-radius: 10px;
 	border-bottom-left-radius: 10px;
 }
@@ -40,7 +82,7 @@
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	background-color: #BB8849;
+	background-color: #484848be;
 	border-top-left-radius: 10px;
 	border-bottom-left-radius: 10px;
 }
