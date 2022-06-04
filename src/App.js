@@ -77,7 +77,7 @@ function App() {
   return (
 
     <div className="bg-image" style={{
-      backgroundImage: `url("https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=822&q=80")`,
+      backgroundImage: `url("https://images.unsplash.com/photo-1495975832350-f46e82f0ceb6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80")`,
       backgroundSize: 'cover',
       backgroundRepeat: 'no-repeat',
       height: '100vh',
