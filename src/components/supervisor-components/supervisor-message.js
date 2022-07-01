@@ -23,7 +23,7 @@ export default class SupervisorMessage extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:5000/chat/' + this.props.match.params.id)
+        axios.get('https://mndexmgdhd.execute-api.us-east-2.amazonaws.com/chat/' + this.props.match.params.id)
             .then(response => {
                 this.setState({
                     supervisorName: response.data.supervisorName,
@@ -36,7 +36,7 @@ export default class SupervisorMessage extends Component {
                 console.log(error);
             })
 
-        axios.get('http://localhost:5000/chat')
+        axios.get('https://mndexmgdhd.execute-api.us-east-2.amazonaws.com/chat')
             .then(response => {
                 this.setState({ chats: response.data })
 
@@ -67,7 +67,7 @@ export default class SupervisorMessage extends Component {
 
         console.log(chats);
 
-        axios.post('http://localhost:5000/chat/update/' + this.props.match.params.id, chats)
+        axios.post('https://mndexmgdhd.execute-api.us-east-2.amazonaws.com/chat/update/' + this.props.match.params.id, chats)
             .then(res => console.log(res.data));
 
         alert("Message Sent !")

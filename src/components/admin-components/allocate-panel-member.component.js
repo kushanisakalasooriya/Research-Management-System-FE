@@ -21,7 +21,7 @@ export default class AllocatePanelMember extends Component {
 
   async componentDidMount() {
     await axios
-      .get(`http://localhost:5000/groups/${this.state.groupID}`)
+      .get(`https://mndexmgdhd.execute-api.us-east-2.amazonaws.com/groups/${this.state.groupID}`)
       .then((response) => {
           this.setState({
             groupName : response.data.groupname
@@ -33,7 +33,7 @@ export default class AllocatePanelMember extends Component {
       });
 
     await axios
-      .get("http://localhost:5000/employee/registration")
+      .get("https://mndexmgdhd.execute-api.us-east-2.amazonaws.com/employee/registration")
       .then((response) => {
         if (response.data.length > 0) {
           this.setState({
@@ -83,7 +83,7 @@ export default class AllocatePanelMember extends Component {
     };
 
     axios
-      .post(`http://localhost:5000/groups/addPanelMember/${this.state.groupID}`, group)
+      .post(`https://mndexmgdhd.execute-api.us-east-2.amazonaws.com/groups/addPanelMember/${this.state.groupID}`, group)
       .then((res) => console.log(res.data));
 
       this.props.history.push("/admin-group-list");

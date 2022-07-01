@@ -26,7 +26,7 @@ export default class reqCoSupervisor extends Component {
 
     //get employees and filter cosupervisors
     axios
-      .get("http://localhost:5000/employee/registration/")
+      .get("https://mndexmgdhd.execute-api.us-east-2.amazonaws.com/employee/registration/")
       .then((response) => {
         this.setState({ employees: response.data });
         for (var i = 0; i < this.state.employees.length; i++) {
@@ -46,7 +46,7 @@ export default class reqCoSupervisor extends Component {
       });
 
     axios
-      .get("http://localhost:5000/groups/")
+      .get("https://mndexmgdhd.execute-api.us-east-2.amazonaws.com/groups/")
       .then((response) => {
         this.setState({ groups: response.data });
       })
@@ -71,7 +71,7 @@ export default class reqCoSupervisor extends Component {
     console.log(cosupervisor);
 
     axios
-      .post("http://localhost:5000/groups/update/cosupervisor", cosupervisor)
+      .post("https://mndexmgdhd.execute-api.us-east-2.amazonaws.com/groups/update/cosupervisor", cosupervisor)
       .then((res) => {
         // if ( res.status == '200'){
           // window.location='/student-home'

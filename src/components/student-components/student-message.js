@@ -27,7 +27,7 @@ export default class StudentMessage extends Component {
 
     async componentDidMount() {
 
-        await axios.get('http://localhost:5000/groups')
+        await axios.get('https://mndexmgdhd.execute-api.us-east-2.amazonaws.com/groups')
             .then(response => {
                 this.setState({ stdGroup: response.data })
 
@@ -46,7 +46,7 @@ export default class StudentMessage extends Component {
                 console.log(error);
             })
 
-        await axios.get('http://localhost:5000/chat/' + this.props.match.params.id)
+        await axios.get('https://mndexmgdhd.execute-api.us-east-2.amazonaws.com/chat/' + this.props.match.params.id)
             .then(response => {
                 this.setState({
                     supervisorName: response.data.supervisorName,
@@ -59,7 +59,7 @@ export default class StudentMessage extends Component {
                 console.log(error);
             })
 
-        await axios.get('http://localhost:5000/chat')
+        await axios.get('https://mndexmgdhd.execute-api.us-east-2.amazonaws.com/chat')
             .then(response => {
                 this.setState({ chats: response.data })
 
@@ -94,7 +94,7 @@ export default class StudentMessage extends Component {
             supervisorMsg: '',
         }
 
-        axios.post('http://localhost:5000/chat/update/' + this.props.match.params.id, chats)
+        axios.post('https://mndexmgdhd.execute-api.us-east-2.amazonaws.com/chat/update/' + this.props.match.params.id, chats)
             .then(res => console.log(res.data));
 
         alert("Message Sent !")

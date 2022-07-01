@@ -14,7 +14,7 @@ export default class AddFeedback extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:5000/student-submission/getFeedback/' + this.props.match.params.id)
+        axios.get('https://mndexmgdhd.execute-api.us-east-2.amazonaws.com/student-submission/getFeedback/' + this.props.match.params.id)
             .then(response => {
                 this.setState({
                     feedback: response.data.feedback,
@@ -42,7 +42,7 @@ export default class AddFeedback extends Component {
             // description: this.state.description,
         }
 
-        axios.post('http://localhost:5000/student-submission/update/' + this.props.match.params.id, file)
+        axios.post('https://mndexmgdhd.execute-api.us-east-2.amazonaws.com/student-submission/update/' + this.props.match.params.id, file)
             .then(res => console.log(res.data));
 
         window.location = '/supervisor-research';

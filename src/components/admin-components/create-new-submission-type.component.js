@@ -45,7 +45,7 @@ export default class AddNewSubmissionType extends Component {
       deadline:this.state.deadline
     }
 
-    axios.post('http://localhost:5000/admin/submissionType/add', submission)
+    axios.post('https://mndexmgdhd.execute-api.us-east-2.amazonaws.com/admin/submissionType/add', submission)
       .then(res => alert(res.data));
 
     this.setState({

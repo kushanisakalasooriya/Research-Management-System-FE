@@ -25,7 +25,7 @@ export default class StudentChat extends Component {
 
     async componentDidMount() {
 
-        await axios.get('http://localhost:5000/groups')
+        await axios.get('https://mndexmgdhd.execute-api.us-east-2.amazonaws.com/groups')
             .then(response => {
                 this.setState({ stdGroup: response.data })
 
@@ -43,7 +43,7 @@ export default class StudentChat extends Component {
                 console.log(error);
             })
 
-        await axios.get('http://localhost:5000/chat/')
+        await axios.get('https://mndexmgdhd.execute-api.us-east-2.amazonaws.com/chat/')
             .then(response => {
                 this.setState({ chats: response.data })
 
@@ -81,16 +81,16 @@ export default class StudentChat extends Component {
             supervisorMsg: this.state.supervisorMsg,
         }
 
-        await axios.get('http://localhost:5000/chat/getChat/' + this.state.StudentId)
+        await axios.get('https://mndexmgdhd.execute-api.us-east-2.amazonaws.com/chat/getChat/' + this.state.StudentId)
             .then(res => {
                 if (res.data.message === "success") {
                     //update
-                    axios.post('http://localhost:5000/chat/update/' + this.props.match.params.id, chats)
+                    axios.post('https://mndexmgdhd.execute-api.us-east-2.amazonaws.com/chat/update/' + this.props.match.params.id, chats)
                         .then(res => console.log(res.data));
                 }
                 else {
                     //insert
-                    axios.post('http://localhost:5000/chat/add/', chats)
+                    axios.post('https://mndexmgdhd.execute-api.us-east-2.amazonaws.com/chat/add/', chats)
                         .then(res => console.log(res.data));
                 }
 

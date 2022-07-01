@@ -18,7 +18,7 @@ const StuFileUpload = (props) => {
   const [description, setDescription] = useState('');
 
   useEffect(() => {
-    axios.get('http://localhost:5000/admin/submissionType/')
+    axios.get('https://mndexmgdhd.execute-api.us-east-2.amazonaws.com/admin/submissionType/')
       .then(response => {
         if (response.data.length > 0) {
           setData({
@@ -70,7 +70,7 @@ const StuFileUpload = (props) => {
         formData.append('submissionName', sub);
 
         setErrorMsg('');
-        await axios.post('http://localhost:5000/student-submission/upload', formData, {
+        await axios.post('https://mndexmgdhd.execute-api.us-east-2.amazonaws.com/student-submission/upload', formData, {
           headers: {
             'Content-Type': 'multipart/form-data'
           }
@@ -100,7 +100,7 @@ const StuFileUpload = (props) => {
     SetsubmissionName({
       submissionName: e.target.value
     })
-    await axios.get('http://localhost:5000/admin/submissionType/getSubmissionId/' + e.target.value)
+    await axios.get('https://mndexmgdhd.execute-api.us-east-2.amazonaws.com/admin/submissionType/getSubmissionId/' + e.target.value)
       .then(response => {
         if (response.data.length > 0) {
           // this.setState({

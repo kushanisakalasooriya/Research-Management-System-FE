@@ -25,7 +25,7 @@ export default class PanelMemberProfile extends Component {
 
 
     componentDidMount() {
-        axios.get('http://localhost:5000/employee/registration/' + this.props.match.params.id)
+        axios.get('https://mndexmgdhd.execute-api.us-east-2.amazonaws.com/employee/registration/' + this.props.match.params.id)
             .then(response => {
                 this.setState({
                     empID: response.data.empID,
@@ -68,7 +68,7 @@ export default class PanelMemberProfile extends Component {
             "Are you sure want to delete your account?"
         )
         if (confirmBox === true) {
-            axios.delete('http://localhost:5000/employee/registration/' + this.props.match.params.id)
+            axios.delete('https://mndexmgdhd.execute-api.us-east-2.amazonaws.com/employee/registration/' + this.props.match.params.id)
                 .then(res => console.log(res.data));
             alert('Your account delete successfully!');
             this.props.history.push('/employee-registration');

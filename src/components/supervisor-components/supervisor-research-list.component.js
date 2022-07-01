@@ -13,7 +13,9 @@ export default class SuperrvisorResearchList extends Component {
             data: '',
             stdGroup: [],
             theGroup: [],
-            supervisorName: JSON.parse(sessionStorage.getItem("loggeduser")).firstName,
+            supervisorName: JSON.parse(sessionStorage.getItem("loggeduser")).firstName + " " +
+                JSON.parse(sessionStorage.getItem("loggeduser")).lastName + " - " +
+                JSON.parse(sessionStorage.getItem("loggeduser")).researchField,
         }
         console.log('Supervisor Name', this.state.supervisorName);
         this.columns = [
@@ -136,7 +138,7 @@ export default class SuperrvisorResearchList extends Component {
 
     async componentWillMount(props) {
 
-        await axios.get('http://localhost:5000/groups')
+        await axios.get('https://mndexmgdhd.execute-api.us-east-2.amazonaws.com/groups')
             .then(response => {
                 this.setState({ stdGroup: response.data })
 
@@ -151,13 +153,12 @@ export default class SuperrvisorResearchList extends Component {
             .catch((error) => {
                 console.log(error);
             })
-
         const topicGroup = {
             theGroup: this.state.theGroup
         }
         console.log("The Group", this.state.theGroup);
 
-        await axios.post('http://localhost:5000/student-submission/researchSubmission', topicGroup)
+        await axios.post('https://mndexmgdhd.execute-api.us-east-2.amazonaws.com/student-submission/researchSubmission', topicGroup)
             .then(res => {
                 this.setState({ records: res.data.group })
                 console.log("Records", this.state.records)

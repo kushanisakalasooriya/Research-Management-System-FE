@@ -27,7 +27,7 @@ export default class UpdatePanelMemberDetails extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:5000/employee/registration/' + this.props.match.params.id)
+        axios.get('https://mndexmgdhd.execute-api.us-east-2.amazonaws.com/employee/registration/' + this.props.match.params.id)
             .then(response => {
                 this.setState({
                     empID: response.data.empID,
@@ -86,7 +86,7 @@ export default class UpdatePanelMemberDetails extends Component {
 
         console.log(employeeDetails);
 
-        axios.post('http://localhost:5000/employee/registration/update-employee/' + this.props.match.params.id, employeeDetails)
+        axios.post('https://mndexmgdhd.execute-api.us-east-2.amazonaws.com/employee/registration/update-employee/' + this.props.match.params.id, employeeDetails)
             .then(res => alert(res.data));
 
         this.setState({

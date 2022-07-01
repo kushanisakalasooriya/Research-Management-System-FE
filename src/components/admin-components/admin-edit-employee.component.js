@@ -29,7 +29,7 @@ export default class AdminUpdateEmployeeDetails extends Component {
   componentDidMount() {
     axios
       .get(
-        "http://localhost:5000/employee/registration/" +
+        "https://mndexmgdhd.execute-api.us-east-2.amazonaws.com/employee/registration/" +
           this.props.match.params.id
       )
       .then((response) => {
@@ -106,7 +106,7 @@ export default class AdminUpdateEmployeeDetails extends Component {
 
     axios
       .post(
-        "http://localhost:5000/employee/registration/update-employee/" +
+        "https://mndexmgdhd.execute-api.us-east-2.amazonaws.com/employee/registration/update-employee/" +
           this.props.match.params.id,
         employeeDetails
       )

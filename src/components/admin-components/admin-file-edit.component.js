@@ -16,7 +16,7 @@ export default class EditAdminFile extends Component {
   }
 
   componentDidMount() {
-    axios.get('http://localhost:5000/admin/getFile/'+this.props.match.params.id)
+    axios.get('https://mndexmgdhd.execute-api.us-east-2.amazonaws.com/admin/getFile/'+this.props.match.params.id)
       .then(response => {
         this.setState({
           title: response.data.title,
@@ -49,7 +49,7 @@ export default class EditAdminFile extends Component {
       description: this.state.description,
     }
 
-    axios.post('http://localhost:5000/admin/update/' + this.props.match.params.id, file)
+    axios.post('https://mndexmgdhd.execute-api.us-east-2.amazonaws.com/admin/update/' + this.props.match.params.id, file)
       .then(res => console.log(res.data));
 
     window.location = '/admin-file-download';

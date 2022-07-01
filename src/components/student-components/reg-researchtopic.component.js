@@ -33,7 +33,7 @@ export default class regResearchTopic extends Component {
 
     //get all groups
     axios
-      .get("http://localhost:5000/groups/")
+      .get("https://mndexmgdhd.execute-api.us-east-2.amazonaws.com/groups/")
       .then((response) => {
         this.setState({ groups: response.data });
       })
@@ -43,7 +43,7 @@ export default class regResearchTopic extends Component {
 
     //get employees and filter supervisors
     axios
-      .get("http://localhost:5000/employee/registration/")
+      .get("https://mndexmgdhd.execute-api.us-east-2.amazonaws.com/employee/registration/")
       .then((response) => {
         this.setState({ employees: response.data });
         for (var i = 0; i < this.state.employees.length; i++) {
@@ -88,7 +88,7 @@ export default class regResearchTopic extends Component {
     console.log("Update Topic = > ", updateTopic);
 
     axios
-      .post("http://localhost:5000/groups/update/topic", updateTopic)
+      .post("https://mndexmgdhd.execute-api.us-east-2.amazonaws.com/groups/update/topic", updateTopic)
       .then((res) => console.log(res.data));
 
     const updateSupervisor = {
@@ -98,7 +98,7 @@ export default class regResearchTopic extends Component {
     console.log("Update Supervisor = > ", updateSupervisor);
 
     axios
-      .post("http://localhost:5000/groups/update/supervisor", updateSupervisor)
+      .post("https://mndexmgdhd.execute-api.us-east-2.amazonaws.com/groups/update/supervisor", updateSupervisor)
       .then((res) => console.log(res.data));
 
     this.setState({
